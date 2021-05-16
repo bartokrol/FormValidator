@@ -14,6 +14,18 @@ class App extends Component {
 		buildingNumber: "",
 		postalCode: "",
 	};
+
+	handleInputChange = (e) => {
+		const name = e.target.id;
+		this.setState({
+			[name]: e.target.value,
+		});
+	};
+
+	handleSubmitFirstPage = (e) => {
+		e.preventDefault();
+	};
+
 	render() {
 		return (
 			<div className="form">
@@ -24,21 +36,28 @@ class App extends Component {
 					>
 						Name:
 					</label>
-					<input type="text" id="name" autoComplete="off" />
+					<input
+						type="text"
+						id="name"
+						autoComplete="off"
+						value={this.state.name}
+						onChange={this.handleInputChange}
+					/>
 					<span className="form__firstPage__errorMessage">
 						Error message
 					</span>
 					<label
-						htmlFor="lastname"
+						htmlFor="lastName"
 						className="form__firstPage__labelName"
 					>
 						Last Name:{" "}
 					</label>
 					<input
 						type="text"
-						id="lastname"
+						id="lastName"
 						value={this.state.lastName}
 						autoComplete="off"
+						onChange={this.handleInputChange}
 					/>
 					<span className="form__firstPage__errorMessage">
 						Error message
@@ -54,6 +73,7 @@ class App extends Component {
 						id="dateOfBirth"
 						value={this.state.dateOfBirth}
 						autoComplete="off"
+						onChange={this.handleInputChange}
 					/>
 					<span className="form__firstPage__errorMessage">
 						Error message
@@ -66,6 +86,7 @@ class App extends Component {
 						id="sex"
 						value={this.state.sex}
 						autoComplete="off"
+						onChange={this.handleInputChange}
 					/>
 					<span className="form__firstPage__errorMessage">
 						Error message
@@ -81,10 +102,17 @@ class App extends Component {
 						id="maritalStatus"
 						value={this.state.maritalStatus}
 						autoComplete="off"
+						onChange={this.handleInputChange}
 					/>
 					<span className="form__firstPage__errorMessage">
 						Error message
 					</span>
+					<button
+						class="form__button"
+						onClick={this.handleSubmitFirstPage}
+					>
+						Next Page
+					</button>
 					{/* <label
 						htmlFor="country"
 						className="form__firstPage__labelName"
@@ -150,9 +178,6 @@ class App extends Component {
 					<span className="form__firstPage__errorMessage">
 						Error message
 					</span> */}
-					<button type="submit" class="form__button">
-						Next Page
-					</button>
 				</form>
 			</div>
 		);
