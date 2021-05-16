@@ -14,6 +14,9 @@
 		&:focus {
 			outline: none;
 		}
+		&::after ::before {
+			visibility: hidden;
+		}
 	}
 
 	&__firstPage {

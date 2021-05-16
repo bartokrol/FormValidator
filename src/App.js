@@ -24,7 +24,7 @@ class App extends Component {
 					>
 						Name:
 					</label>
-					<input type="text" id="name" />
+					<input type="text" id="name" autoComplete="off" />
 					<span className="form__firstPage__errorMessage">
 						Error message
 					</span>
@@ -38,6 +38,7 @@ class App extends Component {
 						type="text"
 						id="lastname"
 						value={this.state.lastName}
+						autoComplete="off"
 					/>
 					<span className="form__firstPage__errorMessage">
 						Error message
@@ -52,6 +53,7 @@ class App extends Component {
 						type="text"
 						id="dateOfBirth"
 						value={this.state.dateOfBirth}
+						autoComplete="off"
 					/>
 					<span className="form__firstPage__errorMessage">
 						Error message
@@ -59,7 +61,12 @@ class App extends Component {
 					<label htmlFor="sex" className="form__firstPage__labelName">
 						Sex:{" "}
 					</label>
-					<input type="text" id="sex" value={this.state.sex} />
+					<input
+						type="text"
+						id="sex"
+						value={this.state.sex}
+						autoComplete="off"
+					/>
 					<span className="form__firstPage__errorMessage">
 						Error message
 					</span>
@@ -73,6 +80,7 @@ class App extends Component {
 						type="text"
 						id="maritalStatus"
 						value={this.state.maritalStatus}
+						autoComplete="off"
 					/>
 					<span className="form__firstPage__errorMessage">
 						Error message
@@ -87,7 +95,8 @@ class App extends Component {
 						type="text"
 						id="country"
 						value={this.state.country}
-					/>
+					autoComplete="off" 
+						/>
 					<span className="form__firstPage__errorMessage">
 						Error message
 					</span>
@@ -97,7 +106,7 @@ class App extends Component {
 					>
 						City:{" "}
 					</label>
-					<input type="text" id="city" value={this.state.city} />
+					<input type="text" id="city" value={this.state.city} autoComplete="off" />
 					<span className="form__firstPage__errorMessage">
 						Error message
 					</span>
@@ -107,7 +116,7 @@ class App extends Component {
 					>
 						Street:{" "}
 					</label>
-					<input type="text" id="street" value={this.state.street} />
+					<input type="text" id="street" value={this.state.street} autoComplete="off" />
 					<span className="form__firstPage__errorMessage">
 						Error message
 					</span>
@@ -121,7 +130,8 @@ class App extends Component {
 						type="text"
 						id="building_number"
 						value={this.state.buildingNumber}
-					/>
+					autoComplete="off" 
+						/>
 					<span className="form__firstPage__errorMessage">
 						Error message
 					</span>
@@ -135,7 +145,8 @@ class App extends Component {
 						type="text"
 						id="postal_code"
 						value={this.state.postalCode}
-					/>
+					autoComplete="off" 
+						/>
 					<span className="form__firstPage__errorMessage">
 						Error message
 					</span> */}
