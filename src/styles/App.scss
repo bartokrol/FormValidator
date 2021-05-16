@@ -1,0 +1,17 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: beige;
+
+	input {
+		display: block;
+	}
+	&__firstPage {
+		min-height: 90vh;
+		width: 80vw;
+		margin: auto auto;
+		display: flex;
+		flex-direction: column;
+	}
+}
