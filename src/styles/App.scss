@@ -6,12 +6,42 @@
 
 	input {
 		display: block;
+		border-radius: 5px;
+		border: none;
+		height: 26px;
+		font-size: 17px;
+		padding: 5px;
+		&:focus {
+			outline: none;
+		}
 	}
+
 	&__firstPage {
 		min-height: 90vh;
 		width: 80vw;
 		margin: auto auto;
 		display: flex;
 		flex-direction: column;
+
+		&__labelName {
+			font-size: 18px;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+
+		&__errorMessage {
+			margin-bottom: 10px;
+			color: red;
+			visibility: hidden;
+		}
+	}
+
+	&__button {
+		height: 30px;
+		font-size: 20px;
+	}
+
+	.active {
+		visibility: visible;
 	}
 }
