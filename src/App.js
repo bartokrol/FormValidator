@@ -16,7 +16,6 @@ class App extends Component {
 	};
 
 	handleInputChange = (e) => {
-		console.log(e.target);
 		const name = e.target.id;
 		this.setState({
 			[name]: e.target.value,
@@ -24,8 +23,54 @@ class App extends Component {
 	};
 
 	handleSubmitFirstPage = (e) => {
+		this.checkForm();
+		// const validated =
 		e.preventDefault();
 	};
+
+	checkForm() {
+		const { name, lastName, dateOfBirth, sex, maritalStatus } = this.state;
+
+		const errors = {
+			name_err: false,
+			lastName_err: false,
+			dateOfBirth_err: false,
+			sex_err: false,
+			maritalStatus_err: false,
+		};
+
+		const year = dateOfBirth.slice(0, 4);
+		const month = dateOfBirth.slice(5, 7);
+		const day = dateOfBirth.slice(8, 10);
+
+		if (name.length > 3) {
+		} else {
+			errors.name_err = true;
+		}
+
+		if (lastName.length > 3) {
+		} else {
+			errors.lastName_err = true;
+		}
+
+		if (dateOfBirth && year > 2003) {
+			console.log(dateOfBirth);
+		} else {
+			errors.dateOfBirth_err = true;
+		}
+
+		if (sex) {
+		} else {
+			errors.sex_err = true;
+		}
+
+		if (maritalStatus) {
+		} else {
+			errors.maritalStatus_err = true;
+		}
+
+		console.log(errors);
+	}
 
 	render() {
 		return (
@@ -88,6 +133,7 @@ class App extends Component {
 						onChange={this.handleInputChange}
 						value={this.state.sex}
 					>
+						<option value=" "></option>
 						<option value="male">Male</option>
 						<option value="female">Female</option>
 						<option value="other">Other</option>
@@ -108,6 +154,7 @@ class App extends Component {
 						onChange={this.handleInputChange}
 						value={this.state.maritalStatus}
 					>
+						<option value=" "></option>
 						<option value="single">Single</option>
 						<option value="married">Married</option>
 						<option value="separated">Separated</option>
