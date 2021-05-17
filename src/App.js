@@ -16,6 +16,7 @@ class App extends Component {
 	};
 
 	handleInputChange = (e) => {
+		console.log(e.target);
 		const name = e.target.id;
 		this.setState({
 			[name]: e.target.value,
@@ -81,7 +82,12 @@ class App extends Component {
 					<label htmlFor="sex" className="form__firstPage__labelName">
 						Sex:{" "}
 					</label>
-					<select id="sex" name="sex">
+					<select
+						id="sex"
+						name="sex"
+						onChange={this.handleInputChange}
+						value={this.state.sex}
+					>
 						<option value="male">Male</option>
 						<option value="female">Female</option>
 						<option value="other">Other</option>
@@ -96,7 +102,12 @@ class App extends Component {
 					>
 						Marital Status:{" "}
 					</label>
-					<select id="maritalStatus" name="maritalStatus">
+					<select
+						id="maritalStatus"
+						name="maritalStatus"
+						onChange={this.handleInputChange}
+						value={this.state.maritalStatus}
+					>
 						<option value="single">Single</option>
 						<option value="married">Married</option>
 						<option value="separated">Separated</option>
