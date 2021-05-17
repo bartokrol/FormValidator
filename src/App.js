@@ -69,7 +69,7 @@ class App extends Component {
 						Date of Birth:{" "}
 					</label>
 					<input
-						type="text"
+						type="date"
 						id="dateOfBirth"
 						value={this.state.dateOfBirth}
 						autoComplete="off"
@@ -81,13 +81,12 @@ class App extends Component {
 					<label htmlFor="sex" className="form__firstPage__labelName">
 						Sex:{" "}
 					</label>
-					<input
-						type="text"
-						id="sex"
-						value={this.state.sex}
-						autoComplete="off"
-						onChange={this.handleInputChange}
-					/>
+					<select id="sex" name="sex">
+						<option value="male">Male</option>
+						<option value="female">Female</option>
+						<option value="other">Other</option>
+					</select>
+
 					<span className="form__firstPage__errorMessage">
 						Error message
 					</span>
@@ -97,13 +96,13 @@ class App extends Component {
 					>
 						Marital Status:{" "}
 					</label>
-					<input
-						type="text"
-						id="maritalStatus"
-						value={this.state.maritalStatus}
-						autoComplete="off"
-						onChange={this.handleInputChange}
-					/>
+					<select id="maritalStatus" name="maritalStatus">
+						<option value="single">Single</option>
+						<option value="married">Married</option>
+						<option value="separated">Separated</option>
+						<option value="divorced">Divorced</option>
+						<option value="widowed">Widowed</option>
+					</select>
 					<span className="form__firstPage__errorMessage">
 						Error message
 					</span>
