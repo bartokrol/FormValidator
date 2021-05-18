@@ -39,52 +39,79 @@ class App extends Component {
 		const { name, lastName, dateOfBirth, sex, maritalStatus } = validated;
 		this.setState({
 			errors: {
-				name_err: name,
-				lastName_err: lastName,
-				dateOfBirth_err: dateOfBirth,
-				sex_err: sex,
-				maritalStatus_err: maritalStatus,
+				name_err: !name,
+				lastName_err: !lastName,
+				dateOfBirth_err: !dateOfBirth,
+				sex_err: !sex,
+				maritalStatus_err: !maritalStatus,
 			},
 		});
 	};
 
 	checkForm() {
-		let name = false;
-		let lastName = false;
-		let dateOfBirth = false;
-		let sex = false;
-		let maritalStatus = false;
+		let name = true;
+		let lastName = true;
+		let dateOfBirth = true;
+		let sex = true;
+		let maritalStatus = true;
 
-		console.log(name, lastName, dateOfBirth, sex, maritalStatus);
-		// const year = dateOfBirth.slice(0, 4);
-		// const month = dateOfBirth.slice(5, 7);
-		// const day = dateOfBirth.slice(8, 10);
+		const year = Number(this.state.dateOfBirth.slice(0, 4));
+		const month = Number(this.state.dateOfBirth.slice(5, 7));
+		const day = Number(this.state.dateOfBirth.slice(8, 10));
+
+		const date = new Date();
+
+		const todaysDay = date.getDate();
+		const todaysMonth = date.getMonth() + 1;
+		const todaysYear = date.getFullYear();
+
+		if (!year || !month || !day) {
+			dateOfBirth = false;
+		}
+
+		if (year && month && day) {
+			if (todaysYear - year >= 18) {
+				if (todaysMonth >= month) {
+					if (todaysDay >= day) {
+						dateOfBirth = true;
+					} else {
+						dateOfBirth = false;
+					}
+				} else {
+					dateOfBirth = false;
+				}
+			} else {
+				dateOfBirth = false;
+			}
+		}
+
 		if (this.state.name.length > 3) {
 		} else {
-			name = true;
+			name = false;
 		}
 
 		if (this.state.lastName.length > 3) {
 		} else {
-			lastName = true;
+			lastName = false;
 		}
 		// if (dateOfBirth && year > 2003) {
 		// 	console.log(dateOfBirth);
 		// } else {
-		// 	dateOfBirth = true;
+		// 	dateOfBirth = false;
 		// }
 		if (this.state.sex) {
 		} else {
-			sex = true;
+			sex = false;
 		}
 		if (this.state.maritalStatus) {
 		} else {
-			maritalStatus = true;
+			maritalStatus = false;
 		}
 
 		return {
 			name,
 			lastName,
+			dateOfBirth,
 			sex,
 			maritalStatus,
 		};
