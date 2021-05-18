@@ -13,7 +13,18 @@ class App extends Component {
 		street: "",
 		buildingNumber: "",
 		postalCode: "",
+
+		errors: {
+			name_err: false,
+			lastName_err: false,
+			dateOfBirth_err: false,
+			sex_err: false,
+			maritalStatus_err: false,
+		},
 	};
+
+	errorMessageActive = "form__firstPage__errorMessage active";
+	errorMessageHidden = "form__firstPage__errorMessage";
 
 	handleInputChange = (e) => {
 		const name = e.target.id;
@@ -23,56 +34,71 @@ class App extends Component {
 	};
 
 	handleSubmitFirstPage = (e) => {
-		this.checkForm();
-		// const validated =
 		e.preventDefault();
+		const validated = this.checkForm();
+		const { name, lastName, dateOfBirth, sex, maritalStatus } = validated;
+		this.setState({
+			errors: {
+				name_err: name,
+				lastName_err: lastName,
+				dateOfBirth_err: dateOfBirth,
+				sex_err: sex,
+				maritalStatus_err: maritalStatus,
+			},
+		});
 	};
 
 	checkForm() {
-		const { name, lastName, dateOfBirth, sex, maritalStatus } = this.state;
+		let name = false;
+		let lastName = false;
+		let dateOfBirth = false;
+		let sex = false;
+		let maritalStatus = false;
 
-		const errors = {
-			name_err: false,
-			lastName_err: false,
-			dateOfBirth_err: false,
-			sex_err: false,
-			maritalStatus_err: false,
+		console.log(name, lastName, dateOfBirth, sex, maritalStatus);
+		// const year = dateOfBirth.slice(0, 4);
+		// const month = dateOfBirth.slice(5, 7);
+		// const day = dateOfBirth.slice(8, 10);
+		if (this.state.name.length > 3) {
+		} else {
+			name = true;
+		}
+
+		if (this.state.lastName.length > 3) {
+		} else {
+			lastName = true;
+		}
+		// if (dateOfBirth && year > 2003) {
+		// 	console.log(dateOfBirth);
+		// } else {
+		// 	dateOfBirth = true;
+		// }
+		if (this.state.sex) {
+		} else {
+			sex = true;
+		}
+		if (this.state.maritalStatus) {
+		} else {
+			maritalStatus = true;
+		}
+
+		return {
+			name,
+			lastName,
+			sex,
+			maritalStatus,
 		};
-
-		const year = dateOfBirth.slice(0, 4);
-		const month = dateOfBirth.slice(5, 7);
-		const day = dateOfBirth.slice(8, 10);
-
-		if (name.length > 3) {
-		} else {
-			errors.name_err = true;
-		}
-
-		if (lastName.length > 3) {
-		} else {
-			errors.lastName_err = true;
-		}
-
-		if (dateOfBirth && year > 2003) {
-			console.log(dateOfBirth);
-		} else {
-			errors.dateOfBirth_err = true;
-		}
-
-		if (sex) {
-		} else {
-			errors.sex_err = true;
-		}
-
-		if (maritalStatus) {
-		} else {
-			errors.maritalStatus_err = true;
-		}
-
-		console.log(errors);
 	}
 
 	render() {
+		const {
+			name_err,
+			lastName_err,
+			dateOfBirth_err,
+			sex_err,
+			maritalStatus_err,
+		} = this.state.errors;
+
 		return (
 			<div className="form">
 				<form className="form__firstPage" noValidate>
@@ -89,7 +115,13 @@ class App extends Component {
 						value={this.state.name}
 						onChange={this.handleInputChange}
 					/>
-					<span className="form__firstPage__errorMessage">
+					<span
+						className={
+							name_err
+								? this.errorMessageActive
+								: this.errorMessageHidden
+						}
+					>
 						Error message
 					</span>
 					<label
@@ -105,7 +137,13 @@ class App extends Component {
 						autoComplete="off"
 						onChange={this.handleInputChange}
 					/>
-					<span className="form__firstPage__errorMessage">
+					<span
+						className={
+							lastName_err
+								? this.errorMessageActive
+								: this.errorMessageHidden
+						}
+					>
 						Error message
 					</span>
 					<label
@@ -121,7 +159,13 @@ class App extends Component {
 						autoComplete="off"
 						onChange={this.handleInputChange}
 					/>
-					<span className="form__firstPage__errorMessage">
+					<span
+						className={
+							dateOfBirth_err
+								? this.errorMessageActive
+								: this.errorMessageHidden
+						}
+					>
 						Error message
 					</span>
 					<label htmlFor="sex" className="form__firstPage__labelName">
@@ -139,7 +183,13 @@ class App extends Component {
 						<option value="other">Other</option>
 					</select>
 
-					<span className="form__firstPage__errorMessage">
+					<span
+						className={
+							sex_err
+								? this.errorMessageActive
+								: this.errorMessageHidden
+						}
+					>
 						Error message
 					</span>
 					<label
@@ -161,7 +211,13 @@ class App extends Component {
 						<option value="divorced">Divorced</option>
 						<option value="widowed">Widowed</option>
 					</select>
-					<span className="form__firstPage__errorMessage">
+					<span
+						className={
+							maritalStatus_err
+								? this.errorMessageActive
+								: this.errorMessageHidden
+						}
+					>
 						Error message
 					</span>
 					<button
