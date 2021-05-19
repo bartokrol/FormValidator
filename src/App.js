@@ -55,35 +55,8 @@ class App extends Component {
 		let sex = true;
 		let maritalStatus = true;
 
-		const year = Number(this.state.dateOfBirth.slice(0, 4));
-		const month = Number(this.state.dateOfBirth.slice(5, 7));
-		const day = Number(this.state.dateOfBirth.slice(8, 10));
-
-		const date = new Date();
-
-		const todaysDay = date.getDate();
-		const todaysMonth = date.getMonth() + 1;
-		const todaysYear = date.getFullYear();
-
-		if (!year || !month || !day) {
-			dateOfBirth = false;
-		}
-
-		if (year && month && day) {
-			if (todaysYear - year >= 18) {
-				if (todaysMonth >= month) {
-					if (todaysDay >= day) {
-						dateOfBirth = true;
-					} else {
-						dateOfBirth = false;
-					}
-				} else {
-					dateOfBirth = false;
-				}
-			} else {
-				dateOfBirth = false;
-			}
-		}
+		const date = this.checkDateOfBirthValidation(dateOfBirth);
+		dateOfBirth = date;
 
 		if (this.state.name.length > 3) {
 		} else {
@@ -94,11 +67,10 @@ class App extends Component {
 		} else {
 			lastName = false;
 		}
-		// if (dateOfBirth && year > 2003) {
-		// 	console.log(dateOfBirth);
-		// } else {
-		// 	dateOfBirth = false;
-		// }
+		if (dateOfBirth) {
+		} else {
+			dateOfBirth = false;
+		}
 		if (this.state.sex) {
 		} else {
 			sex = false;
@@ -115,6 +87,47 @@ class App extends Component {
 			sex,
 			maritalStatus,
 		};
+	}
+
+	checkDateOfBirthValidation(dateOfBirth) {
+		const year = Number(this.state.dateOfBirth.slice(0, 4));
+		const month = Number(this.state.dateOfBirth.slice(5, 7));
+		const day = Number(this.state.dateOfBirth.slice(8, 10));
+
+		const date = new Date();
+		const todaysDay = date.getDate();
+		const todaysMonth = date.getMonth() + 1;
+		const todaysYear = date.getFullYear();
+
+		if (!year || !month || !day) {
+			dateOfBirth = false;
+			return dateOfBirth;
+		}
+
+		if (year && month && day) {
+			if (todaysYear - year > 18) {
+				dateOfBirth = true;
+				return dateOfBirth;
+			} else {
+				if (todaysYear - year >= 18) {
+					if (todaysMonth >= month) {
+						if (todaysDay >= day) {
+							dateOfBirth = true;
+							return dateOfBirth;
+						} else {
+							dateOfBirth = false;
+							return dateOfBirth;
+						}
+					} else {
+						dateOfBirth = false;
+						return dateOfBirth;
+					}
+				} else {
+					dateOfBirth = false;
+					return dateOfBirth;
+				}
+			}
+		}
 	}
 
 	render() {
