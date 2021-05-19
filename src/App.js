@@ -1,13 +1,34 @@
 import { Component } from "react";
+// import Input from "./Input";
 import "./styles/App.scss";
 
 class App extends Component {
 	state = {
-		name: "",
-		lastName: "",
-		dateOfBirth: "",
-		sex: "",
-		maritalStatus: "",
+		name: {
+			id: "name",
+			label: "Name",
+			value: "",
+		},
+		lastName: {
+			id: "lastName",
+			label: "Last Name",
+			value: "",
+		},
+		dateOfBirth: {
+			id: "dateOfBirth",
+			label: "Date of Birth",
+			value: "",
+		},
+		sex: {
+			id: "sex",
+			label: "Sex",
+			value: "",
+		},
+		maritalStatus: {
+			id: "maritalStatus",
+			label: "Marital Status",
+			value: "",
+		},
 		country: "",
 		city: "",
 		street: "",
@@ -25,13 +46,21 @@ class App extends Component {
 		},
 	};
 
+	// sexes = {
+	// 	male: "male",
+	// 	female: "female",
+	// 	other: "other",
+	// };
+
 	errorMessageActive = "form__firstPage__errorMessage active";
 	errorMessageHidden = "form__firstPage__errorMessage";
 
 	handleInputChange = (e) => {
 		const name = e.target.id;
 		this.setState({
-			[name]: e.target.value,
+			[name]: {
+				value: e.target.value,
+			},
 		});
 	};
 
@@ -70,24 +99,24 @@ class App extends Component {
 		const date = this.checkDateOfBirthValidation(dateOfBirth);
 		dateOfBirth = date;
 
-		if (this.state.name.length > 3) {
+		if (this.state.name.value.length > 3) {
 		} else {
 			name = false;
 		}
 
-		if (this.state.lastName.length > 3) {
+		if (this.state.lastName.value.length > 3) {
 		} else {
 			lastName = false;
 		}
-		if (dateOfBirth) {
+		if (dateOfBirth.value) {
 		} else {
 			dateOfBirth = false;
 		}
-		if (this.state.sex) {
+		if (this.state.sex.value) {
 		} else {
 			sex = false;
 		}
-		if (this.state.maritalStatus) {
+		if (this.state.maritalStatus.value) {
 		} else {
 			maritalStatus = false;
 		}
@@ -107,9 +136,9 @@ class App extends Component {
 	}
 
 	checkDateOfBirthValidation(dateOfBirth) {
-		const year = Number(this.state.dateOfBirth.slice(0, 4));
-		const month = Number(this.state.dateOfBirth.slice(5, 7));
-		const day = Number(this.state.dateOfBirth.slice(8, 10));
+		const year = Number(this.state.dateOfBirth.value.slice(0, 4));
+		const month = Number(this.state.dateOfBirth.value.slice(5, 7));
+		const day = Number(this.state.dateOfBirth.value.slice(8, 10));
 
 		const date = new Date();
 		const todaysDay = date.getDate();
@@ -148,6 +177,7 @@ class App extends Component {
 	}
 
 	render() {
+		const { name, lastName, dateOfBirth, sex, maritalStatus } = this.state;
 		const {
 			name_err,
 			lastName_err,
@@ -159,6 +189,7 @@ class App extends Component {
 		return (
 			<div className="form">
 				<form className="form__firstPage" noValidate>
+					{/* <Input name={this.state.name} /> */}
 					<label
 						htmlFor="name"
 						className="form__firstPage__labelName"
@@ -169,7 +200,7 @@ class App extends Component {
 						type="text"
 						id="name"
 						autoComplete="off"
-						value={this.state.name}
+						value={name.value}
 						onChange={this.handleInputChange}
 					/>
 					<span
@@ -190,7 +221,7 @@ class App extends Component {
 					<input
 						type="text"
 						id="lastName"
-						value={this.state.lastName}
+						value={lastName.value}
 						autoComplete="off"
 						onChange={this.handleInputChange}
 					/>
@@ -212,7 +243,7 @@ class App extends Component {
 					<input
 						type="date"
 						id="dateOfBirth"
-						value={this.state.dateOfBirth}
+						value={dateOfBirth.value}
 						autoComplete="off"
 						onChange={this.handleInputChange}
 					/>
@@ -232,7 +263,7 @@ class App extends Component {
 						id="sex"
 						name="sex"
 						onChange={this.handleInputChange}
-						value={this.state.sex}
+						value={sex.value}
 					>
 						<option value=""></option>
 						<option value="male">Male</option>
@@ -259,7 +290,7 @@ class App extends Component {
 						id="maritalStatus"
 						name="maritalStatus"
 						onChange={this.handleInputChange}
-						value={this.state.maritalStatus}
+						value={maritalStatus.value}
 					>
 						<option value=""></option>
 						<option value="single">Single</option>
