@@ -13,13 +13,15 @@ class App extends Component {
 		street: "",
 		buildingNumber: "",
 		postalCode: "",
-
 		errors: {
 			name_err: false,
 			lastName_err: false,
 			dateOfBirth_err: false,
 			sex_err: false,
 			maritalStatus_err: false,
+		},
+		pagesValidated: {
+			firstPage: false,
 		},
 	};
 
@@ -36,7 +38,14 @@ class App extends Component {
 	handleSubmitFirstPage = (e) => {
 		e.preventDefault();
 		const validated = this.checkForm();
-		const { name, lastName, dateOfBirth, sex, maritalStatus } = validated;
+		const {
+			name,
+			lastName,
+			dateOfBirth,
+			sex,
+			maritalStatus,
+			isPageValidated,
+		} = validated;
 		this.setState({
 			errors: {
 				name_err: !name,
@@ -45,15 +54,18 @@ class App extends Component {
 				sex_err: !sex,
 				maritalStatus_err: !maritalStatus,
 			},
+			pagesValidated: {
+				firstPage: isPageValidated,
+			},
 		});
 	};
-
 	checkForm() {
 		let name = true;
 		let lastName = true;
 		let dateOfBirth = true;
 		let sex = true;
 		let maritalStatus = true;
+		let isPageValidated = false;
 
 		const date = this.checkDateOfBirthValidation(dateOfBirth);
 		dateOfBirth = date;
@@ -80,12 +92,17 @@ class App extends Component {
 			maritalStatus = false;
 		}
 
+		if ((name, lastName, dateOfBirth, sex, maritalStatus)) {
+			isPageValidated = true;
+		}
+
 		return {
 			name,
 			lastName,
 			dateOfBirth,
 			sex,
 			maritalStatus,
+			isPageValidated,
 		};
 	}
 
@@ -217,7 +234,7 @@ class App extends Component {
 						onChange={this.handleInputChange}
 						value={this.state.sex}
 					>
-						<option value=" "></option>
+						<option value=""></option>
 						<option value="male">Male</option>
 						<option value="female">Female</option>
 						<option value="other">Other</option>
@@ -244,7 +261,7 @@ class App extends Component {
 						onChange={this.handleInputChange}
 						value={this.state.maritalStatus}
 					>
-						<option value=" "></option>
+						<option value=""></option>
 						<option value="single">Single</option>
 						<option value="married">Married</option>
 						<option value="separated">Separated</option>
