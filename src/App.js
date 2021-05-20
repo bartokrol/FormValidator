@@ -1,5 +1,5 @@
 import { Component } from "react";
-// import Input from "./Input";
+import Input from "./Input";
 import "./styles/App.scss";
 
 class App extends Component {
@@ -8,26 +8,61 @@ class App extends Component {
 			id: "name",
 			label: "Name",
 			value: "",
+			input: {
+				input: "input",
+				type: "text",
+			},
 		},
 		lastName: {
 			id: "lastName",
 			label: "Last Name",
 			value: "",
+			input: {
+				input: "input",
+				type: "text",
+			},
 		},
 		dateOfBirth: {
 			id: "dateOfBirth",
 			label: "Date of Birth",
 			value: "",
+			input: {
+				input: "input",
+				type: "data",
+			},
 		},
 		sex: {
 			id: "sex",
 			label: "Sex",
 			value: "",
+			input: {
+				input: "select",
+				type: "text",
+				options: {
+					empty: "",
+					male: "Male",
+					female: "Female",
+					other: "Other",
+				},
+			},
 		},
 		maritalStatus: {
 			id: "maritalStatus",
 			label: "Marital Status",
 			value: "",
+			input: {
+				input: "select",
+				type: "text",
+				options: {
+					empty: "",
+					single: "Single",
+					married: "Married",
+					separated: "Separated",
+					divorced: "Divorced",
+					widowed: "Widowed",
+					other: "Other",
+				},
+			},
 		},
 		country: "",
 		city: "",
@@ -56,10 +91,19 @@ class App extends Component {
 	errorMessageHidden = "form__firstPage__errorMessage";
 
 	handleInputChange = (e) => {
-		const name = e.target.id;
+		const inputName = e.target.id;
+		const labelName = e.target.previousSibling.textContent;
+		console.log(inputName);
+		console.log(labelName);
 		this.setState({
-			[name]: {
+			[inputName]: {
+				id: inputName,
+				label: labelName,
 				value: e.target.value,
+				input: {
+					input: "input",
+					type: "text",
+				},
 			},
 		});
 	};
@@ -177,20 +221,27 @@ class App extends Component {
 	}
 
 	render() {
-		const { name, lastName, dateOfBirth, sex, maritalStatus } = this.state;
-		const {
-			name_err,
-			lastName_err,
-			dateOfBirth_err,
-			sex_err,
-			maritalStatus_err,
-		} = this.state.errors;
+		// const { name, lastName, dateOfBirth, sex, maritalStatus } = this.state;
+		// const {
+		// 	name_err,
+		// 	lastName_err,
+		// 	dateOfBirth_err,
+		// 	sex_err,
+		// 	maritalStatus_err,
+		// } = this.state.errors;
 
 		return (
 			<div className="form">
 				<form className="form__firstPage" noValidate>
-					{/* <Input name={this.state.name} /> */}
-					<label
+					<Input
+						name={this.state.name}
+						click={this.handleInputChange}
+					/>
+					<Input
+						name={this.state.lastName}
+						click={this.handleInputChange}
+					/>
+					{/* <label
 						htmlFor="name"
 						className="form__firstPage__labelName"
 					>
@@ -313,7 +364,7 @@ class App extends Component {
 						onClick={this.handleSubmitFirstPage}
 					>
 						Next Page
-					</button>
+					</button> */}
 					{/* <label
 						htmlFor="country"
 						className="form__firstPage__labelName"
