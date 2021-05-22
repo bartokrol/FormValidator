@@ -28,7 +28,7 @@ class App extends Component {
 			value: "",
 			input: {
 				input: "input",
-				type: "data",
+				type: "date",
 			},
 		},
 		sex: {
@@ -38,12 +38,7 @@ class App extends Component {
 			input: {
 				input: "select",
 				type: "text",
-				options: {
-					empty: "",
-					male: "Male",
-					female: "Female",
-					other: "Other",
-				},
+				options: ["", "Male", "Female", "Other"],
 			},
 		},
 		maritalStatus: {
@@ -53,15 +48,15 @@ class App extends Component {
 			input: {
 				input: "select",
 				type: "text",
-				options: {
-					empty: "",
-					single: "Single",
-					married: "Married",
-					separated: "Separated",
-					divorced: "Divorced",
-					widowed: "Widowed",
-					other: "Other",
-				},
+				options: [
+					"",
+					"Single",
+					"Married",
+					"Separated",
+					"Divorced",
+					"Widowed",
+					"Other",
+				],
 			},
 		},
 		country: "",
@@ -93,19 +88,53 @@ class App extends Component {
 	handleInputChange = (e) => {
 		const inputName = e.target.id;
 		const labelName = e.target.previousSibling.textContent;
-		console.log(inputName);
-		console.log(labelName);
-		this.setState({
-			[inputName]: {
-				id: inputName,
-				label: labelName,
-				value: e.target.value,
-				input: {
-					input: "input",
-					type: "text",
+		const type = e.target.type;
+		if (e.target.localName === "input" && type === "text") {
+			this.setState({
+				[inputName]: {
+					id: inputName,
+					label: labelName,
+					value: e.target.value,
+					input: {
+						input: "input",
+						type: "text",
+					},
 				},
-			},
-		});
+			});
+		}
+
+		if (e.target.localName === "input" && type === "date") {
+			this.setState({
+				[inputName]: {
+					id: inputName,
+					label: labelName,
+					value: e.target.value,
+					input: {
+						input: "input",
+						type: "date",
+					},
+				},
+			});
+		}
+
+		if (e.target.localName === "select") {
+			const options = [];
+			Array.from(e.target.options).forEach((option) =>
+				options.push(option.value)
+			);
+			this.setState({
+				[inputName]: {
+					id: inputName,
+					label: labelName,
+					value: e.target.value,
+					input: {
+						input: "select",
+						type: "text",
+						options: options,
+					},
+				},
+			});
+		}
 	};
 
 	handleSubmitFirstPage = (e) => {
@@ -241,6 +270,19 @@ class App extends Component {
 						name={this.state.lastName}
 						click={this.handleInputChange}
 					/>
+					<Input
+						name={this.state.dateOfBirth}
+						click={this.handleInputChange}
+					/>
+					<Input
+						name={this.state.sex}
+						click={this.handleInputChange}
+					/>
+					<Input
+						name={this.state.maritalStatus}
+						click={this.handleInputChange}
+					/>
+
 					{/* <label
 						htmlFor="name"
 						className="form__firstPage__labelName"
