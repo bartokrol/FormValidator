@@ -7,6 +7,13 @@ const FirstPage = (props) => {
 		sex_err,
 		maritalStatus_err,
 	} = props.errors;
+	const {
+		name_message,
+		lastName_message,
+		dateOfBirth_message,
+		sex_message,
+		maritalStatus_message,
+	} = props.errorMessages;
 
 	return (
 		<>
@@ -23,7 +30,7 @@ const FirstPage = (props) => {
 			<span
 				className={name_err ? props.messageActive : props.messageHidden}
 			>
-				Error message
+				{name_message}
 			</span>
 			<label htmlFor="lastName" className="form__firstPage__labelName">
 				Last Name:{" "}
@@ -40,7 +47,7 @@ const FirstPage = (props) => {
 					lastName_err ? props.messageActive : props.messageHidden
 				}
 			>
-				Error message
+				{lastName_message}
 			</span>
 			<label htmlFor="dateOfBirth" className="form__firstPage__labelName">
 				Date of Birth:{" "}
@@ -57,7 +64,7 @@ const FirstPage = (props) => {
 					dateOfBirth_err ? props.messageActive : props.messageHidden
 				}
 			>
-				Error message
+				{dateOfBirth_message}
 			</span>
 			<label htmlFor="sex" className="form__firstPage__labelName">
 				Sex:{" "}
@@ -77,7 +84,7 @@ const FirstPage = (props) => {
 			<span
 				className={sex_err ? props.messageActive : props.messageHidden}
 			>
-				Error message
+				{sex_message}
 			</span>
 			<label
 				htmlFor="maritalStatus"
@@ -105,7 +112,7 @@ const FirstPage = (props) => {
 						: props.messageHidden
 				}
 			>
-				Error message
+				{maritalStatus_message}
 			</span>
 			<button class="form__button" onClick={props.submit}>
 				Next Page

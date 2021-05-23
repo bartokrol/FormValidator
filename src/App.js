@@ -16,6 +16,13 @@ class App extends Component {
 			sex_err: false,
 			maritalStatus_err: false,
 		},
+		firstPageErrorsMessages: {
+			name_message: "",
+			lastName_message: "",
+			dateOfBirth_message: "",
+			sex_message: "",
+			maritalStatus_message: "",
+		},
 		firstPageValidated: false,
 		country: "",
 		city: "",
@@ -26,6 +33,12 @@ class App extends Component {
 
 	errorMessageActive = "form__firstPage__errorMessage active";
 	errorMessageHidden = "form__firstPage__errorMessage";
+
+	messages = {
+		minLength: "Input has to be longer then 3 letters.",
+		onlyLetters: "Input has to contain only letters",
+		onlyNumbers: "Input has to contain only numbers",
+	};
 
 	handleInputChange = (e) => {
 		const inputName = e.target.id;
@@ -160,6 +173,7 @@ class App extends Component {
 							submit={this.handleSubmitFirstPage}
 							messageActive={this.errorMessageActive}
 							messageHidden={this.errorMessageHidden}
+							errorMessages={this.state.firstPageErrorsMessages}
 						/>
 					) : null}
 					{/* <label
