@@ -12,6 +12,7 @@ class App extends Component {
 				input: "input",
 				type: "text",
 			},
+			error: false,
 		},
 		lastName: {
 			id: "lastName",
@@ -21,6 +22,7 @@ class App extends Component {
 				input: "input",
 				type: "text",
 			},
+			error: false,
 		},
 		dateOfBirth: {
 			id: "dateOfBirth",
@@ -30,6 +32,7 @@ class App extends Component {
 				input: "input",
 				type: "date",
 			},
+			error: false,
 		},
 		sex: {
 			id: "sex",
@@ -40,6 +43,7 @@ class App extends Component {
 				type: "text",
 				options: ["", "Male", "Female", "Other"],
 			},
+			error: false,
 		},
 		maritalStatus: {
 			id: "maritalStatus",
@@ -58,29 +62,24 @@ class App extends Component {
 					"Other",
 				],
 			},
+			error: false,
 		},
 		country: "",
 		city: "",
 		street: "",
 		buildingNumber: "",
 		postalCode: "",
-		errors: {
-			name_err: false,
-			lastName_err: false,
-			dateOfBirth_err: false,
-			sex_err: false,
-			maritalStatus_err: false,
-		},
+		// errors: {
+		// 	name_err: false,
+		// 	lastName_err: false,
+		// 	dateOfBirth_err: false,
+		// 	sex_err: false,
+		// 	maritalStatus_err: false,
+		// },
 		pagesValidated: {
 			firstPage: false,
 		},
 	};
-
-	// sexes = {
-	// 	male: "male",
-	// 	female: "female",
-	// 	other: "other",
-	// };
 
 	errorMessageActive = "form__firstPage__errorMessage active";
 	errorMessageHidden = "form__firstPage__errorMessage";
@@ -149,12 +148,15 @@ class App extends Component {
 			isPageValidated,
 		} = validated;
 		this.setState({
-			errors: {
-				name_err: !name,
-				lastName_err: !lastName,
-				dateOfBirth_err: !dateOfBirth,
-				sex_err: !sex,
-				maritalStatus_err: !maritalStatus,
+			// errors: {
+			// 	name_err: !name,
+			// 	lastName_err: !lastName,
+			// 	dateOfBirth_err: !dateOfBirth,
+			// 	sex_err: !sex,
+			// 	maritalStatus_err: !maritalStatus,
+			// },
+			name: {
+				error: !name,
 			},
 			pagesValidated: {
 				firstPage: isPageValidated,
@@ -263,24 +265,39 @@ class App extends Component {
 			<div className="form">
 				<form className="form__firstPage" noValidate>
 					<Input
+						id={this.state.name}
 						name={this.state.name}
 						click={this.handleInputChange}
+						activeMessage={this.errorMessageActive}
+						hiddenMessage={this.errorMessageHidden}
 					/>
 					<Input
+						id={this.state.lastName}
 						name={this.state.lastName}
 						click={this.handleInputChange}
+						activeMessage={this.errorMessageActive}
+						hiddenMessage={this.errorMessageHidden}
 					/>
 					<Input
+						id={this.state.dateOfBirth}
 						name={this.state.dateOfBirth}
 						click={this.handleInputChange}
+						activeMessage={this.errorMessageActive}
+						hiddenMessage={this.errorMessageHidden}
 					/>
 					<Input
+						id={this.state.sex}
 						name={this.state.sex}
 						click={this.handleInputChange}
+						activeMessage={this.errorMessageActive}
+						hiddenMessage={this.errorMessageHidden}
 					/>
 					<Input
+						id={this.state.maritalStatus}
 						name={this.state.maritalStatus}
 						click={this.handleInputChange}
+						activeMessage={this.errorMessageActive}
+						hiddenMessage={this.errorMessageHidden}
 					/>
 
 					{/* <label
@@ -400,8 +417,8 @@ class App extends Component {
 						}
 					>
 						Error message
-					</span>
-					<button
+					</span> */}
+					{/* <button
 						class="form__button"
 						onClick={this.handleSubmitFirstPage}
 					>

@@ -3,9 +3,11 @@ import React from "react";
 const Input = (props) => {
 	if (props.name.input.input === "select") {
 		const options = props.name.input.options.map((option) => (
-			<option value={option}>{option}</option>
+			<option id={option} value={option}>
+				{option}
+			</option>
 		));
-		return (
+		const select = (
 			<>
 				<label
 					htmlFor={props.name.id}
@@ -21,12 +23,23 @@ const Input = (props) => {
 				>
 					{options}
 				</select>
+				<span
+					className={
+						props.name.error
+							? props.activeMessage
+							: props.hiddenMessage
+					}
+				>
+					Error message
+				</span>
 			</>
 		);
+
+		return select;
 	}
 
 	if (props.name.input.input === "input") {
-		return (
+		const input = (
 			<>
 				<label
 					htmlFor={props.name.id}
@@ -41,8 +54,18 @@ const Input = (props) => {
 					autoComplete="off"
 					onChange={props.click}
 				/>
+				<span
+					className={
+						props.name.error
+							? props.activeMessage
+							: props.hiddenMessage
+					}
+				>
+					Error message
+				</span>
 			</>
 		);
+		return input;
 	}
 };
 
