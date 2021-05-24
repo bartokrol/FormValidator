@@ -36,6 +36,7 @@ class App extends Component {
 
 	messages = {
 		minLength: "has to be longer then 2 letters.",
+		maxLength: "has to be shorter then 20 letters.",
 		onlyLetters: "has to contain only letters.",
 		onlyNumbers: "has to contain only numbers.",
 		emptySelect: "has to be chosen.",
@@ -56,7 +57,6 @@ class App extends Component {
 
 	handleSubmitFirstPage = (e) => {
 		e.preventDefault();
-		const validated = this.checkForm();
 		const {
 			name,
 			lastName,
@@ -69,7 +69,8 @@ class App extends Component {
 			sex_message,
 			maritalStatus_message,
 			isPageValidated,
-		} = validated;
+		} = this.checkForm();
+
 		this.setState(() => ({
 			firstPageErrors: {
 				name_err: !name,
@@ -106,47 +107,46 @@ class App extends Component {
 		const date = this.checkDateOfBirthValidation(dateOfBirth);
 		dateOfBirth = date;
 
-		if (!this.state.name.match(this.regex.lettersOnly)) {
-			name = false;
-			name_message = this.messages.onlyLetters;
-		}
+		const checkName = this.checkTextInput(
+			this.state.name,
+			name,
+			name_message
+		);
+		name = checkName.stateName;
+		name_message = checkName.stateName_message;
 
-		if (this.state.name.length < 3) {
-			name = false;
-			name_message = this.messages.minLength;
-		}
+		const checkLastName = this.checkTextInput(
+			this.state.lastName,
+			lastName,
+			lastName_message
+		);
+		lastName = checkLastName.stateName;
+		lastName_message = checkLastName.stateName_message;
 
-		if (!this.state.lastName.match(this.regex.lettersOnly)) {
-			lastName_message = false;
-			lastName_message = this.messages.onlyLetters;
-		}
+		const checkDateOfBirth = this.checkDateOfBirth(
+			dateOfBirth,
+			dateOfBirth_message
+		);
+		dateOfBirth = checkDateOfBirth.dateOfBirth;
+		dateOfBirth_message = checkDateOfBirth.dateOfBirth_message;
 
-		if (this.state.lastName.length < 2) {
-			lastName = false;
-			lastName_message = this.messages.minLength;
-		}
+		const checkSex = this.checkSelectInput(
+			this.state.sex,
+			sex,
+			sex_message
+		);
+		sex = checkSex.stateName;
+		sex_message = checkSex.stateName_message;
 
-		if (dateOfBirth.notFilled) {
-			dateOfBirth = false;
-			dateOfBirth_message = this.messages.emptyDate;
-		}
+		const checkMaritalStatus = this.checkSelectInput(
+			this.state.maritalStatus,
+			maritalStatus,
+			maritalStatus_message
+		);
+		maritalStatus = checkMaritalStatus.stateName;
+		maritalStatus_message = checkMaritalStatus.stateName_message;
 
-		if (dateOfBirth.underEighteen) {
-			dateOfBirth = false;
-			dateOfBirth_message = this.messages.underEighteen;
-		}
-
-		if (!this.state.sex) {
-			sex = false;
-			sex_message = this.messages.emptySelect;
-		}
-
-		if (!this.state.maritalStatus) {
-			maritalStatus = false;
-			maritalStatus_message = this.messages.emptySelect;
-		}
-
-		if ((name, lastName, dateOfBirth, sex, maritalStatus)) {
+		if (name && lastName && dateOfBirth && sex && maritalStatus) {
 			isPageValidated = true;
 		}
 
@@ -163,6 +163,41 @@ class App extends Component {
 			maritalStatus_message,
 			isPageValidated,
 		};
+	}
+
+	checkTextInput(state, stateName, stateName_message) {
+		if (!state.match(this.regex.lettersOnly)) {
+			stateName_message = false;
+			stateName_message = this.messages.onlyLetters;
+		}
+
+		if (state.length < 2) {
+			stateName = false;
+			stateName_message = this.messages.minLength;
+		}
+		return { stateName, stateName_message };
+	}
+
+	checkDateOfBirth(dateOfBirth, dateOfBirth_message) {
+		if (dateOfBirth.notFilled) {
+			dateOfBirth = false;
+			dateOfBirth_message = this.messages.emptyDate;
+		}
+
+		if (dateOfBirth.underEighteen) {
+			dateOfBirth = false;
+			dateOfBirth_message = this.messages.underEighteen;
+		}
+		return { dateOfBirth, dateOfBirth_message };
+	}
+
+	checkSelectInput(state, stateName, stateName_message) {
+		if (!state) {
+			stateName = false;
+			stateName_message = this.messages.emptySelect;
+		}
+
+		return { stateName, stateName_message };
 	}
 
 	checkDateOfBirthValidation(dateOfBirth) {

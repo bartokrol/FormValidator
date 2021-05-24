@@ -100,6 +100,7 @@ const FirstPage = (props) => {
 			>
 				<option value=""></option>
 				<option value="single">Single</option>
+				<option value="in relationship">In Relationship</option>
 				<option value="married">Married</option>
 				<option value="separated">Separated</option>
 				<option value="divorced">Divorced</option>
