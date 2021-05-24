@@ -104,9 +104,6 @@ class App extends Component {
 		let sex_message = " ";
 		let maritalStatus_message = " ";
 
-		const date = this.checkDateOfBirthValidation(dateOfBirth);
-		dateOfBirth = date;
-
 		const checkName = this.checkTextInput(
 			this.state.name,
 			name,
@@ -122,6 +119,9 @@ class App extends Component {
 		);
 		lastName = checkLastName.stateName;
 		lastName_message = checkLastName.stateName_message;
+
+		const date = this.checkDateOfBirthValidation(dateOfBirth);
+		dateOfBirth = date;
 
 		const checkDateOfBirth = this.checkDateOfBirth(
 			dateOfBirth,
@@ -174,6 +174,11 @@ class App extends Component {
 		if (state.length < 2) {
 			stateName = false;
 			stateName_message = this.messages.minLength;
+		}
+
+		if (state.length > 20) {
+			stateName = false;
+			stateName_message = this.messages.maxLength;
 		}
 		return { stateName, stateName_message };
 	}
