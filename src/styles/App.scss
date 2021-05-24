@@ -35,8 +35,9 @@
 
 		&__errorMessage {
 			margin-bottom: 10px;
+			height: 18px;
 			color: red;
-			visibility: hidden;
+			opacity: 0;
 		}
 	}
 
@@ -46,6 +47,6 @@
 	}
 
 	.active {
-		visibility: visible;
+		opacity: 1;
 	}
 }

@@ -30,7 +30,7 @@ const FirstPage = (props) => {
 			<span
 				className={name_err ? props.messageActive : props.messageHidden}
 			>
-				{name_message}
+				{`Name ${name_message}`}
 			</span>
 			<label htmlFor="lastName" className="form__firstPage__labelName">
 				Last Name:{" "}
@@ -47,7 +47,7 @@ const FirstPage = (props) => {
 					lastName_err ? props.messageActive : props.messageHidden
 				}
 			>
-				{lastName_message}
+				{`Last Name ${lastName_message}`}
 			</span>
 			<label htmlFor="dateOfBirth" className="form__firstPage__labelName">
 				Date of Birth:{" "}
@@ -84,7 +84,7 @@ const FirstPage = (props) => {
 			<span
 				className={sex_err ? props.messageActive : props.messageHidden}
 			>
-				{sex_message}
+				{`Sex ${sex_message}`}
 			</span>
 			<label
 				htmlFor="maritalStatus"
@@ -112,7 +112,7 @@ const FirstPage = (props) => {
 						: props.messageHidden
 				}
 			>
-				{maritalStatus_message}
+				{`Marital Status ${maritalStatus_message}`}
 			</span>
 			<button class="form__button" onClick={props.submit}>
 				Next Page

@@ -35,9 +35,12 @@ class App extends Component {
 	errorMessageHidden = "form__firstPage__errorMessage";
 
 	messages = {
-		minLength: "Input has to be longer then 3 letters.",
-		onlyLetters: "Input has to contain only letters",
-		onlyNumbers: "Input has to contain only numbers",
+		minLength: "has to be longer then 2 letters.",
+		onlyLetters: "has to contain only letters.",
+		onlyNumbers: "has to contain only numbers.",
+		emptySelect: "has to be chosen.",
+		emptyDate: "Date of birth has to be chosen.",
+		underEighteen: "You have to be over 18 years old.",
 	};
 
 	handleInputChange = (e) => {
@@ -56,9 +59,14 @@ class App extends Component {
 			dateOfBirth,
 			sex,
 			maritalStatus,
+			name_message,
+			lastName_message,
+			dateOfBirth_message,
+			sex_message,
+			maritalStatus_message,
 			isPageValidated,
 		} = validated;
-		this.setState({
+		this.setState(() => ({
 			firstPageErrors: {
 				name_err: !name,
 				lastName_err: !lastName,
@@ -66,9 +74,17 @@ class App extends Component {
 				sex_err: !sex,
 				maritalStatus_err: !maritalStatus,
 			},
+			firstPageErrorsMessages: {
+				name_message: name_message,
+				lastName_message: lastName_message,
+				dateOfBirth_message: dateOfBirth_message,
+				sex_message: sex_message,
+				maritalStatus_message: maritalStatus_message,
+			},
 			firstPageValidated: isPageValidated,
-		});
+		}));
 	};
+
 	checkForm() {
 		let name = true;
 		let lastName = true;
@@ -77,29 +93,43 @@ class App extends Component {
 		let maritalStatus = true;
 		let isPageValidated = false;
 
+		let name_message = " ";
+		let lastName_message = " ";
+		let dateOfBirth_message = " ";
+		let sex_message = " ";
+		let maritalStatus_message = " ";
+
 		const date = this.checkDateOfBirthValidation(dateOfBirth);
 		dateOfBirth = date;
 
-		if (this.state.name.length > 3) {
-		} else {
+		if (this.state.name.length < 3) {
 			name = false;
+			name_message = this.messages.minLength;
 		}
 
-		if (this.state.lastName.length > 3) {
-		} else {
+		if (this.state.lastName.length < 2) {
 			lastName = false;
+			lastName_message = this.messages.minLength;
 		}
-		if (dateOfBirth) {
-		} else {
+
+		if (dateOfBirth.notFilled) {
 			dateOfBirth = false;
+			dateOfBirth_message = this.messages.emptyDate;
 		}
-		if (this.state.sex) {
-		} else {
+
+		if (dateOfBirth.underEighteen) {
+			dateOfBirth = false;
+			dateOfBirth_message = this.messages.underEighteen;
+		}
+
+		if (!this.state.sex) {
 			sex = false;
+			sex_message = this.messages.emptySelect;
 		}
-		if (this.state.maritalStatus) {
-		} else {
+
+		if (!this.state.maritalStatus) {
 			maritalStatus = false;
+			maritalStatus_message = this.messages.emptySelect;
 		}
 
 		if ((name, lastName, dateOfBirth, sex, maritalStatus)) {
@@ -112,6 +142,11 @@ class App extends Component {
 			dateOfBirth,
 			sex,
 			maritalStatus,
+			name_message,
+			lastName_message,
+			dateOfBirth_message,
+			sex_message,
+			maritalStatus_message,
 			isPageValidated,
 		};
 	}
@@ -127,7 +162,9 @@ class App extends Component {
 		const todaysYear = date.getFullYear();
 
 		if (!year || !month || !day) {
-			dateOfBirth = false;
+			dateOfBirth = {
+				notFilled: true,
+			};
 			return dateOfBirth;
 		}
 
@@ -142,15 +179,21 @@ class App extends Component {
 							dateOfBirth = true;
 							return dateOfBirth;
 						} else {
-							dateOfBirth = false;
+							dateOfBirth = {
+								underEighteen: true,
+							};
 							return dateOfBirth;
 						}
 					} else {
-						dateOfBirth = false;
+						dateOfBirth = {
+							underEighteen: true,
+						};
 						return dateOfBirth;
 					}
 				} else {
-					dateOfBirth = false;
+					dateOfBirth = {
+						underEighteen: true,
+					};
 					return dateOfBirth;
 				}
 			}
