@@ -43,6 +43,10 @@ class App extends Component {
 		underEighteen: "You have to be over 18 years old.",
 	};
 
+	regex = {
+		lettersOnly: /^[A-Za-z]+$/,
+	};
+
 	handleInputChange = (e) => {
 		const inputName = e.target.id;
 		this.setState({
@@ -102,9 +106,19 @@ class App extends Component {
 		const date = this.checkDateOfBirthValidation(dateOfBirth);
 		dateOfBirth = date;
 
+		if (!this.state.name.match(this.regex.lettersOnly)) {
+			name = false;
+			name_message = this.messages.onlyLetters;
+		}
+
 		if (this.state.name.length < 3) {
 			name = false;
 			name_message = this.messages.minLength;
+		}
+
+		if (!this.state.lastName.match(this.regex.lettersOnly)) {
+			lastName_message = false;
+			lastName_message = this.messages.onlyLetters;
 		}
 
 		if (this.state.lastName.length < 2) {
