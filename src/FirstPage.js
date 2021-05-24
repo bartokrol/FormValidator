@@ -1,3 +1,5 @@
+import React from "react";
+
 const FirstPage = (props) => {
 	const { name, lastName, dateOfBirth, sex, maritalStatus } = props;
 	const {

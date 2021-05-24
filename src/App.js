@@ -1,4 +1,5 @@
 import { Component } from "react";
+import SecondPage from "./SecondPage";
 import FirstPage from "./FirstPage";
 import "./styles/App.scss";
 
@@ -24,11 +25,28 @@ class App extends Component {
 			maritalStatus_message: "",
 		},
 		firstPageValidated: false,
+		firstPageVisible: true,
 		country: "",
 		city: "",
 		street: "",
 		buildingNumber: "",
 		postalCode: "",
+		secondPageErrors: {
+			country_err: false,
+			city_err: false,
+			street_err: false,
+			buildingNumber_err: false,
+			postalCode_err: false,
+		},
+		secondPageErrorsMessages: {
+			country_message: "",
+			city_message: "",
+			street_message: "",
+			buildingNumber_message: "",
+			postalCode_message: "",
+		},
+		secondPageValidated: false,
+		secondPageVisible: false,
 	};
 
 	errorMessageActive = "form__firstPage__errorMessage active";
@@ -148,6 +166,9 @@ class App extends Component {
 
 		if (name && lastName && dateOfBirth && sex && maritalStatus) {
 			isPageValidated = true;
+			this.setState({
+				secondPageVisible: true,
+			});
 		}
 
 		return {
@@ -273,71 +294,15 @@ class App extends Component {
 							errorMessages={this.state.firstPageErrorsMessages}
 						/>
 					) : null}
-					{/* <label
-						htmlFor="country"
-						className="form__firstPage__labelName"
-					>
-						Country:{" "}
-					</label>
-					<input
-						type="text"
-						id="country"
-						value={this.state.country}
-					autoComplete="off" 
+					{this.state.secondPageVisible ? (
+						<SecondPage
+							country={this.state.country}
+							city={this.state.city}
+							street={this.state.street}
+							buildingNumber={this.state.buildingNumber}
+							postalCode={this.state.postalCode}
 						/>
-					<span className="form__firstPage__errorMessage">
-						Error message
-					</span>
-					<label
-						htmlFor="city"
-						className="form__firstPage__labelName"
-					>
-						City:{" "}
-					</label>
-					<input type="text" id="city" value={this.state.city} autoComplete="off" />
-					<span className="form__firstPage__errorMessage">
-						Error message
-					</span>
-					<label
-						htmlFor="street"
-						className="form__firstPage__labelName"
-					>
-						Street:{" "}
-					</label>
-					<input type="text" id="street" value={this.state.street} autoComplete="off" />
-					<span className="form__firstPage__errorMessage">
-						Error message
-					</span>
-					<label
-						htmlFor="building_number"
-						className="form__firstPage__labelName"
-					>
-						Building Number:{" "}
-					</label>
-					<input
-						type="text"
-						id="building_number"
-						value={this.state.buildingNumber}
-					autoComplete="off" 
-						/>
-					<span className="form__firstPage__errorMessage">
-						Error message
-					</span>
-					<label
-						htmlFor="postal_code"
-						className="form__firstPage__labelName"
-					>
-						Postal Code:{" "}
-					</label>
-					<input
-						type="text"
-						id="postal_code"
-						value={this.state.postalCode}
-					autoComplete="off" 
-						/>
-					<span className="form__firstPage__errorMessage">
-						Error message
-					</span> */}
+					) : null}
 				</form>
 			</div>
 		);
