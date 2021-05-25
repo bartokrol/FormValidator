@@ -26,7 +26,7 @@ const FirstPage = (props) => {
 				type="text"
 				id="name"
 				autoComplete="off"
-				value={name.value}
+				value={name}
 				onChange={props.click}
 			/>
 			<span
@@ -40,7 +40,7 @@ const FirstPage = (props) => {
 			<input
 				type="text"
 				id="lastName"
-				value={lastName.value}
+				value={lastName}
 				autoComplete="off"
 				onChange={props.click}
 			/>
@@ -57,7 +57,7 @@ const FirstPage = (props) => {
 			<input
 				type="date"
 				id="dateOfBirth"
-				value={dateOfBirth.value}
+				value={dateOfBirth}
 				autoComplete="off"
 				onChange={props.click}
 			/>
@@ -71,12 +71,7 @@ const FirstPage = (props) => {
 			<label htmlFor="sex" className="form__firstPage__labelName">
 				Sex:{" "}
 			</label>
-			<select
-				id="sex"
-				name="sex"
-				onChange={props.click}
-				value={sex.value}
-			>
+			<select id="sex" name="sex" onChange={props.click} value={sex}>
 				<option value=""></option>
 				<option value="male">Male</option>
 				<option value="female">Female</option>
@@ -98,7 +93,7 @@ const FirstPage = (props) => {
 				id="maritalStatus"
 				name="maritalStatus"
 				onChange={props.click}
-				value={maritalStatus.value}
+				value={maritalStatus}
 			>
 				<option value=""></option>
 				<option value="single">Single</option>

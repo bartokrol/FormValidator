@@ -24,8 +24,8 @@ class App extends Component {
 			sex_message: "",
 			maritalStatus_message: "",
 		},
-		firstPageValidated: false,
-		firstPageVisible: true,
+		firstPageValidated: true,
+		firstPageVisible: false,
 		country: "",
 		city: "",
 		street: "",
@@ -46,7 +46,7 @@ class App extends Component {
 			postalCode_message: "",
 		},
 		secondPageValidated: false,
-		secondPageVisible: false,
+		secondPageVisible: true,
 	};
 
 	errorMessageActive = "form__firstPage__errorMessage active";
@@ -167,6 +167,8 @@ class App extends Component {
 		if (name && lastName && dateOfBirth && sex && maritalStatus) {
 			isPageValidated = true;
 			this.setState({
+				firstPageValidated: isPageValidated,
+				firstPageVisible: false,
 				secondPageVisible: true,
 			});
 		}
@@ -275,11 +277,22 @@ class App extends Component {
 		}
 	}
 
+	handlePageChange = (e) => {
+		e.preventDefault();
+		if (this.state.secondPageVisible) {
+			this.setState({
+				firstPageValidated: false,
+				firstPageVisible: true,
+				secondPageVisible: false,
+			});
+		}
+	};
+
 	render() {
 		return (
 			<div className="form">
 				<form className="form__firstPage" noValidate>
-					{!this.state.firstPageValidated ? (
+					{this.state.firstPageVisible ? (
 						<FirstPage
 							name={this.state.name}
 							lastName={this.state.lastName}
@@ -301,6 +314,8 @@ class App extends Component {
 							street={this.state.street}
 							buildingNumber={this.state.buildingNumber}
 							postalCode={this.state.postalCode}
+							previousPageClick={this.handlePageChange}
+							// nextClick={this.handle}
 						/>
 					) : null}
 				</form>

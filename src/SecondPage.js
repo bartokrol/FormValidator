@@ -3,7 +3,7 @@ import React from "react";
 const SecondPage = (props) => {
 	return (
 		<>
-			<label htmlFor="country" className="form__firstPage__labelName">
+			{/* <label htmlFor="country" className="form__firstPage__labelName">
 				Country:{" "}
 			</label>
 			<input
@@ -54,9 +54,9 @@ const SecondPage = (props) => {
 				id="postal_code"
 				value={props.postalCode}
 				autoComplete="off"
-			/>
+			/> */}
 			<span className="form__firstPage__errorMessage">Error message</span>
-			<button class="form__button" onClick={props.submit}>
+			<button class="form__button" onClick={props.previousPageClick}>
 				Previous Page
 			</button>
 			<button class="form__button" onClick={props.submit}>
