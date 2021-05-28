@@ -323,7 +323,7 @@ class App extends Component {
 			street,
 			street_message
 		);
-		street = checkCity.stateName;
+		street = checkStreet.stateName;
 		street_message = checkStreet.stateName_message;
 
 		const checkBuildingNumber = this.checkTextInput(
@@ -390,12 +390,6 @@ class App extends Component {
 				buildingNumber_err: !buildingNumber,
 				postalCode_err: !postalCode,
 			},
-
-			country: "",
-			city: "",
-			street: "",
-			buildingNumber: "",
-			postalCode: "",
 			secondPageErrorsMessages: {
 				country_message: country_message,
 				city_message: city_message,

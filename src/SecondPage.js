@@ -26,13 +26,15 @@ const SecondPage = (props) => {
 				type="text"
 				id="country"
 				onChange={props.change}
-				value={props.country}
+				value={country}
 				autoComplete="off"
 			/>
 			<span
-				className={city_err ? props.messageActive : props.messageHidden}
+				className={
+					country_err ? props.messageActive : props.messageHidden
+				}
 			>
-				{`Name ${city_message}`}
+				{`Country ${country_message}`}
 			</span>
 			<label htmlFor="city" className="form__firstPage__labelName">
 				City:{" "}
@@ -41,13 +43,13 @@ const SecondPage = (props) => {
 				type="text"
 				id="city"
 				onChange={props.change}
-				value={props.city}
+				value={city}
 				autoComplete="off"
 			/>
 			<span
 				className={city_err ? props.messageActive : props.messageHidden}
 			>
-				{`Name ${city_message}`}
+				{`City ${city_message}`}
 			</span>
 			<label htmlFor="street" className="form__firstPage__labelName">
 				Street:{" "}
@@ -56,7 +58,7 @@ const SecondPage = (props) => {
 				type="text"
 				id="street"
 				onChange={props.change}
-				value={props.street}
+				value={street}
 				autoComplete="off"
 			/>
 			<span
@@ -64,7 +66,7 @@ const SecondPage = (props) => {
 					street_err ? props.messageActive : props.messageHidden
 				}
 			>
-				{`Name ${street_message}`}
+				{`Street ${street_message}`}
 			</span>
 			<label
 				htmlFor="building_number"
@@ -76,7 +78,7 @@ const SecondPage = (props) => {
 				type="text"
 				id="building_number"
 				onChange={props.change}
-				value={props.buildingNumber}
+				value={buildingNumber}
 				autoComplete="off"
 			/>
 			<span
@@ -86,7 +88,7 @@ const SecondPage = (props) => {
 						: props.messageHidden
 				}
 			>
-				{`Name ${buildingNumber_message}`}
+				{`Building Number ${buildingNumber_message}`}
 			</span>
 			<label htmlFor="postal_code" className="form__firstPage__labelName">
 				Postal Code:{" "}
@@ -95,7 +97,7 @@ const SecondPage = (props) => {
 				type="text"
 				id="postal_code"
 				onChange={props.change}
-				value={props.postalCode}
+				value={postalCode}
 				autoComplete="off"
 			/>
 			<span
@@ -103,7 +105,7 @@ const SecondPage = (props) => {
 					postalCode_err ? props.messageActive : props.messageHidden
 				}
 			>
-				{`Name ${postalCode_message}`}
+				{`Postal Code ${postalCode_message}`}
 			</span>
 			<button class="form__button" onClick={props.previousPageClick}>
 				Previous Page
