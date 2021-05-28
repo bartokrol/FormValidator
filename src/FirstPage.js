@@ -19,11 +19,13 @@ const FirstPage = (props) => {
 					value={input.value}
 					onChange={props.change}
 				/>
-				{/* <span
-				className={name_err ? props.messageActive : props.messageHidden}
-			>
-				{`Name ${name_message}`}
-			</span> */}
+				<span
+					className={
+						input.error ? props.messageActive : props.messageHidden
+					}
+				>
+					{input.label} + {input.message}
+				</span>
 			</>
 		));
 	const filteredSelectInputs = props.inputs
@@ -43,11 +45,13 @@ const FirstPage = (props) => {
 						<option value={option}>{option}</option>
 					))}
 				</select>
-				{/* // 		<span */}
-				{/* // 			className={sex_err ? props.messageActive : props.messageHidden}
-	// 		>
-	// 			{`Sex ${sex_message}`}
-	// 		</span> */}
+				<span
+					className={
+						input.error ? props.messageActive : props.messageHidden
+					}
+				>
+					{input.label} + {input.message}
+				</span>
 			</>
 		));
 

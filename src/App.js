@@ -1,5 +1,5 @@
 import { Component } from "react";
-import SecondPage from "./SecondPage";
+// import SecondPage from "./SecondPage";
 import FirstPage from "./FirstPage";
 import "./styles/App.scss";
 
@@ -12,12 +12,15 @@ class App extends Component {
 		// maritalStatus: "",
 		firstPageInputs: [
 			{
+				id: 0,
 				name: "name",
 				value: "",
 				input: "input",
 				type: "text",
 				label: "Name ",
 				page: 1,
+				error: false,
+				message: "",
 			},
 			{
 				name: "lastName",
@@ -26,6 +29,8 @@ class App extends Component {
 				type: "text",
 				label: "Last Name",
 				page: 1,
+				error: false,
+				message: "",
 			},
 			{
 				name: "dateOfBirth",
@@ -34,6 +39,8 @@ class App extends Component {
 				type: "date",
 				label: "Date of Birth",
 				page: 1,
+				error: false,
+				message: "",
 			},
 			{
 				name: "sex",
@@ -42,6 +49,8 @@ class App extends Component {
 				options: ["", "Male", "Female", "Other"],
 				label: "Sex",
 				page: 1,
+				error: false,
+				message: "",
 			},
 
 			{
@@ -59,6 +68,8 @@ class App extends Component {
 				],
 				label: "Marital Status",
 				page: 1,
+				error: false,
+				message: "",
 			},
 		],
 		firstPageErrors: {
@@ -117,12 +128,32 @@ class App extends Component {
 		lettersOnly: /^[A-Za-z]+$/,
 	};
 
-	// handleInputChange = (e) => {
-	// 	const inputName = e.target.id;
-	// 	this.setState({
-	// 		[inputName]: e.target.value,
-	// 	});
-	// };
+	handleInputChange = (e) => {
+		const inputName = e.target.id;
+		console.log(inputName);
+		console.log(e.target);
+		if (e.target.localName === "input") {
+			console.log(e.target.localName);
+			// this.setState({
+			// 	firstPageInputs: [
+			// 		{
+			// 			name: [inputName],
+			// 			value: e.target.value,
+			// 			input: "input",
+			// 			type: "text",
+			// 			label: "Name ",
+			// 			page: 1,
+			// 			error: false,
+			// 			message: "",
+			// 		},
+			// 	],
+			// });
+		}
+		// const inputName = e.target.id;
+		// this.setState({
+		// 	[inputName]: e.target.value,
+		// });
+	};
 
 	// handleSubmitFirstPage = (e) => {
 	// 	e.preventDefault();
@@ -459,13 +490,15 @@ class App extends Component {
 					{this.state.firstPageVisible ? (
 						<FirstPage
 							inputs={this.state.firstPageInputs}
+							messageHidden={this.errorMessageHidden}
+							messageActive={this.errorMessageActive}
+							change={this.handleInputChange}
 							// name={this.state.name}
 							// lastName={this.state.lastName}
 							// dateOfBirth={this.state.dateOfBirth}
 							// sex={this.state.sex}
 							// maritalStatus={this.state.maritalStatus}
 							// errors={this.state.firstPageErrors}
-							// change={this.handleInputChange}
 							// submit={this.handleSubmitFirstPage}
 							// messageActive={this.errorMessageActive}
 							// messageHidden={this.errorMessageHidden}
