@@ -27,7 +27,7 @@ const FirstPage = (props) => {
 				id="name"
 				autoComplete="off"
 				value={name}
-				onChange={props.click}
+				onChange={props.change}
 			/>
 			<span
 				className={name_err ? props.messageActive : props.messageHidden}
@@ -42,7 +42,7 @@ const FirstPage = (props) => {
 				id="lastName"
 				value={lastName}
 				autoComplete="off"
-				onChange={props.click}
+				onChange={props.change}
 			/>
 			<span
 				className={
@@ -59,7 +59,7 @@ const FirstPage = (props) => {
 				id="dateOfBirth"
 				value={dateOfBirth}
 				autoComplete="off"
-				onChange={props.click}
+				onChange={props.change}
 			/>
 			<span
 				className={
@@ -71,7 +71,7 @@ const FirstPage = (props) => {
 			<label htmlFor="sex" className="form__firstPage__labelName">
 				Sex:{" "}
 			</label>
-			<select id="sex" name="sex" onChange={props.click} value={sex}>
+			<select id="sex" name="sex" onChange={props.change} value={sex}>
 				<option value=""></option>
 				<option value="male">Male</option>
 				<option value="female">Female</option>
@@ -92,7 +92,7 @@ const FirstPage = (props) => {
 			<select
 				id="maritalStatus"
 				name="maritalStatus"
-				onChange={props.click}
+				onChange={props.change}
 				value={maritalStatus}
 			>
 				<option value=""></option>

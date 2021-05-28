@@ -87,7 +87,7 @@ class App extends Component {
 			sex_message,
 			maritalStatus_message,
 			isPageValidated,
-		} = this.checkForm();
+		} = this.checkFirstPage();
 
 		this.setState(() => ({
 			firstPageErrors: {
@@ -108,7 +108,7 @@ class App extends Component {
 		}));
 	};
 
-	checkForm() {
+	checkFirstPage() {
 		let name = true;
 		let lastName = true;
 		let dateOfBirth = true;
@@ -288,6 +288,125 @@ class App extends Component {
 		}
 	};
 
+	checkSecondPage() {
+		let country = true;
+		let city = true;
+		let street = true;
+		let buildingNumber = true;
+		let postalCode = true;
+		let isPageValidated = false;
+
+		let country_message = " ";
+		let city_message = " ";
+		let street_message = " ";
+		let buildingNumber_message = " ";
+		let postalCode_message = " ";
+
+		const checkCountry = this.checkTextInput(
+			this.state.country,
+			country,
+			country_message
+		);
+		country = checkCountry.stateName;
+		country_message = checkCountry.stateName_message;
+
+		const checkCity = this.checkTextInput(
+			this.state.city,
+			city,
+			city_message
+		);
+		city = checkCity.stateName;
+		city_message = checkCity.stateName_message;
+
+		const checkStreet = this.checkTextInput(
+			this.state.street,
+			street,
+			street_message
+		);
+		street = checkCity.stateName;
+		street_message = checkStreet.stateName_message;
+
+		const checkBuildingNumber = this.checkTextInput(
+			this.state.buildingNumber,
+			buildingNumber,
+			buildingNumber_message
+		);
+		buildingNumber = checkBuildingNumber.stateName;
+		buildingNumber_message = checkBuildingNumber.stateName_message;
+
+		const checkPostalCode = this.checkTextInput(
+			this.state.maritalStatus,
+			postalCode,
+			postalCode_message
+		);
+		postalCode = checkPostalCode.stateName;
+		postalCode_message = checkPostalCode.stateName_message;
+
+		if (country && city && street && buildingNumber && postalCode) {
+			isPageValidated = true;
+			this.setState({
+				firstPageValidated: isPageValidated,
+				firstPageVisible: false,
+				secondPageVisible: true,
+			});
+		}
+
+		return {
+			country,
+			city,
+			street,
+			buildingNumber,
+			postalCode,
+			country_message,
+			city_message,
+			street_message,
+			buildingNumber_message,
+			postalCode_message,
+			isPageValidated,
+		};
+	}
+
+	handleSubmitSecondPage = (e) => {
+		e.preventDefault();
+		const {
+			country,
+			city,
+			street,
+			buildingNumber,
+			postalCode,
+			country_message,
+			city_message,
+			street_message,
+			buildingNumber_message,
+			postalCode_message,
+			isPageValidated,
+		} = this.checkSecondPage();
+
+		this.setState(() => ({
+			secondPageErrors: {
+				country_err: !country,
+				city_err: !city,
+				street_err: !street,
+				buildingNumber_err: !buildingNumber,
+				postalCode_err: !postalCode,
+			},
+
+			country: "",
+			city: "",
+			street: "",
+			buildingNumber: "",
+			postalCode: "",
+			secondPageErrorsMessages: {
+				country_message: country_message,
+				city_message: city_message,
+				street_message: street_message,
+				buildingNumber_message: buildingNumber_message,
+				postalCode_message: postalCode_message,
+			},
+			secondPageValidated: isPageValidated,
+		}));
+	};
+
 	render() {
 		return (
 			<div className="form">
@@ -300,7 +419,7 @@ class App extends Component {
 							sex={this.state.sex}
 							maritalStatus={this.state.maritalStatus}
 							errors={this.state.firstPageErrors}
-							click={this.handleInputChange}
+							change={this.handleInputChange}
 							submit={this.handleSubmitFirstPage}
 							messageActive={this.errorMessageActive}
 							messageHidden={this.errorMessageHidden}
@@ -314,8 +433,13 @@ class App extends Component {
 							street={this.state.street}
 							buildingNumber={this.state.buildingNumber}
 							postalCode={this.state.postalCode}
+							errors={this.state.secondPageErrors}
+							change={this.handleInputChange}
 							previousPageClick={this.handlePageChange}
-							// nextClick={this.handle}
+							submit={this.handleSubmitSecondPage}
+							messageActive={this.errorMessageActive}
+							messageHidden={this.errorMessageHidden}
+							errorMessages={this.state.secondPageErrorsMessages}
 						/>
 					) : null}
 				</form>
