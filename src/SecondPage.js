@@ -76,7 +76,7 @@ const SecondPage = (props) => {
 			</label>
 			<input
 				type="text"
-				id="building_number"
+				id="buildingNumber"
 				onChange={props.change}
 				value={buildingNumber}
 				autoComplete="off"
@@ -95,7 +95,7 @@ const SecondPage = (props) => {
 			</label>
 			<input
 				type="text"
-				id="postal_code"
+				id="postalCode"
 				onChange={props.change}
 				value={postalCode}
 				autoComplete="off"

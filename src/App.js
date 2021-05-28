@@ -67,6 +67,7 @@ class App extends Component {
 	};
 
 	handleInputChange = (e) => {
+		console.log(e.target.id);
 		const inputName = e.target.id;
 		this.setState({
 			[inputName]: e.target.value,
