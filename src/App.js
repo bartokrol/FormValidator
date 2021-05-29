@@ -181,6 +181,7 @@ class App extends Component {
 
 	checkForm(pageInputs) {
 		const inputs = [...pageInputs];
+		let errorsLength = inputs.length;
 		for (let input of inputs) {
 			input.error = false;
 			input.errorMessage = "";
@@ -210,10 +211,21 @@ class App extends Component {
 				input = date;
 			}
 
+			if (!input.error) {
+				errorsLength--;
+			}
+		}
+
+		if (!errorsLength) {
 			this.setState({
-				firstPageInputs: inputs,
+				firstPageValidated: true,
+				firstPageVisible: false,
 			});
 		}
+
+		this.setState({
+			firstPageInputs: inputs,
+		});
 	}
 
 	// checkFirstPage() {
@@ -337,11 +349,12 @@ class App extends Component {
 		if (!year || !month || !day) {
 			input.error = true;
 			input.errorMessage = this.messages.emptySelectOrDate;
+			return input;
 		}
 
 		if (year && month && day) {
 			if (todaysYear - year > 18) {
-				return;
+				return input;
 			} else {
 				if (todaysYear - year >= 18) {
 					if (todaysMonth >= month) {
@@ -349,18 +362,20 @@ class App extends Component {
 						} else {
 							input.error = true;
 							input.errorMessage = this.messages.underEighteen;
+							return input;
 						}
 					} else {
 						input.error = true;
 						input.errorMessage = this.messages.underEighteen;
+						return input;
 					}
 				} else {
 					input.error = true;
 					input.errorMessage = this.messages.underEighteen;
+					return input;
 				}
 			}
 		}
-		return input;
 	}
 
 	// handlePageChange = (e) => {
