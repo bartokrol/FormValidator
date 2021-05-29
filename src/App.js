@@ -130,29 +130,17 @@ class App extends Component {
 
 	handleInputChange = (e) => {
 		const inputName = e.target.id;
-		console.log(inputName);
-		console.log(e.target);
-		if (e.target.localName === "input") {
-			console.log(e.target.localName);
-			// this.setState({
-			// 	firstPageInputs: [
-			// 		{
-			// 			name: [inputName],
-			// 			value: e.target.value,
-			// 			input: "input",
-			// 			type: "text",
-			// 			label: "Name ",
-			// 			page: 1,
-			// 			error: false,
-			// 			message: "",
-			// 		},
-			// 	],
-			// });
+		const firstPageInputs = [...this.state.firstPageInputs];
+
+		for (let input of firstPageInputs) {
+			if (input.name === inputName) {
+				input.value = e.target.value;
+			}
 		}
-		// const inputName = e.target.id;
-		// this.setState({
-		// 	[inputName]: e.target.value,
-		// });
+
+		this.setState({
+			firstPageInputs,
+		});
 	};
 
 	// handleSubmitFirstPage = (e) => {
