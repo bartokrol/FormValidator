@@ -57,7 +57,14 @@ const FirstPage = (props) => {
 
 	inputs.push(filteredTextInputs, filteredSelectInputs);
 
-	return inputs;
+	return (
+		<>
+			{inputs}
+			<button class="form__button" onClick={props.submit}>
+				Next Page
+			</button>
+		</>
+	);
 	// const { name, lastName, dateOfBirth, sex, maritalStatus } = props;
 	// const {
 	// 	name_err,
@@ -167,9 +174,9 @@ const FirstPage = (props) => {
 	// 		>
 	// 			{`Marital Status ${maritalStatus_message}`}
 	// 		</span>
-	// 		<button class="form__button" onClick={props.submit}>
-	// 			Next Page
-	// 		</button>
+	// <button class="form__button" onClick={props.submit}>
+	// 	Next Page
+	// </button>
 	// 	</>
 	// );
 };
