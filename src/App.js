@@ -119,8 +119,7 @@ class App extends Component {
 		maxLength: "has to be shorter then 20 letters.",
 		onlyLetters: "has to contain only letters.",
 		onlyNumbers: "has to contain only numbers.",
-		emptySelect: "has to be chosen.",
-		emptyDate: "Date of birth has to be chosen.",
+		emptySelectOrDate: "has to be chosen.",
 		underEighteen: "You have to be over 18 years old.",
 	};
 
@@ -186,7 +185,7 @@ class App extends Component {
 			input.error = false;
 			input.errorMessage = "";
 
-			if (input.input === "input") {
+			if (input.input === "input" && input.type !== "date") {
 				const { error, errorMessage } = this.checkTextInput(
 					input.value,
 					input.error,
@@ -196,12 +195,24 @@ class App extends Component {
 				input.errorMessage = errorMessage;
 			}
 
+			if (input.input === "select") {
+				const { error, errorMessage } = this.checkSelectInput(
+					input.value,
+					input.error,
+					input.errorMessage
+				);
+				input.error = error;
+				input.errorMessage = errorMessage;
+			}
+
+			if (input.type === "date") {
+				const date = this.checkDateOfBirthValidation(input);
+				input = date;
+			}
+
 			this.setState({
 				firstPageInputs: inputs,
 			});
-			// if (input.input === "select") {
-			// 	const {}
-			// }
 		}
 	}
 
@@ -235,8 +246,8 @@ class App extends Component {
 	// 	lastName = checkLastName.stateName;
 	// 	lastName_message = checkLastName.stateName_message;
 
-	// 	const date = this.checkDateOfBirthValidation(dateOfBirth);
-	// 	dateOfBirth = date;
+	// const date = this.checkDateOfBirthValidation(dateOfBirth);
+	// dateOfBirth = date;
 
 	// 	const checkDateOfBirth = this.checkDateOfBirth(
 	// 		dateOfBirth,
@@ -304,76 +315,53 @@ class App extends Component {
 		return { error, errorMessage };
 	}
 
-	// checkDateOfBirth(dateOfBirth, dateOfBirth_message) {
-	// 	if (dateOfBirth.notFilled) {
-	// 		dateOfBirth = false;
-	// 		dateOfBirth_message = this.messages.emptyDate;
-	// 	}
+	checkSelectInput(value, error, errorMessage) {
+		if (!value) {
+			error = true;
+			errorMessage = this.messages.emptySelectOrDate;
+		}
 
-	// 	if (dateOfBirth.underEighteen) {
-	// 		dateOfBirth = false;
-	// 		dateOfBirth_message = this.messages.underEighteen;
-	// 	}
-	// 	return { dateOfBirth, dateOfBirth_message };
-	// }
+		return { error, errorMessage };
+	}
 
-	// checkSelectInput(state, stateName, stateName_message) {
-	// 	if (!state) {
-	// 		stateName = false;
-	// 		stateName_message = this.messages.emptySelect;
-	// 	}
+	checkDateOfBirthValidation(input) {
+		const year = Number(input.value.slice(0, 4));
+		const month = Number(input.value.slice(5, 7));
+		const day = Number(input.value.slice(8, 10));
 
-	// 	return { stateName, stateName_message };
-	// }
+		const date = new Date();
+		const todaysDay = date.getDate();
+		const todaysMonth = date.getMonth() + 1;
+		const todaysYear = date.getFullYear();
 
-	// checkDateOfBirthValidation(dateOfBirth) {
-	// 	const year = Number(this.state.dateOfBirth.slice(0, 4));
-	// 	const month = Number(this.state.dateOfBirth.slice(5, 7));
-	// 	const day = Number(this.state.dateOfBirth.slice(8, 10));
+		if (!year || !month || !day) {
+			input.error = true;
+			input.errorMessage = this.messages.emptySelectOrDate;
+		}
 
-	// 	const date = new Date();
-	// 	const todaysDay = date.getDate();
-	// 	const todaysMonth = date.getMonth() + 1;
-	// 	const todaysYear = date.getFullYear();
-
-	// 	if (!year || !month || !day) {
-	// 		dateOfBirth = {
-	// 			notFilled: true,
-	// 		};
-	// 		return dateOfBirth;
-	// 	}
-
-	// 	if (year && month && day) {
-	// 		if (todaysYear - year > 18) {
-	// 			dateOfBirth = true;
-	// 			return dateOfBirth;
-	// 		} else {
-	// 			if (todaysYear - year >= 18) {
-	// 				if (todaysMonth >= month) {
-	// 					if (todaysDay >= day) {
-	// 						dateOfBirth = true;
-	// 						return dateOfBirth;
-	// 					} else {
-	// 						dateOfBirth = {
-	// 							underEighteen: true,
-	// 						};
-	// 						return dateOfBirth;
-	// 					}
-	// 				} else {
-	// 					dateOfBirth = {
-	// 						underEighteen: true,
-	// 					};
-	// 					return dateOfBirth;
-	// 				}
-	// 			} else {
-	// 				dateOfBirth = {
-	// 					underEighteen: true,
-	// 				};
-	// 				return dateOfBirth;
-	// 			}
-	// 		}
-	// 	}
-	// }
+		if (year && month && day) {
+			if (todaysYear - year > 18) {
+				return;
+			} else {
+				if (todaysYear - year >= 18) {
+					if (todaysMonth >= month) {
+						if (todaysDay >= day) {
+						} else {
+							input.error = true;
+							input.errorMessage = this.messages.underEighteen;
+						}
+					} else {
+						input.error = true;
+						input.errorMessage = this.messages.underEighteen;
+					}
+				} else {
+					input.error = true;
+					input.errorMessage = this.messages.underEighteen;
+				}
+			}
+		}
+		return input;
+	}
 
 	// handlePageChange = (e) => {
 	// 	e.preventDefault();
