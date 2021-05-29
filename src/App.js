@@ -20,7 +20,7 @@ class App extends Component {
 				label: "Name ",
 				page: 1,
 				error: false,
-				message: "",
+				errorMessage: "",
 			},
 			{
 				name: "lastName",
@@ -30,7 +30,7 @@ class App extends Component {
 				label: "Last Name",
 				page: 1,
 				error: false,
-				message: "",
+				errorMessage: "",
 			},
 			{
 				name: "dateOfBirth",
@@ -40,7 +40,7 @@ class App extends Component {
 				label: "Date of Birth",
 				page: 1,
 				error: false,
-				message: "",
+				errorMessage: "",
 			},
 			{
 				name: "sex",
@@ -50,7 +50,7 @@ class App extends Component {
 				label: "Sex",
 				page: 1,
 				error: false,
-				message: "",
+				errorMessage: "",
 			},
 
 			{
@@ -69,7 +69,7 @@ class App extends Component {
 				label: "Marital Status",
 				page: 1,
 				error: false,
-				message: "",
+				errorMessage: "",
 			},
 		],
 		firstPageErrors: {
@@ -130,53 +130,80 @@ class App extends Component {
 
 	handleInputChange = (e) => {
 		const inputName = e.target.id;
-		const firstPageInputs = [...this.state.firstPageInputs];
+		const inputs = [...this.state.firstPageInputs];
 
-		for (let input of firstPageInputs) {
+		for (let input of inputs) {
 			if (input.name === inputName) {
 				input.value = e.target.value;
 			}
 		}
 
 		this.setState({
-			firstPageInputs,
+			firstPageInputs: inputs,
 		});
 	};
 
-	// handleSubmitFirstPage = (e) => {
-	// 	e.preventDefault();
-	// 	const {
-	// 		name,
-	// 		lastName,
-	// 		dateOfBirth,
-	// 		sex,
-	// 		maritalStatus,
-	// 		name_message,
-	// 		lastName_message,
-	// 		dateOfBirth_message,
-	// 		sex_message,
-	// 		maritalStatus_message,
-	// 		isPageValidated,
-	// 	} = this.checkFirstPage();
+	handleSubmitFirstPage = (e) => {
+		e.preventDefault();
 
-	// 	this.setState(() => ({
-	// 		firstPageErrors: {
-	// 			name_err: !name,
-	// 			lastName_err: !lastName,
-	// 			dateOfBirth_err: !dateOfBirth,
-	// 			sex_err: !sex,
-	// 			maritalStatus_err: !maritalStatus,
-	// 		},
-	// 		firstPageErrorsMessages: {
-	// 			name_message: name_message,
-	// 			lastName_message: lastName_message,
-	// 			dateOfBirth_message: dateOfBirth_message,
-	// 			sex_message: sex_message,
-	// 			maritalStatus_message: maritalStatus_message,
-	// 		},
-	// 		firstPageValidated: isPageValidated,
-	// 	}));
-	// };
+		this.checkForm(this.state.firstPageInputs);
+		// const {
+		// 	name,
+		// 	lastName,
+		// 	dateOfBirth,
+		// 	sex,
+		// 	maritalStatus,
+		// 	name_message,
+		// 	lastName_message,
+		// 	dateOfBirth_message,
+		// 	sex_message,
+		// 	maritalStatus_message,
+		// 	isPageValidated,
+		// } = this.checkFirstPage();
+
+		// this.setState(() => ({
+		// 	firstPageErrors: {
+		// 		name_err: !name,
+		// 		lastName_err: !lastName,
+		// 		dateOfBirth_err: !dateOfBirth,
+		// 		sex_err: !sex,
+		// 		maritalStatus_err: !maritalStatus,
+		// 	},
+		// 	firstPageErrorsMessages: {
+		// 		name_message: name_message,
+		// 		lastName_message: lastName_message,
+		// 		dateOfBirth_message: dateOfBirth_message,
+		// 		sex_message: sex_message,
+		// 		maritalStatus_message: maritalStatus_message,
+		// 	},
+		// 	firstPageValidated: isPageValidated,
+		// }));
+	};
+
+	checkForm(pageInputs) {
+		const inputs = [...pageInputs];
+		for (let input of inputs) {
+			input.error = false;
+			input.errorMessage = "";
+
+			if (input.input === "input") {
+				const { error, errorMessage } = this.checkTextInput(
+					input.value,
+					input.error,
+					input.errorMessage
+				);
+				input.error = error;
+				input.errorMessage = errorMessage;
+			}
+
+			this.setState({
+				firstPageInputs: inputs,
+			});
+			// if (input.input === "select") {
+			// 	const {}
+			// }
+		}
+	}
 
 	// checkFirstPage() {
 	// 	let name = true;
@@ -258,23 +285,24 @@ class App extends Component {
 	// 	};
 	// }
 
-	// checkTextInput(state, stateName, stateName_message) {
-	// 	if (!state.match(this.regex.lettersOnly)) {
-	// 		stateName_message = false;
-	// 		stateName_message = this.messages.onlyLetters;
-	// 	}
+	checkTextInput(value, error, errorMessage) {
+		if (!value.match(this.regex.lettersOnly)) {
+			error = true;
+			errorMessage = this.messages.onlyLetters;
+		}
 
-	// 	if (state.length < 2) {
-	// 		stateName = false;
-	// 		stateName_message = this.messages.minLength;
-	// 	}
+		if (value.length < 2) {
+			error = true;
+			errorMessage = this.messages.minLength;
+		}
 
-	// 	if (state.length > 20) {
-	// 		stateName = false;
-	// 		stateName_message = this.messages.maxLength;
-	// 	}
-	// 	return { stateName, stateName_message };
-	// }
+		if (value.length > 20) {
+			error = true;
+			errorMessage = this.messages.maxLength;
+		}
+
+		return { error, errorMessage };
+	}
 
 	// checkDateOfBirth(dateOfBirth, dateOfBirth_message) {
 	// 	if (dateOfBirth.notFilled) {
@@ -481,13 +509,13 @@ class App extends Component {
 							messageHidden={this.errorMessageHidden}
 							messageActive={this.errorMessageActive}
 							change={this.handleInputChange}
+							submit={this.handleSubmitFirstPage}
 							// name={this.state.name}
 							// lastName={this.state.lastName}
 							// dateOfBirth={this.state.dateOfBirth}
 							// sex={this.state.sex}
 							// maritalStatus={this.state.maritalStatus}
 							// errors={this.state.firstPageErrors}
-							// submit={this.handleSubmitFirstPage}
 							// messageActive={this.errorMessageActive}
 							// messageHidden={this.errorMessageHidden}
 							// errorMessages={this.state.firstPageErrorsMessages}
