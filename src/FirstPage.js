@@ -50,7 +50,7 @@ const FirstPage = (props) => {
 						input.error ? props.messageActive : props.messageHidden
 					}
 				>
-					{input.label} + {input.message}
+					{input.label} {input.errorMessage}
 				</span>
 			</>
 		));
