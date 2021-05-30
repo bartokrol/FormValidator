@@ -5,6 +5,7 @@ import "./styles/App.scss";
 
 class App extends Component {
 	state = {
+		activePage: 0,
 		pages: [
 			{
 				firstPageValidated: false,
@@ -78,89 +79,6 @@ class App extends Component {
 				],
 			},
 		],
-		// inputs: [
-		// 	{
-		// 		id: 0,
-		// 		name: "name",
-		// 		value: "",
-		// 		input: "input",
-		// 		type: "text",
-		// 		label: "Name ",
-		// 		page: 1,
-		// 		error: false,
-		// 		errorMessage: "",
-		// 	},
-		// 	{
-		// 		name: "lastName",
-		// 		value: "",
-		// 		input: "input",
-		// 		type: "text",
-		// 		label: "Last Name ",
-		// 		page: 1,
-		// 		error: false,
-		// 		errorMessage: "",
-		// 	},
-		// 	{
-		// 		name: "dateOfBirth",
-		// 		value: "",
-		// 		input: "input",
-		// 		type: "date",
-		// 		label: "Date of Birth",
-		// 		page: 1,
-		// 		error: false,
-		// 		errorMessage: "",
-		// 	},
-		// 	{
-		// 		name: "sex",
-		// 		value: "",
-		// 		input: "select",
-		// 		options: ["", "Male", "Female", "Other"],
-		// 		label: "Sex",
-		// 		page: 1,
-		// 		error: false,
-		// 		errorMessage: "",
-		// 	},
-
-		// 	{
-		// 		name: "maritalStatus",
-		// 		value: "",
-		// 		input: "select",
-		// 		options: [
-		// 			"",
-		// 			"Single",
-		// 			"In Relationship",
-		// 			"Married",
-		// 			"Separated",
-		// 			"Divorced",
-		// 			"Widowed",
-		// 		],
-		// 		label: "Marital Status",
-		// 		page: 1,
-		// 		error: false,
-		// 		errorMessage: "",
-		// 	},
-		// ],
-		// firstPageValidated: false,
-		// firstPageVisible: true,
-		// // country: "",
-		// // city: "",
-		// // street: "",
-		// // buildingNumber: "",
-		// // postalCode: "",
-		// // secondPageErrors: {
-		// // 	country_err: false,
-		// // 	city_err: false,
-		// // 	street_err: false,
-		// // 	buildingNumber_err: false,
-		// // 	postalCode_err: false,
-		// // },
-		// // secondPageErrorsMessages: {
-		// // 	country_message: "",
-		// // 	city_message: "",
-		// // 	street_message: "",
-		// // 	buildingNumber_message: "",
-		// // 	postalCode_message: "",
-		// // },
 		// // secondPageValidated: false,
 		// secondPageVisible: false,
 	};
@@ -184,38 +102,35 @@ class App extends Component {
 
 	handleInputChange = (e) => {
 		const inputName = e.target.id;
-		let inputsArr = "";
+		let activePage = this.state.activePage;
+		activePage = this.findActivePage(inputName);
+		const inputs = [...this.state.pages[activePage].inputs];
 
-		for (let page of this.state.pages) {
-			for (let input of page.inputs) {
-				if (inputName === input.name) {
-					inputsArr = input.placing;
-				}
-			}
-		}
-		const inputs = [...this.state.pages[inputsArr].inputs];
 		for (let input of inputs) {
 			if (input.name === inputName) {
 				input.value = e.target.value;
 			}
 		}
+
 		this.setState({
-			inputs: inputs,
+			activePage,
+			inputs,
 		});
 	};
 
 	handleSubmitPage = (e) => {
 		e.preventDefault();
-		const activePage = this.findActivePage();
-		console.log(activePage);
+		const activePage = this.state.activePage;
 
-		this.checkForm(this.state.inputs);
+		this.checkForm(this.state.pages[activePage].inputs);
 	};
 
-	findActivePage() {
-		for (let page of this.pages) {
-			if (page) {
-				return page;
+	findActivePage(inputName) {
+		for (let page of this.state.pages) {
+			for (let input of page.inputs) {
+				if (inputName === input.name) {
+					return input.placing;
+				}
 			}
 		}
 	}
@@ -227,30 +142,7 @@ class App extends Component {
 			input.error = false;
 			input.errorMessage = "";
 
-			if (input.input === "input" && input.type !== "date") {
-				const { error, errorMessage } = this.checkTextInput(
-					input.value,
-					input.error,
-					input.errorMessage
-				);
-				input.error = error;
-				input.errorMessage = errorMessage;
-			}
-
-			if (input.input === "select") {
-				const { error, errorMessage } = this.checkSelectInput(
-					input.value,
-					input.error,
-					input.errorMessage
-				);
-				input.error = error;
-				input.errorMessage = errorMessage;
-			}
-
-			if (input.type === "date") {
-				const date = this.checkDateOfBirthValidation(input);
-				input = date;
-			}
+			input = this.checkInputType(input);
 
 			if (!input.error) {
 				errorsLength--;
@@ -267,6 +159,36 @@ class App extends Component {
 		this.setState({
 			inputs: inputs,
 		});
+	}
+
+	checkInputType(input) {
+		if (input.input === "input" && input.type !== "date") {
+			const { error, errorMessage } = this.checkTextInput(
+				input.value,
+				input.error,
+				input.errorMessage
+			);
+			input.error = error;
+			input.errorMessage = errorMessage;
+			return input;
+		}
+
+		if (input.input === "select") {
+			const { error, errorMessage } = this.checkSelectInput(
+				input.value,
+				input.error,
+				input.errorMessage
+			);
+			input.error = error;
+			input.errorMessage = errorMessage;
+			return input;
+		}
+
+		if (input.type === "date") {
+			const date = this.checkDateOfBirthValidation(input);
+			input = date;
+			return input;
+		}
 	}
 
 	checkTextInput(value, error, errorMessage) {
