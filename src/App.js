@@ -5,105 +5,164 @@ import "./styles/App.scss";
 
 class App extends Component {
 	state = {
-		firstPageInputs: [
+		pages: [
 			{
-				id: 0,
-				name: "name",
-				value: "",
-				input: "input",
-				type: "text",
-				label: "Name ",
-				page: 1,
-				error: false,
-				errorMessage: "",
-			},
-			{
-				name: "lastName",
-				value: "",
-				input: "input",
-				type: "text",
-				label: "Last Name ",
-				page: 1,
-				error: false,
-				errorMessage: "",
-			},
-			{
-				name: "dateOfBirth",
-				value: "",
-				input: "input",
-				type: "date",
-				label: "Date of Birth",
-				page: 1,
-				error: false,
-				errorMessage: "",
-			},
-			{
-				name: "sex",
-				value: "",
-				input: "select",
-				options: ["", "Male", "Female", "Other"],
-				label: "Sex",
-				page: 1,
-				error: false,
-				errorMessage: "",
-			},
+				firstPageValidated: false,
+				firstPageVisible: true,
+				inputs: [
+					{
+						id: 0,
+						name: "name",
+						value: "",
+						input: "input",
+						type: "text",
+						label: "Name ",
+						page: 1,
+						error: false,
+						errorMessage: "",
+						placing: 0,
+					},
+					{
+						name: "lastName",
+						value: "",
+						input: "input",
+						type: "text",
+						label: "Last Name ",
+						page: 1,
+						error: false,
+						errorMessage: "",
+						placing: 0,
+					},
+					{
+						name: "dateOfBirth",
+						value: "",
+						input: "input",
+						type: "date",
+						label: "Date of Birth",
+						page: 1,
+						error: false,
+						errorMessage: "",
+						placing: 0,
+					},
+					{
+						name: "sex",
+						value: "",
+						input: "select",
+						options: ["", "Male", "Female", "Other"],
+						label: "Sex",
+						page: 1,
+						error: false,
+						errorMessage: "",
+						placing: 0,
+					},
 
-			{
-				name: "maritalStatus",
-				value: "",
-				input: "select",
-				options: [
-					"",
-					"Single",
-					"In Relationship",
-					"Married",
-					"Separated",
-					"Divorced",
-					"Widowed",
+					{
+						name: "maritalStatus",
+						value: "",
+						input: "select",
+						options: [
+							"",
+							"Single",
+							"In Relationship",
+							"Married",
+							"Separated",
+							"Divorced",
+							"Widowed",
+						],
+						label: "Marital Status",
+						page: 1,
+						error: false,
+						errorMessage: "",
+						placing: 0,
+					},
 				],
-				label: "Marital Status",
-				page: 1,
-				error: false,
-				errorMessage: "",
 			},
 		],
-		firstPageErrors: {
-			name_err: false,
-			lastName_err: false,
-			dateOfBirth_err: false,
-			sex_err: false,
-			maritalStatus_err: false,
-		},
-		firstPageErrorsMessages: {
-			name_message: "",
-			lastName_message: "",
-			dateOfBirth_message: "",
-			sex_message: "",
-			maritalStatus_message: "",
-		},
-		firstPageValidated: false,
-		firstPageVisible: true,
-		country: "",
-		city: "",
-		street: "",
-		buildingNumber: "",
-		postalCode: "",
-		secondPageErrors: {
-			country_err: false,
-			city_err: false,
-			street_err: false,
-			buildingNumber_err: false,
-			postalCode_err: false,
-		},
-		secondPageErrorsMessages: {
-			country_message: "",
-			city_message: "",
-			street_message: "",
-			buildingNumber_message: "",
-			postalCode_message: "",
-		},
-		secondPageValidated: false,
-		secondPageVisible: true,
+		// inputs: [
+		// 	{
+		// 		id: 0,
+		// 		name: "name",
+		// 		value: "",
+		// 		input: "input",
+		// 		type: "text",
+		// 		label: "Name ",
+		// 		page: 1,
+		// 		error: false,
+		// 		errorMessage: "",
+		// 	},
+		// 	{
+		// 		name: "lastName",
+		// 		value: "",
+		// 		input: "input",
+		// 		type: "text",
+		// 		label: "Last Name ",
+		// 		page: 1,
+		// 		error: false,
+		// 		errorMessage: "",
+		// 	},
+		// 	{
+		// 		name: "dateOfBirth",
+		// 		value: "",
+		// 		input: "input",
+		// 		type: "date",
+		// 		label: "Date of Birth",
+		// 		page: 1,
+		// 		error: false,
+		// 		errorMessage: "",
+		// 	},
+		// 	{
+		// 		name: "sex",
+		// 		value: "",
+		// 		input: "select",
+		// 		options: ["", "Male", "Female", "Other"],
+		// 		label: "Sex",
+		// 		page: 1,
+		// 		error: false,
+		// 		errorMessage: "",
+		// 	},
+
+		// 	{
+		// 		name: "maritalStatus",
+		// 		value: "",
+		// 		input: "select",
+		// 		options: [
+		// 			"",
+		// 			"Single",
+		// 			"In Relationship",
+		// 			"Married",
+		// 			"Separated",
+		// 			"Divorced",
+		// 			"Widowed",
+		// 		],
+		// 		label: "Marital Status",
+		// 		page: 1,
+		// 		error: false,
+		// 		errorMessage: "",
+		// 	},
+		// ],
+		// firstPageValidated: false,
+		// firstPageVisible: true,
+		// // country: "",
+		// // city: "",
+		// // street: "",
+		// // buildingNumber: "",
+		// // postalCode: "",
+		// // secondPageErrors: {
+		// // 	country_err: false,
+		// // 	city_err: false,
+		// // 	street_err: false,
+		// // 	buildingNumber_err: false,
+		// // 	postalCode_err: false,
+		// // },
+		// // secondPageErrorsMessages: {
+		// // 	country_message: "",
+		// // 	city_message: "",
+		// // 	street_message: "",
+		// // 	buildingNumber_message: "",
+		// // 	postalCode_message: "",
+		// // },
+		// // secondPageValidated: false,
+		// secondPageVisible: false,
 	};
 
 	errorMessageActive = "form__firstPage__errorMessage active";
@@ -125,24 +184,41 @@ class App extends Component {
 
 	handleInputChange = (e) => {
 		const inputName = e.target.id;
-		const inputs = [...this.state.firstPageInputs];
+		let inputsArr = "";
 
+		for (let page of this.state.pages) {
+			for (let input of page.inputs) {
+				if (inputName === input.name) {
+					inputsArr = input.placing;
+				}
+			}
+		}
+		const inputs = [...this.state.pages[inputsArr].inputs];
 		for (let input of inputs) {
 			if (input.name === inputName) {
 				input.value = e.target.value;
 			}
 		}
-
 		this.setState({
-			firstPageInputs: inputs,
+			inputs: inputs,
 		});
 	};
 
-	handleSubmitFirstPage = (e) => {
+	handleSubmitPage = (e) => {
 		e.preventDefault();
+		const activePage = this.findActivePage();
+		console.log(activePage);
 
-		this.checkForm(this.state.firstPageInputs);
+		this.checkForm(this.state.inputs);
 	};
+
+	findActivePage() {
+		for (let page of this.pages) {
+			if (page) {
+				return page;
+			}
+		}
+	}
 
 	checkForm(pageInputs) {
 		const inputs = [...pageInputs];
@@ -189,7 +265,7 @@ class App extends Component {
 		}
 
 		this.setState({
-			firstPageInputs: inputs,
+			inputs: inputs,
 		});
 	}
 
@@ -267,13 +343,13 @@ class App extends Component {
 		return (
 			<div className="form">
 				<form className="form__firstPage" noValidate>
-					{this.state.firstPageVisible ? (
+					{this.state.pages[0].firstPageVisible ? (
 						<FirstPage
-							inputs={this.state.firstPageInputs}
+							inputs={this.state.pages[0].inputs}
 							messageHidden={this.errorMessageHidden}
 							messageActive={this.errorMessageActive}
 							change={this.handleInputChange}
-							submit={this.handleSubmitFirstPage}
+							submit={this.handleSubmitPage}
 						/>
 					) : null}
 					{/* {this.state.secondPageVisible ? (
