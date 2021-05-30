@@ -27,7 +27,7 @@ class App extends Component {
 				value: "",
 				input: "input",
 				type: "text",
-				label: "Last Name",
+				label: "Last Name ",
 				page: 1,
 				error: false,
 				errorMessage: "",
@@ -119,7 +119,8 @@ class App extends Component {
 		maxLength: "has to be shorter then 20 letters.",
 		onlyLetters: "has to contain only letters.",
 		onlyNumbers: "has to contain only numbers.",
-		emptySelectOrDate: "has to be chosen.",
+		emptySelect: "has to be chosen.",
+		emptyDate: "Date of Birth has to be chosen.",
 		underEighteen: "You have to be over 18 years old.",
 	};
 
@@ -330,7 +331,7 @@ class App extends Component {
 	checkSelectInput(value, error, errorMessage) {
 		if (!value) {
 			error = true;
-			errorMessage = this.messages.emptySelectOrDate;
+			errorMessage = this.messages.emptySelect;
 		}
 
 		return { error, errorMessage };
@@ -348,7 +349,7 @@ class App extends Component {
 
 		if (!year || !month || !day) {
 			input.error = true;
-			input.errorMessage = this.messages.emptySelectOrDate;
+			input.errorMessage = this.messages.emptyDate;
 			return input;
 		}
 
