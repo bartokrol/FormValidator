@@ -1,3 +1,4 @@
+import { kMaxLength } from "buffer";
 import { Component } from "react";
 // import SecondPage from "./SecondPage";
 import FirstPage from "./FirstPage";
@@ -15,45 +16,53 @@ class App extends Component {
 						id: 0,
 						name: "name",
 						value: "",
+						label: "Name ",
 						input: "input",
 						type: "text",
-						label: "Name ",
-						page: 1,
+						validationTerms: {
+							minLength: 2,
+							maxLength: 20,
+						},
 						error: false,
 						errorMessage: "",
+						page: 1,
 						placing: 0,
 					},
 					{
 						name: "lastName",
 						value: "",
+						label: "Last Name ",
 						input: "input",
 						type: "text",
-						label: "Last Name ",
-						page: 1,
+						validationTerms: {
+							minLength: 2,
+							maxLength: 20,
+						},
 						error: false,
 						errorMessage: "",
+						page: 1,
 						placing: 0,
 					},
 					{
 						name: "dateOfBirth",
 						value: "",
+						label: "Date of Birth",
 						input: "input",
 						type: "date",
-						label: "Date of Birth",
-						page: 1,
 						error: false,
 						errorMessage: "",
+						page: 1,
 						placing: 0,
 					},
 					{
 						name: "sex",
 						value: "",
+						label: "Sex",
 						input: "select",
 						options: ["", "Male", "Female", "Other"],
-						label: "Sex",
-						page: 1,
 						error: false,
 						errorMessage: "",
+						page: 1,
 						placing: 0,
 					},
 
@@ -61,6 +70,7 @@ class App extends Component {
 						name: "maritalStatus",
 						value: "",
 						input: "select",
+						label: "Marital Status",
 						options: [
 							"",
 							"Single",
@@ -70,10 +80,9 @@ class App extends Component {
 							"Divorced",
 							"Widowed",
 						],
-						label: "Marital Status",
-						page: 1,
 						error: false,
 						errorMessage: "",
+						page: 1,
 						placing: 0,
 					},
 				],
@@ -87,8 +96,6 @@ class App extends Component {
 	errorMessageHidden = "form__firstPage__errorMessage";
 
 	messages = {
-		minLength: "has to be longer then 2 letters.",
-		maxLength: "has to be shorter then 20 letters.",
 		onlyLetters: "has to contain only letters.",
 		onlyNumbers: "has to contain only numbers.",
 		emptySelect: "has to be chosen.",
@@ -166,7 +173,9 @@ class App extends Component {
 			const { error, errorMessage } = this.checkTextInput(
 				input.value,
 				input.error,
-				input.errorMessage
+				input.errorMessage,
+				input.validationTerms.minLength,
+				input.validationTerms.maxLength
 			);
 			input.error = error;
 			input.errorMessage = errorMessage;
@@ -191,20 +200,20 @@ class App extends Component {
 		}
 	}
 
-	checkTextInput(value, error, errorMessage) {
+	checkTextInput(value, error, errorMessage, minLength, maxLength) {
 		if (!value.match(this.regex.lettersOnly)) {
 			error = true;
 			errorMessage = this.messages.onlyLetters;
 		}
 
-		if (value.length < 2) {
+		if (value.length < minLength) {
 			error = true;
-			errorMessage = this.messages.minLength;
+			errorMessage = `has to be longer then ${minLength} letters.`;
 		}
 
-		if (value.length > 20) {
+		if (value.length > maxLength) {
 			error = true;
-			errorMessage = this.messages.maxLength;
+			errorMessage = `has to be shorter then ${maxLength} letters.`;
 		}
 
 		return { error, errorMessage };
