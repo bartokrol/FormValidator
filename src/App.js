@@ -1,6 +1,4 @@
-import { kMaxLength } from "buffer";
 import { Component } from "react";
-// import SecondPage from "./SecondPage";
 import FirstPage from "./FirstPage";
 import "./styles/App.scss";
 
@@ -9,8 +7,83 @@ class App extends Component {
 		activePage: 0,
 		pages: [
 			{
-				firstPageValidated: false,
-				firstPageVisible: true,
+				inputs: [
+					{
+						id: 0,
+						name: "name",
+						value: "",
+						label: "Name ",
+						input: "input",
+						type: "text",
+						validationTerms: {
+							minLength: 2,
+							maxLength: 20,
+						},
+						error: false,
+						errorMessage: "",
+						page: 1,
+						placing: 0,
+					},
+					{
+						name: "lastName",
+						value: "",
+						label: "Last Name ",
+						input: "input",
+						type: "text",
+						validationTerms: {
+							minLength: 2,
+							maxLength: 20,
+						},
+						error: false,
+						errorMessage: "",
+						page: 1,
+						placing: 0,
+					},
+					{
+						name: "dateOfBirth",
+						value: "",
+						label: "Date of Birth",
+						input: "input",
+						type: "date",
+						error: false,
+						errorMessage: "",
+						page: 1,
+						placing: 0,
+					},
+					{
+						name: "sex",
+						value: "",
+						label: "Sex",
+						input: "select",
+						options: ["", "Male", "Female", "Other"],
+						error: false,
+						errorMessage: "",
+						page: 1,
+						placing: 0,
+					},
+
+					{
+						name: "maritalStatus",
+						value: "",
+						input: "select",
+						label: "Marital Status",
+						options: [
+							"",
+							"Single",
+							"In Relationship",
+							"Married",
+							"Separated",
+							"Divorced",
+							"Widowed",
+						],
+						error: false,
+						errorMessage: "",
+						page: 1,
+						placing: 0,
+					},
+				],
+			},
+			{
 				inputs: [
 					{
 						id: 0,
@@ -88,8 +161,6 @@ class App extends Component {
 				],
 			},
 		],
-		// // secondPageValidated: false,
-		// secondPageVisible: false,
 	};
 
 	errorMessageActive = "form__firstPage__errorMessage active";
@@ -110,7 +181,6 @@ class App extends Component {
 	handleInputChange = (e) => {
 		const inputName = e.target.id;
 		let activePage = this.state.activePage;
-		activePage = this.findActivePage(inputName);
 		const inputs = [...this.state.pages[activePage].inputs];
 
 		for (let input of inputs) {
@@ -128,8 +198,7 @@ class App extends Component {
 	handleSubmitPage = (e) => {
 		e.preventDefault();
 		const activePage = this.state.activePage;
-
-		this.checkForm(this.state.pages[activePage].inputs);
+		this.checkForm(this.state.pages[activePage]);
 	};
 
 	findActivePage(inputName) {
@@ -143,8 +212,10 @@ class App extends Component {
 	}
 
 	checkForm(pageInputs) {
-		const inputs = [...pageInputs];
+		const inputs = [...pageInputs.inputs];
+
 		let errorsLength = inputs.length;
+		let activePage = this.state.activePage;
 		for (let input of inputs) {
 			input.error = false;
 			input.errorMessage = "";
@@ -157,14 +228,14 @@ class App extends Component {
 		}
 
 		if (!errorsLength) {
+			activePage++;
 			this.setState({
-				firstPageValidated: true,
-				firstPageVisible: false,
+				activePage,
 			});
 		}
 
 		this.setState({
-			inputs: inputs,
+			inputs,
 		});
 	}
 
@@ -271,12 +342,13 @@ class App extends Component {
 	}
 
 	render() {
+		const activePage = this.state.activePage;
 		return (
 			<div className="form">
 				<form className="form__firstPage" noValidate>
-					{this.state.pages[0].firstPageVisible ? (
+					{this.state.pages[activePage] ? (
 						<FirstPage
-							inputs={this.state.pages[0].inputs}
+							inputs={this.state.pages[activePage].inputs}
 							messageHidden={this.errorMessageHidden}
 							messageActive={this.errorMessageActive}
 							change={this.handleInputChange}
