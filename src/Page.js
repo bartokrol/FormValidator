@@ -13,6 +13,7 @@ const FirstPage = (props) => {
 					{input.label}
 				</label>
 				<input
+					key={input.name}
 					type={input.type}
 					id={input.name}
 					autoComplete="off"
@@ -39,13 +40,16 @@ const FirstPage = (props) => {
 					{input.label}
 				</label>{" "}
 				<select
+					key={input.name}
 					id={input.name}
 					name={input.name}
 					onChange={props.change}
 					value={input.value}
 				>
 					{input.options.map((option) => (
-						<option value={option}>{option}</option>
+						<option key={option} value={option}>
+							{option}
+						</option>
 					))}
 				</select>
 				<span
@@ -63,6 +67,9 @@ const FirstPage = (props) => {
 	return (
 		<>
 			{inputs}
+			{props.activePage ? (
+				<button class="form__button">Previous Page</button>
+			) : null}
 			<button class="form__button" onClick={props.submit}>
 				Next Page
 			</button>

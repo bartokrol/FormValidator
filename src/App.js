@@ -1,5 +1,5 @@
 import { Component } from "react";
-import FirstPage from "./FirstPage";
+import FirstPage from "./Page";
 import "./styles/App.scss";
 
 class App extends Component {
@@ -9,7 +9,6 @@ class App extends Component {
 			{
 				inputs: [
 					{
-						id: 0,
 						name: "name",
 						value: "",
 						label: "Name ",
@@ -22,7 +21,6 @@ class App extends Component {
 						error: false,
 						errorMessage: "",
 						page: 1,
-						placing: 0,
 					},
 					{
 						name: "lastName",
@@ -37,7 +35,6 @@ class App extends Component {
 						error: false,
 						errorMessage: "",
 						page: 1,
-						placing: 0,
 					},
 					{
 						name: "dateOfBirth",
@@ -48,7 +45,6 @@ class App extends Component {
 						error: false,
 						errorMessage: "",
 						page: 1,
-						placing: 0,
 					},
 					{
 						name: "sex",
@@ -59,7 +55,6 @@ class App extends Component {
 						error: false,
 						errorMessage: "",
 						page: 1,
-						placing: 0,
 					},
 
 					{
@@ -79,17 +74,15 @@ class App extends Component {
 						error: false,
 						errorMessage: "",
 						page: 1,
-						placing: 0,
 					},
 				],
 			},
 			{
 				inputs: [
 					{
-						id: 0,
-						name: "name",
+						name: "country",
 						value: "",
-						label: "Name ",
+						label: "Country ",
 						input: "input",
 						type: "text",
 						validationTerms: {
@@ -98,13 +91,12 @@ class App extends Component {
 						},
 						error: false,
 						errorMessage: "",
-						page: 1,
-						placing: 0,
+						page: 2,
 					},
 					{
-						name: "lastName",
+						name: "city",
 						value: "",
-						label: "Last Name ",
+						label: "City ",
 						input: "input",
 						type: "text",
 						validationTerms: {
@@ -113,50 +105,49 @@ class App extends Component {
 						},
 						error: false,
 						errorMessage: "",
-						page: 1,
-						placing: 0,
+						page: 2,
 					},
 					{
-						name: "dateOfBirth",
+						name: "street",
 						value: "",
-						label: "Date of Birth",
+						label: "Street ",
 						input: "input",
-						type: "date",
+						type: "text",
+						validationTerms: {
+							minLength: 2,
+							maxLength: 20,
+						},
 						error: false,
 						errorMessage: "",
-						page: 1,
-						placing: 0,
+						page: 2,
 					},
 					{
-						name: "sex",
+						name: "buildingNumber",
 						value: "",
-						label: "Sex",
-						input: "select",
-						options: ["", "Male", "Female", "Other"],
+						label: "Building Number ",
+						input: "input",
+						type: "text",
+						validationTerms: {
+							minLength: 2,
+							maxLength: 20,
+						},
 						error: false,
 						errorMessage: "",
-						page: 1,
-						placing: 0,
+						page: 2,
 					},
-
 					{
-						name: "maritalStatus",
+						name: "postalCode",
 						value: "",
-						input: "select",
-						label: "Marital Status",
-						options: [
-							"",
-							"Single",
-							"In Relationship",
-							"Married",
-							"Separated",
-							"Divorced",
-							"Widowed",
-						],
+						label: "Postal Code",
+						input: "input",
+						type: "text",
+						validationTerms: {
+							minLength: 6,
+							maxLength: 6,
+						},
 						error: false,
 						errorMessage: "",
-						page: 1,
-						placing: 0,
+						page: 2,
 					},
 				],
 			},
@@ -201,15 +192,15 @@ class App extends Component {
 		this.checkForm(this.state.pages[activePage]);
 	};
 
-	findActivePage(inputName) {
-		for (let page of this.state.pages) {
-			for (let input of page.inputs) {
-				if (inputName === input.name) {
-					return input.placing;
-				}
-			}
-		}
-	}
+	// findActivePage(inputName) {
+	// 	for (let page of this.state.pages) {
+	// 		for (let input of page.inputs) {
+	// 			if (inputName === input.name) {
+	// 				return input.placing;
+	// 			}
+	// 		}
+	// 	}
+	// }
 
 	checkForm(pageInputs) {
 		const inputs = [...pageInputs.inputs];
@@ -353,6 +344,7 @@ class App extends Component {
 							messageActive={this.errorMessageActive}
 							change={this.handleInputChange}
 							submit={this.handleSubmitPage}
+							activePage={this.state.activePage}
 						/>
 					) : null}
 					{/* {this.state.secondPageVisible ? (
