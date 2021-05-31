@@ -68,7 +68,9 @@ const FirstPage = (props) => {
 		<>
 			{inputs}
 			{props.activePage ? (
-				<button class="form__button">Previous Page</button>
+				<button class="form__button" onClick={props.previousPageBtn}>
+					Previous Page
+				</button>
 			) : null}
 			<button class="form__button" onClick={props.submit}>
 				Next Page

@@ -332,6 +332,17 @@ class App extends Component {
 		}
 	}
 
+	handlePreviousPageClick = (e) => {
+		e.preventDefault();
+
+		let activePage = this.state.activePage;
+		activePage--;
+
+		this.setState({
+			activePage,
+		});
+	};
+
 	render() {
 		const activePage = this.state.activePage;
 		return (
@@ -344,6 +355,7 @@ class App extends Component {
 							messageActive={this.errorMessageActive}
 							change={this.handleInputChange}
 							submit={this.handleSubmitPage}
+							previousPageBtn={this.handlePreviousPageClick}
 							activePage={this.state.activePage}
 						/>
 					) : null}
