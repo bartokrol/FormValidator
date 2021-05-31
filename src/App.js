@@ -17,6 +17,7 @@ class App extends Component {
 						validationTerms: {
 							minLength: 2,
 							maxLength: 20,
+							signs: "letters",
 						},
 						error: false,
 						errorMessage: "",
@@ -31,6 +32,7 @@ class App extends Component {
 						validationTerms: {
 							minLength: 2,
 							maxLength: 20,
+							signs: "letters",
 						},
 						error: false,
 						errorMessage: "",
@@ -88,6 +90,7 @@ class App extends Component {
 						validationTerms: {
 							minLength: 2,
 							maxLength: 20,
+							signs: "letters",
 						},
 						error: false,
 						errorMessage: "",
@@ -102,6 +105,7 @@ class App extends Component {
 						validationTerms: {
 							minLength: 2,
 							maxLength: 20,
+							signs: "letters",
 						},
 						error: false,
 						errorMessage: "",
@@ -116,6 +120,7 @@ class App extends Component {
 						validationTerms: {
 							minLength: 2,
 							maxLength: 20,
+							signs: "letters",
 						},
 						error: false,
 						errorMessage: "",
@@ -130,6 +135,7 @@ class App extends Component {
 						validationTerms: {
 							minLength: 2,
 							maxLength: 20,
+							signs: "letters or numbers",
 						},
 						error: false,
 						errorMessage: "",
@@ -142,8 +148,9 @@ class App extends Component {
 						input: "input",
 						type: "text",
 						validationTerms: {
-							minLength: 6,
+							minLength: 5,
 							maxLength: 6,
+							signs: "numbers",
 						},
 						error: false,
 						errorMessage: "",
@@ -192,16 +199,6 @@ class App extends Component {
 		this.checkForm(this.state.pages[activePage]);
 	};
 
-	// findActivePage(inputName) {
-	// 	for (let page of this.state.pages) {
-	// 		for (let input of page.inputs) {
-	// 			if (inputName === input.name) {
-	// 				return input.placing;
-	// 			}
-	// 		}
-	// 	}
-	// }
-
 	checkForm(pageInputs) {
 		const inputs = [...pageInputs.inputs];
 
@@ -237,7 +234,8 @@ class App extends Component {
 				input.error,
 				input.errorMessage,
 				input.validationTerms.minLength,
-				input.validationTerms.maxLength
+				input.validationTerms.maxLength,
+				input.validationTerms.signs
 			);
 			input.error = error;
 			input.errorMessage = errorMessage;
@@ -262,7 +260,7 @@ class App extends Component {
 		}
 	}
 
-	checkTextInput(value, error, errorMessage, minLength, maxLength) {
+	checkTextInput(value, error, errorMessage, minLength, maxLength, type) {
 		if (!value.match(this.regex.lettersOnly)) {
 			error = true;
 			errorMessage = this.messages.onlyLetters;
@@ -270,12 +268,12 @@ class App extends Component {
 
 		if (value.length < minLength) {
 			error = true;
-			errorMessage = `has to be longer then ${minLength} letters.`;
+			errorMessage = `has to be longer then ${minLength} ${type}.`;
 		}
 
 		if (value.length > maxLength) {
 			error = true;
-			errorMessage = `has to be shorter then ${maxLength} letters.`;
+			errorMessage = `has to be shorter then ${maxLength} ${type}.`;
 		}
 
 		return { error, errorMessage };
@@ -359,22 +357,6 @@ class App extends Component {
 							activePage={this.state.activePage}
 						/>
 					) : null}
-					{/* {this.state.secondPageVisible ? (
-						<SecondPage
-							country={this.state.country}
-							city={this.state.city}
-							street={this.state.street}
-							buildingNumber={this.state.buildingNumber}
-							postalCode={this.state.postalCode}
-							errors={this.state.secondPageErrors}
-							change={this.handleInputChange}
-							previousPageClick={this.handlePageChange}
-							submit={this.handleSubmitSecondPage}
-							messageActive={this.errorMessageActive}
-							messageHidden={this.errorMessageHidden}
-							errorMessages={this.state.secondPageErrorsMessages}
-						/>
-					) : null} */}
 				</form>
 			</div>
 		);
