@@ -1,10 +1,10 @@
 import { Component } from "react";
-import FirstPage from "./Page";
+import Page from "./Page";
 import "./styles/App.scss";
 
 class App extends Component {
 	state = {
-		activePage: 0,
+		activePage: 1,
 		pages: [
 			{
 				inputs: [
@@ -144,13 +144,78 @@ class App extends Component {
 					{
 						name: "postalCode",
 						value: "",
-						label: "Postal Code",
+						label: "Postal Code ",
 						input: "input",
 						type: "text",
 						validationTerms: {
 							minLength: 5,
 							maxLength: 6,
 							signs: "numbers",
+							isDash: false,
+						},
+						error: false,
+						errorMessage: "",
+						page: 2,
+					},
+				],
+			},
+			{
+				inputs: [
+					{
+						name: "username",
+						value: "",
+						label: "Username ",
+						input: "input",
+						type: "text",
+						validationTerms: {
+							minLength: 2,
+							maxLength: 20,
+							signs: "letters or numbers",
+						},
+						error: false,
+						errorMessage: "",
+						page: 2,
+					},
+					{
+						name: "email",
+						value: "",
+						label: "E-mail ",
+						input: "input",
+						type: "text",
+						validationTerms: {
+							minLength: 2,
+							maxLength: 20,
+							signs: "letters or numbers",
+						},
+						error: false,
+						errorMessage: "",
+						page: 2,
+					},
+					{
+						name: "password",
+						value: "",
+						label: "Password ",
+						input: "input",
+						type: "text",
+						validationTerms: {
+							minLength: 2,
+							maxLength: 20,
+							signs: "letters or numbers",
+						},
+						error: false,
+						errorMessage: "",
+						page: 2,
+					},
+					{
+						name: "repeatPassword",
+						value: "",
+						label: "Repeat Password ",
+						input: "input",
+						type: "text",
+						validationTerms: {
+							minLength: 2,
+							maxLength: 20,
+							signs: "letters or numbers",
 						},
 						error: false,
 						errorMessage: "",
@@ -160,6 +225,8 @@ class App extends Component {
 			},
 		],
 	};
+
+	pagesLength = this.state.pages.length - 1;
 
 	errorMessageActive = "form__firstPage__errorMessage active";
 	errorMessageHidden = "form__firstPage__errorMessage";
@@ -174,6 +241,7 @@ class App extends Component {
 
 	regex = {
 		lettersOnly: /^[A-Za-z]+$/,
+		numbersOnly: /[0-9-]/g,
 	};
 
 	handleInputChange = (e) => {
@@ -184,6 +252,19 @@ class App extends Component {
 		for (let input of inputs) {
 			if (input.name === inputName) {
 				input.value = e.target.value;
+
+				// if (inputName === "postalCode") {
+				// 	if (input.value.length === 2) {
+				// 		if (input.value.includes("-")) {
+				// 			input.value = e.target.value;
+				// 		}
+				// 		if (!input.value.includes("-")) {
+				// 			let isDash = input.validationTerms.isDash;
+				// 			input.value = e.target.value + "-";
+				// 			isDash = true;
+				// 		}
+				// 	}
+				// }
 			}
 		}
 
@@ -261,22 +342,36 @@ class App extends Component {
 	}
 
 	checkTextInput(value, error, errorMessage, minLength, maxLength, type) {
-		if (!value.match(this.regex.lettersOnly)) {
+		if (value.length > maxLength) {
 			error = true;
-			errorMessage = this.messages.onlyLetters;
+			errorMessage = `has to be shorter then ${maxLength} ${type}.`;
+			return { error, errorMessage };
 		}
 
 		if (value.length < minLength) {
 			error = true;
 			errorMessage = `has to be longer then ${minLength} ${type}.`;
+			return { error, errorMessage };
 		}
 
-		if (value.length > maxLength) {
-			error = true;
-			errorMessage = `has to be shorter then ${maxLength} ${type}.`;
+		if (type === "letters" || type === "letters or numbers") {
+			if (!value.match(this.regex.lettersOnly)) {
+				error = true;
+				errorMessage = this.messages.onlyLetters;
+			}
+			return { error, errorMessage };
 		}
 
-		return { error, errorMessage };
+		if (type === "numbers") {
+			if (
+				value.match(this.regex.numbersOnly).length !== 5 ||
+				!!value.match(this.regex.lettersOnly)
+			) {
+				error = true;
+				errorMessage = this.messages.onlyNumbers;
+			}
+			return { error, errorMessage };
+		}
 	}
 
 	checkSelectInput(value, error, errorMessage) {
@@ -347,7 +442,7 @@ class App extends Component {
 			<div className="form">
 				<form className="form__firstPage" noValidate>
 					{this.state.pages[activePage] ? (
-						<FirstPage
+						<Page
 							inputs={this.state.pages[activePage].inputs}
 							messageHidden={this.errorMessageHidden}
 							messageActive={this.errorMessageActive}
@@ -355,6 +450,7 @@ class App extends Component {
 							submit={this.handleSubmitPage}
 							previousPageBtn={this.handlePreviousPageClick}
 							activePage={this.state.activePage}
+							pagesLength={this.pagesLength}
 						/>
 					) : null}
 				</form>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const FirstPage = (props) => {
+const Page = (props) => {
 	const inputs = [];
 	const filteredTextInputs = props.inputs
 		.filter((input) => input.input === "input")
@@ -73,10 +73,12 @@ const FirstPage = (props) => {
 				</button>
 			) : null}
 			<button class="form__button" onClick={props.submit}>
-				Next Page
+				{props.pagesLength === props.activePage
+					? "Submit"
+					: "Next Page"}
 			</button>
 		</>
 	);
 };
 
-export default FirstPage;
+export default Page;
