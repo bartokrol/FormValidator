@@ -245,26 +245,26 @@ class App extends Component {
 	};
 
 	handleInputChange = (e) => {
+		const key = e.nativeEvent.inputType;
 		const inputName = e.target.id;
 		let activePage = this.state.activePage;
 		const inputs = [...this.state.pages[activePage].inputs];
+		console.log(key);
 
 		for (let input of inputs) {
 			if (input.name === inputName) {
 				input.value = e.target.value;
 
-				// if (inputName === "postalCode") {
-				// 	if (input.value.length === 2) {
-				// 		if (input.value.includes("-")) {
-				// 			input.value = e.target.value;
-				// 		}
-				// 		if (!input.value.includes("-")) {
-				// 			let isDash = input.validationTerms.isDash;
-				// 			input.value = e.target.value + "-";
-				// 			isDash = true;
-				// 		}
-				// 	}
-				// }
+				if (inputName === "postalCode") {
+					if (
+						input.value.length === 2 &&
+						key !== "deleteContentBackward"
+					) {
+						input.value = e.target.value + "-";
+					} else if (key === "deleteContentBackward") {
+						input.value = e.target.value;
+					}
+				}
 			}
 		}
 
