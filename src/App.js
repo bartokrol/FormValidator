@@ -246,16 +246,24 @@ class App extends Component {
 
 	handleInputChange = (e) => {
 		const key = e.nativeEvent.inputType;
+		console.log(e.target.value);
 		const inputName = e.target.id;
 		let activePage = this.state.activePage;
 		const inputs = [...this.state.pages[activePage].inputs];
-		console.log(key);
+		const isInteger = this.checkForInteger(e.target.value);
+		const isSpace = this.checkForSpace(e.target.value);
 
 		for (let input of inputs) {
 			if (input.name === inputName) {
 				input.value = e.target.value;
 
 				if (inputName === "postalCode") {
+					// input.value = this.handlePostalCodeValidation(
+					// 	input.value,
+					// 	e.target.value,
+					// 	key,
+					// 	isInteger
+					// );
 					if (
 						input.value.length === 2 &&
 						key !== "deleteContentBackward"
@@ -263,6 +271,13 @@ class App extends Component {
 						input.value = e.target.value + "-";
 					} else if (key === "deleteContentBackward") {
 						input.value = e.target.value;
+					} else if (!isInteger || isSpace) {
+						return;
+					} else if (
+						input.value.length === 7 &&
+						key !== "deleteContentBackward"
+					) {
+						return;
 					}
 				}
 			}
@@ -273,6 +288,38 @@ class App extends Component {
 			inputs,
 		});
 	};
+
+	checkForInteger(value) {
+		const inputValue = value.split("");
+		const lastElementInsideValue = Number(
+			inputValue[inputValue.length - 1]
+		);
+		return Number.isInteger(lastElementInsideValue);
+	}
+
+	checkForSpace(value) {
+		const inputValue = value.split("");
+		const lastElementInsideValue = inputValue[inputValue.length - 1];
+		return lastElementInsideValue === " ";
+	}
+
+	// handlePostalCodeValidation(inputValue, targetValue, key, isInteger) {
+	// 	console.log(inputValue, targetValue, key, isInteger);
+	// 	if (inputValue.length === 2 && key !== "deleteContentBackward") {
+	// 		console.log("tak1");
+	// 		inputValue = targetValue + "-";
+	// 	} else if (key === "deleteContentBackward" || isInteger) {
+	// 		console.log("tak2");
+	// 		inputValue = targetValue;
+	// 	} else if (!isInteger) {
+	// 		console.log("tak3");
+	// 		return;
+	// 	} else if (inputValue.length === 7 && key !== "deleteContentBackward") {
+	// 		console.log("tak4");
+	// 		return;
+	// 	}
+	// 	return inputValue;
+	// }
 
 	handleSubmitPage = (e) => {
 		e.preventDefault();
