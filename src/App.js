@@ -183,8 +183,8 @@ class App extends Component {
 						input: "input",
 						type: "text",
 						validationTerms: {
-							minLength: 2,
-							maxLength: 20,
+							minLength: 15,
+							maxLength: 16,
 							signs: "numbers",
 						},
 						error: false,
