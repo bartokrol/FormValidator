@@ -255,30 +255,23 @@ class App extends Component {
 
 		for (let input of inputs) {
 			if (input.name === inputName) {
-				input.value = e.target.value;
-
-				if (inputName === "postalCode") {
-					// input.value = this.handlePostalCodeValidation(
-					// 	input.value,
-					// 	e.target.value,
-					// 	key,
-					// 	isInteger
-					// );
-					if (
-						input.value.length === 2 &&
-						key !== "deleteContentBackward"
-					) {
-						input.value = e.target.value + "-";
-					} else if (key === "deleteContentBackward") {
+				switch (input.validationTerms.signs) {
+					case "letters":
 						input.value = e.target.value;
-					} else if (!isInteger || isSpace) {
-						return;
-					} else if (
-						input.value.length === 7 &&
-						key !== "deleteContentBackward"
-					) {
-						return;
-					}
+						break;
+					case "numbers":
+						if (inputName === "postalCode") {
+							input.value = this.handlePostalCodeInput(
+								input.value,
+								e.target.value,
+								key,
+								isInteger,
+								isSpace
+							);
+						}
+						break;
+					default:
+						input.value = e.target.value;
 				}
 			}
 		}
@@ -303,23 +296,21 @@ class App extends Component {
 		return lastElementInsideValue === " ";
 	}
 
-	// handlePostalCodeValidation(inputValue, targetValue, key, isInteger) {
-	// 	console.log(inputValue, targetValue, key, isInteger);
-	// 	if (inputValue.length === 2 && key !== "deleteContentBackward") {
-	// 		console.log("tak1");
-	// 		inputValue = targetValue + "-";
-	// 	} else if (key === "deleteContentBackward" || isInteger) {
-	// 		console.log("tak2");
-	// 		inputValue = targetValue;
-	// 	} else if (!isInteger) {
-	// 		console.log("tak3");
-	// 		return;
-	// 	} else if (inputValue.length === 7 && key !== "deleteContentBackward") {
-	// 		console.log("tak4");
-	// 		return;
-	// 	}
-	// 	return inputValue;
-	// }
+	handlePostalCodeInput(inputValue, targetValue, key, isInteger, isSpace) {
+		console.log(inputValue, targetValue, key, isInteger, isSpace);
+
+		if (
+			(inputValue.length < 6 && isInteger && !isSpace) ||
+			key === "deleteContentBackward"
+		) {
+			console.log("1");
+			inputValue = targetValue;
+		}
+		if (inputValue.length === 2 && key !== "deleteContentBackward") {
+			inputValue = targetValue + "-";
+		}
+		return inputValue;
+	}
 
 	handleSubmitPage = (e) => {
 		e.preventDefault();
