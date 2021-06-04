@@ -252,11 +252,13 @@ class App extends Component {
 		emptySelect: "has to be chosen.",
 		emptyDate: "Date of Birth has to be chosen.",
 		underEighteen: "You have to be over 18 years old.",
+		invalidEmail: "is invalid.",
 	};
 
 	regex = {
 		lettersOnly: /^[A-Za-z]+$/,
 		numbersOnly: /[\d-]+/g,
+		mail: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
 	};
 
 	handleInputChange = (e) => {
@@ -390,7 +392,11 @@ class App extends Component {
 	}
 
 	checkInputType(input) {
-		if (input.input === "input" && input.type !== "date") {
+		if (
+			input.input === "input" &&
+			input.type !== "date" &&
+			input.name !== "email"
+		) {
 			const { error, errorMessage } = this.checkTextInput(
 				input.value,
 				input.error,
@@ -418,6 +424,14 @@ class App extends Component {
 		if (input.type === "date") {
 			const date = this.checkDateOfBirthValidation(input);
 			input = date;
+			return input;
+		}
+
+		if (input.name === "email") {
+			if (!input.value.match(this.regex.mail)) {
+				input.error = true;
+				input.errorMessage = this.messages.invalidEmail;
+			}
 			return input;
 		}
 	}
