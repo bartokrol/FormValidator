@@ -4,7 +4,7 @@ import "./styles/App.scss";
 
 class App extends Component {
 	state = {
-		activePage: 1,
+		activePage: 2,
 		pages: [
 			{
 				inputs: [
@@ -177,6 +177,21 @@ class App extends Component {
 						page: 2,
 					},
 					{
+						name: "phone",
+						value: "+48 ",
+						label: "Phone Number ",
+						input: "input",
+						type: "text",
+						validationTerms: {
+							minLength: 2,
+							maxLength: 20,
+							signs: "numbers",
+						},
+						error: false,
+						errorMessage: "",
+						page: 2,
+					},
+					{
 						name: "email",
 						value: "",
 						label: "E-mail ",
@@ -246,7 +261,6 @@ class App extends Component {
 
 	handleInputChange = (e) => {
 		const key = e.nativeEvent.inputType;
-		console.log(e.target.value);
 		const inputName = e.target.id;
 		let activePage = this.state.activePage;
 		const inputs = [...this.state.pages[activePage].inputs];
@@ -262,6 +276,15 @@ class App extends Component {
 					case "numbers":
 						if (inputName === "postalCode") {
 							input.value = this.handlePostalCodeInput(
+								input.value,
+								e.target.value,
+								key,
+								isInteger,
+								isSpace
+							);
+						}
+						if (inputName === "phone") {
+							input.value = this.handlePhoneInput(
 								input.value,
 								e.target.value,
 								key,
@@ -297,16 +320,36 @@ class App extends Component {
 	}
 
 	handlePostalCodeInput(inputValue, targetValue, key, isInteger, isSpace) {
-		console.log(inputValue, targetValue, key, isInteger, isSpace);
-
+		const backspace = "deleteContentBackward";
 		if (
 			(inputValue.length < 6 && isInteger && !isSpace) ||
-			key === "deleteContentBackward"
+			key === backspace
 		) {
-			console.log("1");
 			inputValue = targetValue;
 		}
-		if (inputValue.length === 2 && key !== "deleteContentBackward") {
+		if (inputValue.length === 2 && key !== backspace) {
+			inputValue = targetValue + "-";
+		}
+		return inputValue;
+	}
+
+	handlePhoneInput(inputValue, targetValue, key, isInteger, isSpace) {
+		const backspace = "deleteContentBackward";
+		if (
+			inputValue.length < 15 &&
+			isInteger &&
+			!isSpace &&
+			key !== backspace
+		) {
+			inputValue = targetValue;
+		}
+		if (inputValue.length > 4 && key === backspace) {
+			inputValue = targetValue;
+		}
+		if (
+			(inputValue.length === 7 && key !== backspace) ||
+			(inputValue.length === 11 && key !== backspace)
+		) {
 			inputValue = targetValue + "-";
 		}
 		return inputValue;
