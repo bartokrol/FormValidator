@@ -241,7 +241,7 @@ class App extends Component {
 
 	regex = {
 		lettersOnly: /^[A-Za-z]+$/,
-		numbersOnly: /[0-9-]/g,
+		numbersOnly: /[\d-]+/g,
 	};
 
 	handleInputChange = (e) => {
@@ -401,10 +401,7 @@ class App extends Component {
 		}
 
 		if (type === "numbers") {
-			if (
-				value.match(this.regex.numbersOnly).length !== 5 ||
-				!!value.match(this.regex.lettersOnly)
-			) {
+			if (!value.match(this.regex.numbersOnly)) {
 				error = true;
 				errorMessage = this.messages.onlyNumbers;
 			}
