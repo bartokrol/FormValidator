@@ -44,6 +44,9 @@ class App extends Component {
 						label: "Date of Birth",
 						input: "input",
 						type: "date",
+						validationTerms: {
+							signs: "",
+						},
 						error: false,
 						errorMessage: "",
 						page: 1,
@@ -53,6 +56,9 @@ class App extends Component {
 						value: "",
 						label: "Sex",
 						input: "select",
+						validationTerms: {
+							signs: "",
+						},
 						options: ["", "Male", "Female", "Other"],
 						error: false,
 						errorMessage: "",
@@ -62,8 +68,11 @@ class App extends Component {
 					{
 						name: "maritalStatus",
 						value: "",
-						input: "select",
 						label: "Marital Status",
+						input: "select",
+						validationTerms: {
+							signs: "",
+						},
 						options: [
 							"",
 							"Single",
@@ -253,6 +262,8 @@ class App extends Component {
 		emptyDate: "Date of Birth has to be chosen.",
 		underEighteen: "You have to be over 18 years old.",
 		invalidEmail: "is invalid.",
+		invalidPasswordRepeat: "is different then password.",
+		emptyPasswordRepeat: "has to be filled",
 	};
 
 	regex = {
@@ -270,35 +281,14 @@ class App extends Component {
 		const isSpace = this.checkForSpace(e.target.value);
 
 		for (let input of inputs) {
-			if (input.name === inputName) {
-				switch (input.validationTerms.signs) {
-					case "letters":
-						input.value = e.target.value;
-						break;
-					case "numbers":
-						if (inputName === "postalCode") {
-							input.value = this.handlePostalCodeInput(
-								input.value,
-								e.target.value,
-								key,
-								isInteger,
-								isSpace
-							);
-						}
-						if (inputName === "phone") {
-							input.value = this.handlePhoneInput(
-								input.value,
-								e.target.value,
-								key,
-								isInteger,
-								isSpace
-							);
-						}
-						break;
-					default:
-						input.value = e.target.value;
-				}
-			}
+			input = this.checkForSpecificInput(
+				input,
+				inputName,
+				e.target.value,
+				key,
+				isInteger,
+				isSpace
+			);
 		}
 
 		this.setState({
@@ -306,6 +296,45 @@ class App extends Component {
 			inputs,
 		});
 	};
+
+	checkForSpecificInput(
+		input,
+		inputName,
+		targetValue,
+		key,
+		isInteger,
+		isSpace
+	) {
+		if (input.name === inputName) {
+			switch (input.validationTerms.signs) {
+				case "letters":
+					input.value = targetValue;
+					break;
+				case "numbers":
+					if (inputName === "postalCode") {
+						input.value = this.handlePostalCodeInput(
+							input.value,
+							targetValue,
+							key,
+							isInteger,
+							isSpace
+						);
+					}
+					if (inputName === "phone") {
+						input.value = this.handlePhoneInput(
+							input.value,
+							targetValue,
+							key,
+							isInteger,
+							isSpace
+						);
+					}
+					break;
+				default:
+					input.value = targetValue;
+			}
+		}
+	}
 
 	checkForInteger(value) {
 		const inputValue = value.split("");
@@ -360,10 +389,10 @@ class App extends Component {
 	handleSubmitPage = (e) => {
 		e.preventDefault();
 		const activePage = this.state.activePage;
-		this.checkForm(this.state.pages[activePage]);
+		this.handleForm(this.state.pages[activePage]);
 	};
 
-	checkForm(pageInputs) {
+	handleForm(pageInputs) {
 		const inputs = [...pageInputs.inputs];
 
 		let errorsLength = inputs.length;
@@ -395,7 +424,8 @@ class App extends Component {
 		if (
 			input.input === "input" &&
 			input.type !== "date" &&
-			input.name !== "email"
+			input.name !== "email" &&
+			input.name !== "repeatPassword"
 		) {
 			const { error, errorMessage } = this.checkTextInput(
 				input.value,
@@ -434,6 +464,19 @@ class App extends Component {
 			}
 			return input;
 		}
+
+		if (input.name === "repeatPassword") {
+			if (input.value !== this.state.pages[2].inputs[3].value) {
+				console.log("tak");
+				input.error = true;
+				input.errorMessage = this.messages.invalidPasswordRepeat;
+			}
+			if (!input.value) {
+				input.error = true;
+				input.errorMessage = this.messages.emptyPasswordRepeat;
+			}
+			return input;
+		}
 	}
 
 	checkTextInput(value, error, errorMessage, minLength, maxLength, type) {
@@ -449,7 +492,7 @@ class App extends Component {
 			return { error, errorMessage };
 		}
 
-		if (type === "letters" || type === "letters or numbers") {
+		if (type === "letters") {
 			if (!value.match(this.regex.lettersOnly)) {
 				error = true;
 				errorMessage = this.messages.onlyLetters;
@@ -464,6 +507,8 @@ class App extends Component {
 			}
 			return { error, errorMessage };
 		}
+
+		return { error, errorMessage };
 	}
 
 	checkSelectInput(value, error, errorMessage) {
