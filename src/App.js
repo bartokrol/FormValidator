@@ -267,7 +267,7 @@ class App extends Component {
 	};
 
 	regex = {
-		lettersOnly: /^^[a-zA-Z\u00C0-\u00FF -]*$/,
+		lettersOnly: /^^[a-zA-Z\u00C0-\u017F -]*$/,
 		numbersOnly: /[\d-]+/g,
 		mail: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
 	};
