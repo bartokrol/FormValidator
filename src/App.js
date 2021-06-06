@@ -4,7 +4,7 @@ import "./styles/App.scss";
 
 class App extends Component {
 	state = {
-		activePage: 2,
+		activePage: 0,
 		pages: [
 			{
 				inputs: [
@@ -267,7 +267,7 @@ class App extends Component {
 	};
 
 	regex = {
-		lettersOnly: /^[A-Za-z]+$/,
+		lettersOnly: /^^[a-zA-Z\u00C0-\u00FF -]*$/,
 		numbersOnly: /[\d-]+/g,
 		mail: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
 	};
