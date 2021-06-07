@@ -4,7 +4,7 @@ import "./styles/App.scss";
 
 class App extends Component {
 	state = {
-		activePage: 0,
+		activePage: 1,
 		pages: [
 			{
 				inputs: [
@@ -352,14 +352,27 @@ class App extends Component {
 
 	handlePostalCodeInput(inputValue, targetValue, key, isInteger, isSpace) {
 		const backspace = "deleteContentBackward";
+
+		if (targetValue.length === 2 && key !== backspace) {
+			inputValue = targetValue + "-";
+			return inputValue;
+		}
+
+		if (targetValue.length === 3 && !targetValue.includes("-")) {
+			return inputValue;
+		}
+
+		if (targetValue.length === 3 && targetValue.includes("-")) {
+			inputValue = targetValue;
+			return inputValue;
+		}
+
 		if (
 			(inputValue.length < 6 && isInteger && !isSpace) ||
 			key === backspace
 		) {
 			inputValue = targetValue;
-		}
-		if (inputValue.length === 2 && key !== backspace) {
-			inputValue = targetValue + "-";
+			return inputValue;
 		}
 		return inputValue;
 	}
