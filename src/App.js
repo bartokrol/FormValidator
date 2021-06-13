@@ -267,7 +267,7 @@ class App extends Component {
 	};
 
 	regex = {
-		lettersSpaceDash: /^[a-zA-Z\u00C0-\u017F -]*$/,
+		// lettersSpaceDash: /^[a-zA-Z\u00C0-\u017F -]*$/,
 		lettersOnly: /^[a-zA-Z\u00C0-\u017F]*$/,
 		numbersOnly: /[\d-]+/g,
 		mail: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
@@ -511,8 +511,8 @@ class App extends Component {
 				errorMessage = `Field value has to be longer then ${minLength} ${type}.`;
 				return { error, errorMessage };
 			default:
-				error = true;
-				errorMessage = "tak";
+				error = false;
+				errorMessage = "";
 		}
 
 		switch (type) {
