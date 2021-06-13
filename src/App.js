@@ -4,7 +4,7 @@ import "./styles/App.scss";
 
 class App extends Component {
 	state = {
-		activePage: 1,
+		activePage: 0,
 		pages: [
 			{
 				inputs: [
@@ -256,10 +256,10 @@ class App extends Component {
 	errorMessageHidden = "form__firstPage__errorMessage";
 
 	messages = {
-		onlyLetters: "has to contain only letters.",
-		onlyNumbers: "has to contain only numbers.",
-		emptySelect: "has to be chosen.",
-		emptyDate: "Date of Birth has to be chosen.",
+		onlyLetters: "Field can contain only letters.",
+		onlyNumbers: "Field can contain only numbers.",
+		emptySelect: "One of the options has to be chosen.",
+		emptyDate: "Date of birth has to be chosen.",
 		underEighteen: "You have to be over 18 years old.",
 		invalidEmail: "is invalid.",
 		invalidPasswordRepeat: "is different then password.",
@@ -267,7 +267,8 @@ class App extends Component {
 	};
 
 	regex = {
-		lettersOnly: /^^[a-zA-Z\u00C0-\u017F -]*$/,
+		lettersSpaceDash: /^[a-zA-Z\u00C0-\u017F -]*$/,
+		lettersOnly: /^[a-zA-Z\u00C0-\u017F]*$/,
 		numbersOnly: /[\d-]+/g,
 		mail: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
 	};
@@ -495,13 +496,13 @@ class App extends Component {
 	checkTextInput(value, error, errorMessage, minLength, maxLength, type) {
 		if (value.length > maxLength) {
 			error = true;
-			errorMessage = `has to be shorter then ${maxLength} ${type}.`;
+			errorMessage = `Field value has to be shorter then ${maxLength} ${type}.`;
 			return { error, errorMessage };
 		}
 
 		if (value.length < minLength) {
 			error = true;
-			errorMessage = `has to be longer then ${minLength} ${type}.`;
+			errorMessage = `Field value has to be longer then ${minLength} ${type}.`;
 			return { error, errorMessage };
 		}
 

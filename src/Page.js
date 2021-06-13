@@ -25,9 +25,7 @@ const Page = (props) => {
 						input.error ? props.messageActive : props.messageHidden
 					}
 				>
-					{input.name === "dateOfBirth"
-						? input.errorMessage
-						: input.label + input.errorMessage}
+					{input.errorMessage}
 				</span>
 			</>
 		));
@@ -57,7 +55,7 @@ const Page = (props) => {
 						input.error ? props.messageActive : props.messageHidden
 					}
 				>
-					{input.label} {input.errorMessage}
+					{input.errorMessage}
 				</span>
 			</>
 		));
