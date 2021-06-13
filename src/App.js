@@ -312,23 +312,27 @@ class App extends Component {
 					input.value = targetValue;
 					break;
 				case "numbers":
-					if (inputName === "postalCode") {
-						input.value = this.handlePostalCodeInput(
-							input.value,
-							targetValue,
-							key,
-							isInteger,
-							isSpace
-						);
-					}
-					if (inputName === "phone") {
-						input.value = this.handlePhoneInput(
-							input.value,
-							targetValue,
-							key,
-							isInteger,
-							isSpace
-						);
+					switch (inputName) {
+						case "postalCode":
+							input.value = this.handlePostalCodeInput(
+								input.value,
+								targetValue,
+								key,
+								isInteger,
+								isSpace
+							);
+							break;
+						case "phone":
+							input.value = this.handlePhoneInput(
+								input.value,
+								targetValue,
+								key,
+								isInteger,
+								isSpace
+							);
+							break;
+						default:
+							input.value = targetValue;
 					}
 					break;
 				default:
@@ -388,15 +392,18 @@ class App extends Component {
 		) {
 			inputValue = targetValue;
 		}
+
 		if (inputValue.length > 4 && key === backspace) {
 			inputValue = targetValue;
 		}
+
 		if (
 			(inputValue.length === 7 && key !== backspace) ||
 			(inputValue.length === 11 && key !== backspace)
 		) {
 			inputValue = targetValue + "-";
 		}
+
 		return inputValue;
 	}
 
@@ -494,32 +501,36 @@ class App extends Component {
 	}
 
 	checkTextInput(value, error, errorMessage, minLength, maxLength, type) {
-		if (value.length > maxLength) {
-			error = true;
-			errorMessage = `Field value has to be shorter then ${maxLength} ${type}.`;
-			return { error, errorMessage };
-		}
-
-		if (value.length < minLength) {
-			error = true;
-			errorMessage = `Field value has to be longer then ${minLength} ${type}.`;
-			return { error, errorMessage };
-		}
-
-		if (type === "letters") {
-			if (!value.match(this.regex.lettersOnly)) {
+		switch (true) {
+			case value.length > maxLength:
 				error = true;
-				errorMessage = this.messages.onlyLetters;
-			}
-			return { error, errorMessage };
+				errorMessage = `Field value has to be shorter then ${maxLength} ${type}.`;
+				return { error, errorMessage };
+			case value.length < minLength:
+				error = true;
+				errorMessage = `Field value has to be longer then ${minLength} ${type}.`;
+				return { error, errorMessage };
+			default:
+				error = true;
+				errorMessage = "tak";
 		}
 
-		if (type === "numbers") {
-			if (!value.match(this.regex.numbersOnly)) {
-				error = true;
-				errorMessage = this.messages.onlyNumbers;
-			}
-			return { error, errorMessage };
+		switch (type) {
+			case "letters":
+				if (!value.match(this.regex.lettersOnly)) {
+					error = true;
+					errorMessage = this.messages.onlyLetters;
+				}
+				return { error, errorMessage };
+			case "numbers":
+				if (!value.match(this.regex.numbersOnly)) {
+					error = true;
+					errorMessage = this.messages.onlyNumbers;
+				}
+				return { error, errorMessage };
+			default:
+				error = false;
+				errorMessage = "";
 		}
 
 		return { error, errorMessage };
