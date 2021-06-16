@@ -4,7 +4,7 @@ import "./styles/App.scss";
 
 class App extends Component {
 	state = {
-		activePage: 0,
+		activePage: 1,
 		pages: [
 			{
 				inputs: [
@@ -258,7 +258,7 @@ class App extends Component {
 	messages = {
 		onlyLetters: "Field can contain only letters.",
 		onlyNumbers: "Field can contain only numbers.",
-		emptySelect: "One of the options has to be chosen.",
+		emptySelect: "Option has to be chosen.",
 		emptyDate: "Date of birth has to be chosen.",
 		underEighteen: "You have to be over 18 years old.",
 		invalidEmail: "is invalid.",
@@ -502,6 +502,10 @@ class App extends Component {
 
 	checkTextInput(value, error, errorMessage, minLength, maxLength, type) {
 		switch (true) {
+			case value.length === 0:
+				error = true;
+				errorMessage = "Field is required";
+				return { error, errorMessage };
 			case value.length > maxLength:
 				error = true;
 				errorMessage = `Field value has to be shorter then ${maxLength} ${type}.`;
