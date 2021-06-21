@@ -1,5 +1,10 @@
 import React from "react";
 
+const infoMessage = (input) => {
+	const message = `This input can contain ${input.validationTerms.signs} and it's value has to be between ${input.validationTerms.minLength} and ${input.validationTerms.maxLength} signs.`;
+	return message;
+};
+
 const Page = (props) => {
 	const inputs = [];
 	const filteredTextInputs = props.inputs
@@ -27,7 +32,7 @@ const Page = (props) => {
 					>
 						<span className="form__firstPage__inputContainer__information__informationIcon"></span>
 						<span className="form__firstPage__inputContainer__information__informationMessage">
-							{`This input can contain ${input.validationTerms.signs} and it's value has to be between ${input.validationTerms.minLength} and ${input.validationTerms.maxLength} signs.`}
+							{infoMessage(input)}
 						</span>
 					</span>
 				</span>

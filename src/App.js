@@ -609,6 +609,10 @@ class App extends Component {
 		target.className.includes(active)
 			? target.classList.remove(active)
 			: target.classList.add(active);
+
+		setTimeout(() => {
+			target.classList.remove(active);
+		}, 5000);
 	};
 
 	render() {
