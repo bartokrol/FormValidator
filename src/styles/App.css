@@ -51,30 +51,45 @@
 
 .form__firstPage__inputContainer {
   position: relative;
+  overflow: hidden;
 }
 
 .form__firstPage__inputContainer input {
   width: 100%;
 }
 
-.form__firstPage__inputContainer__informationIcon {
+.form__firstPage__inputContainer__information {
   position: absolute;
-  right: 0;
-  top: 50%;
-  width: 30px;
+  right: calc(-100% + 30px);
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
   height: 100%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  background-image: url(information.svg);
-  background-repeat: no-repeat;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
-.form__firstPage__inputContainer__informationIcon:hover {
-  width: 30%;
-  background-color: chartreuse;
-  border-radius: 5px;
+.form__firstPage__inputContainer__information__informationIcon {
+  display: block;
+  border-radius: 50%;
+  width: 30px;
+  height: 100%;
+  background-image: url(information.svg);
+  background-repeat: no-repeat;
+  margin-right: 10px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.form__firstPage__inputContainer__information__informationMessage {
+  margin: auto 0;
+}
+
+.form__firstPage__inputContainer__information.activeInfo {
+  right: 0;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }

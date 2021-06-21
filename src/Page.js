@@ -21,7 +21,15 @@ const Page = (props) => {
 						value={input.value}
 						onChange={props.change}
 					/>
-					<span className="form__firstPage__inputContainer__informationIcon"></span>
+					<span
+						onClick={props.toggleInfo}
+						className="form__firstPage__inputContainer__information"
+					>
+						<span className="form__firstPage__inputContainer__information__informationIcon"></span>
+						<span className="form__firstPage__inputContainer__information__informationMessage">
+							Informacje dot. danego inputa
+						</span>
+					</span>
 				</span>
 
 				<span

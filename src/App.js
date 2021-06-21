@@ -602,6 +602,15 @@ class App extends Component {
 		});
 	};
 
+	handleInfoClick = (e) => {
+		const target = e.target.parentNode;
+		const active = "activeInfo";
+
+		target.className.includes(active)
+			? target.classList.remove(active)
+			: target.classList.add(active);
+	};
+
 	render() {
 		const activePage = this.state.activePage;
 		return (
@@ -617,6 +626,7 @@ class App extends Component {
 							previousPageBtn={this.handlePreviousPageClick}
 							activePage={this.state.activePage}
 							pagesLength={this.pagesLength}
+							toggleInfo={this.handleInfoClick}
 						/>
 					) : null}
 				</form>
