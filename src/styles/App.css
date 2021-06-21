@@ -1,0 +1,97 @@
+.form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 100vh;
+  background-color: beige;
+}
+
+.form input,
+.form select {
+  display: block;
+  border-radius: 5px;
+  border: none;
+  height: 30px;
+  font-size: 17px;
+  padding: 5px;
+}
+
+.form input:focus,
+.form select:focus {
+  outline: none;
+}
+
+.form input::after ::before,
+.form select::after ::before {
+  visibility: hidden;
+}
+
+.form__firstPage {
+  min-height: 90vh;
+  width: 80vw;
+  margin: auto auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.form__firstPage__labelName {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.form__firstPage__inputContainer {
+  position: relative;
+}
+
+.form__firstPage__inputContainer input {
+  width: 100%;
+}
+
+.form__firstPage__inputContainer__informationIcon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 30px;
+  height: 100%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  background-image: url(information.svg);
+  background-repeat: no-repeat;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.form__firstPage__inputContainer__informationIcon:hover {
+  width: 30%;
+  background-color: chartreuse;
+  border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.form__firstPage__errorMessage {
+  margin-bottom: 10px;
+  height: 18px;
+  color: red;
+  opacity: 0;
+}
+
+.form__button {
+  height: 30px;
+  font-size: 20px;
+}
+
+.form .active {
+  opacity: 1;
+}
+/*# sourceMappingURL=App.css.map */

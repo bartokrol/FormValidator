@@ -12,14 +12,18 @@ const Page = (props) => {
 				>
 					{input.label}
 				</label>
-				<input
-					key={input.name}
-					type={input.type}
-					id={input.name}
-					autoComplete="off"
-					value={input.value}
-					onChange={props.change}
-				/>
+				<span className="form__firstPage__inputContainer">
+					<input
+						key={input.name}
+						type={input.type}
+						id={input.name}
+						autoComplete="off"
+						value={input.value}
+						onChange={props.change}
+					/>
+					<span className="form__firstPage__inputContainer__informationIcon"></span>
+				</span>
+
 				<span
 					className={
 						input.error ? props.messageActive : props.messageHidden

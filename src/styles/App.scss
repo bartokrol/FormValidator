@@ -33,6 +33,32 @@
 			text-transform: uppercase;
 		}
 
+		&__inputContainer {
+			position: relative;
+
+			input {
+				width: 100%;
+			}
+
+			&__informationIcon {
+				position: absolute;
+				right: 0;
+				top: 50%;
+				width: 30px;
+				height: 100%;
+				transform: translateY(-50%);
+				background-image: url(information.svg);
+				background-repeat: no-repeat;
+				transition: 0.5s;
+				&:hover {
+					width: 30%;
+					background-color: chartreuse;
+					border-radius: 5px;
+					transition: 0.5s;
+				}
+			}
+		}
+
 		&__errorMessage {
 			margin-bottom: 10px;
 			height: 18px;
