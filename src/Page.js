@@ -27,7 +27,7 @@ const Page = (props) => {
 					>
 						<span className="form__firstPage__inputContainer__information__informationIcon"></span>
 						<span className="form__firstPage__inputContainer__information__informationMessage">
-							Informacje dot. danego inputa
+							{`This input can contain ${input.validationTerms.signs} and it's value has to be between ${input.validationTerms.minLength} and ${input.validationTerms.maxLength} signs.`}
 						</span>
 					</span>
 				</span>
