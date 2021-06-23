@@ -1,7 +1,7 @@
 import React from "react";
 
 const infoMessage = (input) => {
-	const message = `This input can contain ${input.validationTerms.signs} and it's value has to be between ${input.validationTerms.minLength} and ${input.validationTerms.maxLength} signs.`;
+	const message = `Can contain between ${input.validationTerms.minLength} and ${input.validationTerms.maxLength} ${input.validationTerms.signs}.`;
 	return message;
 };
 

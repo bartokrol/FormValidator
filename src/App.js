@@ -129,7 +129,7 @@ class App extends Component {
 						validationTerms: {
 							minLength: 2,
 							maxLength: 20,
-							signs: "letters",
+							signs: "letters and numbers",
 						},
 						error: false,
 						errorMessage: "",
@@ -144,7 +144,7 @@ class App extends Component {
 						validationTerms: {
 							minLength: 2,
 							maxLength: 20,
-							signs: "letters or numbers",
+							signs: "letters and numbers",
 						},
 						error: false,
 						errorMessage: "",
@@ -179,7 +179,7 @@ class App extends Component {
 						validationTerms: {
 							minLength: 2,
 							maxLength: 20,
-							signs: "letters or numbers",
+							signs: "letters and numbers",
 						},
 						error: false,
 						errorMessage: "",
@@ -209,7 +209,7 @@ class App extends Component {
 						validationTerms: {
 							minLength: 2,
 							maxLength: 20,
-							signs: "letters or numbers",
+							signs: "letters and numbers",
 						},
 						error: false,
 						errorMessage: "",
@@ -224,7 +224,7 @@ class App extends Component {
 						validationTerms: {
 							minLength: 2,
 							maxLength: 20,
-							signs: "letters or numbers",
+							signs: "letters and numbers",
 						},
 						error: false,
 						errorMessage: "",
@@ -239,7 +239,7 @@ class App extends Component {
 						validationTerms: {
 							minLength: 2,
 							maxLength: 20,
-							signs: "letters or numbers",
+							signs: "letters and numbers",
 						},
 						error: false,
 						errorMessage: "",
