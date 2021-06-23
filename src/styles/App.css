@@ -32,7 +32,7 @@
 
 .form__firstPage {
   min-height: 90vh;
-  width: 80vw;
+  max-width: 280px;
   margin: auto auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -55,13 +55,14 @@
 }
 
 .form__firstPage__inputContainer input {
-  width: 100%;
+  width: calc(280px - (40px * 2));
+  margin-right: 40px;
 }
 
 .form__firstPage__inputContainer__information {
   position: absolute;
   background-color: burlywood;
-  border-radius: 5px;
+  border-radius: 5px 0 0 5px;
   right: calc(-100% + 40px);
   top: 0;
   display: -webkit-box;

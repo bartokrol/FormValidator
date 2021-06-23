@@ -1,4 +1,7 @@
+// inputHeight also used in informationIcon width
 $inputHeight: 40px;
+$pageWidth: 280px;
+$formWidth: calc(#{$pageWidth} - (#{$inputHeight} * 2));
 
 .form {
 	display: flex;
@@ -24,7 +27,7 @@ $inputHeight: 40px;
 
 	&__firstPage {
 		min-height: 90vh;
-		width: 80vw;
+		max-width: $pageWidth;
 		margin: auto auto;
 		display: flex;
 		flex-direction: column;
@@ -40,13 +43,15 @@ $inputHeight: 40px;
 			overflow: hidden;
 
 			input {
-				width: 100%;
+				// inputHeight also used in informationIcon width
+				width: $formWidth;
+				margin-right: $inputHeight;
 			}
 
 			&__information {
 				position: absolute;
 				background-color: burlywood;
-				border-radius: 5px;
+				border-radius: 5px 0 0 5px;
 				right: calc(-100% + #{$inputHeight});
 				top: 0;
 				display: flex;
