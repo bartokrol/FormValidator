@@ -66,6 +66,9 @@ $formWidth: calc(#{$pageWidth} - (#{$inputHeight} * 2));
 					background-repeat: no-repeat;
 					cursor: pointer;
 					margin: 5px;
+					&.activeIcon {
+						cursor: default;
+					}
 				}
 				&__informationMessage {
 					font-size: 14px;

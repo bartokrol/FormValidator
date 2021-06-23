@@ -83,6 +83,10 @@
   margin: 5px;
 }
 
+.form__firstPage__inputContainer__information__informationIcon.activeIcon {
+  cursor: default;
+}
+
 .form__firstPage__inputContainer__information__informationMessage {
   font-size: 14px;
   margin: auto 0;

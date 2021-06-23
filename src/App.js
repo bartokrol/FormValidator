@@ -603,16 +603,19 @@ class App extends Component {
 	};
 
 	handleInfoClick = (e) => {
+		const icon = e.target;
 		const target = e.target.parentNode;
+		const activeIcon = "activeIcon";
 		const active = "activeInfo";
 
-		target.className.includes(active)
-			? target.classList.remove(active)
-			: target.classList.add(active);
-
-		setTimeout(() => {
-			target.classList.remove(active);
-		}, 5000);
+		if (!target.className.includes(active)) {
+			target.classList.add(active);
+			icon.classList.add(activeIcon);
+			setTimeout(() => {
+				target.classList.remove(active);
+				icon.classList.remove(activeIcon);
+			}, 5000);
+		}
 	};
 
 	render() {
