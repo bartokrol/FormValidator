@@ -15,7 +15,7 @@
   display: block;
   border-radius: 5px;
   border: none;
-  height: 30px;
+  height: 40px;
   font-size: 17px;
   padding: 5px;
 }
@@ -60,7 +60,9 @@
 
 .form__firstPage__inputContainer__information {
   position: absolute;
-  right: calc(-100% + 30px);
+  background-color: burlywood;
+  border-radius: 5px;
+  right: calc(-100% + 40px);
   top: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -72,17 +74,16 @@
 }
 
 .form__firstPage__inputContainer__information__informationIcon {
-  display: block;
+  min-width: 30px;
   border-radius: 50%;
-  width: 30px;
-  height: 100%;
   background-image: url(information.svg);
   background-repeat: no-repeat;
-  margin-right: 10px;
   cursor: pointer;
+  margin: 5px;
 }
 
 .form__firstPage__inputContainer__information__informationMessage {
+  font-size: 12px;
   margin: auto 0;
 }
 
