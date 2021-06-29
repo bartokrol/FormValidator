@@ -231,9 +231,9 @@ class App extends Component {
 						page: 2,
 					},
 					{
-						name: "repeatPassword",
+						name: "confirmPassword",
 						value: "",
-						label: "Repeat Password ",
+						label: "Confirm Password ",
 						input: "input",
 						type: "text",
 						validationTerms: {
@@ -261,9 +261,9 @@ class App extends Component {
 		emptySelect: "Option has to be chosen.",
 		emptyDate: "Date of birth has to be chosen.",
 		underEighteen: "You have to be over 18 years old.",
-		invalidEmail: "is invalid.",
-		invalidPasswordRepeat: "is different then password.",
-		emptyPasswordRepeat: "has to be filled",
+		invalidEmail: "Email is invalid.",
+		invalidPasswordConfirmation: "Both passwords has to be the same.",
+		emptyPasswordConfirmation: "Confirm password.",
 	};
 
 	regex = {
@@ -446,7 +446,7 @@ class App extends Component {
 			input.input === "input" &&
 			input.type !== "date" &&
 			input.name !== "email" &&
-			input.name !== "repeatPassword"
+			input.name !== "confirmPassword"
 		) {
 			const { error, errorMessage } = this.checkTextInput(
 				input.value,
@@ -486,15 +486,15 @@ class App extends Component {
 			return input;
 		}
 
-		if (input.name === "repeatPassword") {
+		if (input.name === "confirmPassword") {
 			if (input.value !== this.state.pages[2].inputs[3].value) {
 				console.log("tak");
 				input.error = true;
-				input.errorMessage = this.messages.invalidPasswordRepeat;
+				input.errorMessage = this.messages.invalidPasswordConfirmation;
 			}
 			if (!input.value) {
 				input.error = true;
-				input.errorMessage = this.messages.emptyPasswordRepeat;
+				input.errorMessage = this.messages.emptyPasswordConfirmation;
 			}
 			return input;
 		}
