@@ -1,5 +1,6 @@
 import { Component } from "react";
 import Page from "./Page";
+import SummaryPage from "./SummaryPage";
 import "./styles/App.scss";
 
 class App extends Component {
@@ -635,6 +636,7 @@ class App extends Component {
 							toggleInfo={this.handleInfoClick}
 						/>
 					) : null}
+					{activePage > this.pagesLength ? <SummaryPage /> : null}
 				</form>
 			</div>
 		);
