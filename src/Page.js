@@ -11,13 +11,10 @@ const Page = (props) => {
 		.filter((input) => input.input === "input")
 		.map((input) => (
 			<>
-				<label
-					htmlFor={input.name}
-					className="form__firstPage__labelName"
-				>
+				<label htmlFor={input.name} className="form__page__labelName">
 					{input.label}
 				</label>
-				<span className="form__firstPage__inputContainer">
+				<span className="form__page__inputContainer">
 					<input
 						key={input.name}
 						type={input.type}
@@ -28,10 +25,10 @@ const Page = (props) => {
 					/>
 					<span
 						onClick={props.toggleInfo}
-						className="form__firstPage__inputContainer__information"
+						className="form__page__inputContainer__information"
 					>
-						<span className="form__firstPage__inputContainer__information__informationIcon"></span>
-						<span className="form__firstPage__inputContainer__information__informationMessage">
+						<span className="form__page__inputContainer__information__informationIcon"></span>
+						<span className="form__page__inputContainer__information__informationMessage">
 							{infoMessage(input)}
 						</span>
 					</span>
@@ -51,7 +48,7 @@ const Page = (props) => {
 		.filter((input) => input.input === "select")
 		.map((input) => (
 			<>
-				<label htmlFor="sex" className="form__firstPage__labelName">
+				<label htmlFor="sex" className="form__page__labelName">
 					{input.label}
 				</label>{" "}
 				<select

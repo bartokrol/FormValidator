@@ -252,8 +252,8 @@ class App extends Component {
 
 	pagesLength = this.state.pages.length - 1;
 
-	errorMessageActive = "form__firstPage__errorMessage active";
-	errorMessageHidden = "form__firstPage__errorMessage";
+	errorMessageActive = "form__page__errorMessage active";
+	errorMessageHidden = "form__page__errorMessage";
 
 	messages = {
 		onlyLetters: "Field can contain only letters.",
