@@ -99,7 +99,8 @@
 }
 
 .form__firstPage__errorMessage {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  max-width: calc(280px - (40px * 2));
   height: 18px;
   color: red;
   opacity: 0;

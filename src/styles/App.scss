@@ -41,6 +41,7 @@ $formWidth: calc(#{$pageWidth} - (#{$inputHeight} * 2));
 		&__inputContainer {
 			position: relative;
 			overflow: hidden;
+			// max-width: $formWidth;
 
 			input {
 				// inputHeight also used in informationIcon width
@@ -82,7 +83,8 @@ $formWidth: calc(#{$pageWidth} - (#{$inputHeight} * 2));
 		}
 
 		&__errorMessage {
-			margin-bottom: 10px;
+			margin-bottom: 20px;
+			max-width: $formWidth;
 			height: 18px;
 			color: red;
 			opacity: 0;

@@ -4,7 +4,7 @@ import "./styles/App.scss";
 
 class App extends Component {
 	state = {
-		activePage: 1,
+		activePage: 2,
 		pages: [
 			{
 				inputs: [
