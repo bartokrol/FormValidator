@@ -30,7 +30,7 @@
   visibility: hidden;
 }
 
-.form__firstPage {
+.form__page {
   min-height: 90vh;
   max-width: 280px;
   margin: auto auto;
@@ -43,23 +43,23 @@
           flex-direction: column;
 }
 
-.form__firstPage__labelName {
+.form__page__labelName {
   font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
 }
 
-.form__firstPage__inputContainer {
+.form__page__inputContainer {
   position: relative;
   overflow: hidden;
 }
 
-.form__firstPage__inputContainer input {
+.form__page__inputContainer input {
   width: calc(280px - (40px * 2));
   margin-right: 40px;
 }
 
-.form__firstPage__inputContainer__information {
+.form__page__inputContainer__information {
   position: absolute;
   background-color: burlywood;
   border-radius: 5px 0 0 5px;
@@ -74,7 +74,7 @@
   transition: 1s;
 }
 
-.form__firstPage__inputContainer__information__informationIcon {
+.form__page__inputContainer__information__informationIcon {
   min-width: 30px;
   border-radius: 50%;
   background-image: url(information.svg);
@@ -83,22 +83,22 @@
   margin: 5px;
 }
 
-.form__firstPage__inputContainer__information__informationIcon.activeIcon {
+.form__page__inputContainer__information__informationIcon.activeIcon {
   cursor: default;
 }
 
-.form__firstPage__inputContainer__information__informationMessage {
+.form__page__inputContainer__information__informationMessage {
   font-size: 14px;
   margin: auto 0;
 }
 
-.form__firstPage__inputContainer__information.activeInfo {
+.form__page__inputContainer__information.activeInfo {
   right: 0;
   -webkit-transition: 1s;
   transition: 1s;
 }
 
-.form__firstPage__errorMessage {
+.form__page__errorMessage {
   margin-bottom: 20px;
   max-width: calc(280px - (40px * 2));
   height: 18px;

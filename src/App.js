@@ -488,7 +488,6 @@ class App extends Component {
 
 		if (input.name === "confirmPassword") {
 			if (input.value !== this.state.pages[2].inputs[3].value) {
-				console.log("tak");
 				input.error = true;
 				input.errorMessage = this.messages.invalidPasswordConfirmation;
 			}
@@ -622,7 +621,7 @@ class App extends Component {
 		const activePage = this.state.activePage;
 		return (
 			<div className="form">
-				<form className="form__firstPage" noValidate>
+				<form className="form__page" noValidate>
 					{this.state.pages[activePage] ? (
 						<Page
 							inputs={this.state.pages[activePage].inputs}

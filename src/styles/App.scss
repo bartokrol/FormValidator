@@ -25,7 +25,7 @@ $formWidth: calc(#{$pageWidth} - (#{$inputHeight} * 2));
 		}
 	}
 
-	&__firstPage {
+	&__page {
 		min-height: 90vh;
 		max-width: $pageWidth;
 		margin: auto auto;
