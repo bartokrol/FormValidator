@@ -5,7 +5,7 @@ import "./styles/App.scss";
 
 class App extends Component {
 	state = {
-		activePage: 2,
+		activePage: 0,
 		pages: [
 			{
 				inputs: [
@@ -636,7 +636,9 @@ class App extends Component {
 							toggleInfo={this.handleInfoClick}
 						/>
 					) : null}
-					{activePage > this.pagesLength ? <SummaryPage /> : null}
+					{activePage > this.pagesLength ? (
+						<SummaryPage pages={this.state.pages} />
+					) : null}
 				</form>
 			</div>
 		);
