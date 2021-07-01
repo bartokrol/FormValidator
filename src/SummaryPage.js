@@ -5,16 +5,14 @@ const SummaryPage = (props) => {
 	}
 
 	const summaryValues = inputs.map((input) => (
-		<>
-			<div className="summaryPage__inputBox">
-				<span className="summaryPage__inputBox__inputName">
-					{input.label}:
-				</span>
-				<span className="summaryPage__inputBox__inputValue">
-					{input.value}
-				</span>
-			</div>
-		</>
+		<div className="summaryPage__inputBox" key={input.name}>
+			<span className="summaryPage__inputBox__inputName">
+				{input.label}:
+			</span>
+			<span className="summaryPage__inputBox__inputValue">
+				{input.value}
+			</span>
+		</div>
 	));
 
 	return (

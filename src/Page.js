@@ -14,11 +14,11 @@ const Page = (props) => {
 	const filteredTextInputs = props.inputs
 		.filter((input) => input.input === "input")
 		.map((input) => (
-			<>
+			<div key={input.name}>
 				<label htmlFor={input.name} className="form__page__labelName">
 					{input.label}
 				</label>
-				<span className="form__page__inputContainer">
+				<div className="form__page__inputContainer">
 					<input
 						key={input.name}
 						type={input.type}
@@ -27,7 +27,7 @@ const Page = (props) => {
 						value={input.value}
 						onChange={props.change}
 					/>
-					<span
+					<div
 						onClick={props.toggleInfo}
 						className="form__page__inputContainer__information"
 					>
@@ -35,8 +35,8 @@ const Page = (props) => {
 						<span className="form__page__inputContainer__information__informationMessage">
 							{infoMessage(input)}
 						</span>
-					</span>
-				</span>
+					</div>
+				</div>
 
 				<span
 					className={
@@ -45,13 +45,13 @@ const Page = (props) => {
 				>
 					{input.errorMessage}
 				</span>
-			</>
+			</div>
 		));
 
 	const filteredSelectInputs = props.inputs
 		.filter((input) => input.input === "select")
 		.map((input) => (
-			<>
+			<div key={input.name}>
 				<label htmlFor="sex" className="form__page__labelName">
 					{input.label}
 				</label>{" "}
@@ -76,7 +76,7 @@ const Page = (props) => {
 				>
 					{input.errorMessage}
 				</span>
-			</>
+			</div>
 		));
 
 	inputs.push(filteredTextInputs, filteredSelectInputs);
