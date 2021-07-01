@@ -1,4 +1,7 @@
 @import "./variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap");
 
 .form {
 	&__page {
@@ -9,6 +12,7 @@
 		flex-direction: column;
 
 		&__labelName {
+			font-family: "Krona One", sans-serif;
 			font-size: 18px;
 			font-weight: bold;
 			text-transform: uppercase;
@@ -25,6 +29,7 @@
 			}
 
 			&__information {
+				font-family: "Lato", sans-serif;
 				position: absolute;
 				background-color: burlywood;
 				border-radius: 5px 0 0 5px;
@@ -58,6 +63,8 @@
 		}
 
 		&__errorMessage {
+			font-family: "Exo", sans-serif;
+			font-size: 14px;
 			margin-bottom: 20px;
 			max-width: $formWidth;
 			height: 18px;

@@ -52,6 +52,7 @@ const Page = (props) => {
 					{input.label}
 				</label>{" "}
 				<select
+					className="form__page__selectContainer"
 					key={input.name}
 					id={input.name}
 					name={input.name}

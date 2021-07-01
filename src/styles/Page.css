@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap");
 .form__page {
   min-height: 90vh;
   max-width: 280px;
@@ -12,6 +15,7 @@
 }
 
 .form__page__labelName {
+  font-family: "Krona One", sans-serif;
   font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
@@ -28,6 +32,7 @@
 }
 
 .form__page__inputContainer__information {
+  font-family: "Lato", sans-serif;
   position: absolute;
   background-color: burlywood;
   border-radius: 5px 0 0 5px;
@@ -67,6 +72,8 @@
 }
 
 .form__page__errorMessage {
+  font-family: "Exo", sans-serif;
+  font-size: 14px;
   margin-bottom: 20px;
   max-width: calc(280px - (40px * 2));
   height: 18px;
