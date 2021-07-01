@@ -115,6 +115,15 @@
   opacity: 1;
 }
 
+.summaryPage__summaryText {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .summaryPage__inputBox {
   display: -webkit-box;
   display: -ms-flexbox;

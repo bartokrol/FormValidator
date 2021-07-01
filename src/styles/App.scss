@@ -102,6 +102,10 @@ $formWidth: calc(#{$pageWidth} - (#{$inputHeight} * 2));
 }
 
 .summaryPage {
+	&__summaryText {
+		display: flex;
+		justify-content: center;
+	}
 	&__inputBox {
 		display: flex;
 		justify-content: space-between;

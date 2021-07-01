@@ -626,6 +626,23 @@ class App extends Component {
 		});
 	};
 
+	handleAcceptSummary = (e) => {
+		e.preventDefault();
+
+		const inputs = [];
+		for (let page of this.state.pages) {
+			page.inputs.map((input) => inputs.push(input));
+		}
+
+		const phoneInput = inputs.filter((input) => input.name === "phone");
+		inputs.forEach((input) => (input.value = ""));
+		phoneInput.forEach((input) => (input.value = "+48 "));
+
+		this.setState({
+			activePage: 0,
+		});
+	};
+
 	render() {
 		const activePage = this.state.activePage;
 		return (
@@ -648,6 +665,7 @@ class App extends Component {
 						<SummaryPage
 							pages={this.state.pages}
 							declineSummary={this.handleDeclineSummary}
+							acceptSummary={this.handleAcceptSummary}
 						/>
 					) : null}
 				</form>

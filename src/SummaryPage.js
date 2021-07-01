@@ -19,14 +19,14 @@ const SummaryPage = (props) => {
 
 	return (
 		<div className="summaryPage">
-			<h1>Summary</h1>
+			<h1 className="summaryPage__summaryText">Summary</h1>
 			{summaryValues}
 			<h2 className="summaryPage__correctQuestion">
 				Is everything is correct?
 			</h2>
 			<div className="summaryPage__buttons">
 				<button onClick={props.declineSummary}>Decline</button>
-				<button>Accept</button>
+				<button onClick={props.acceptSummary}>Accept</button>
 			</div>
 		</div>
 	);
