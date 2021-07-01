@@ -1,11 +1,13 @@
 import { Component } from "react";
 import Page from "./Page";
 import SummaryPage from "./SummaryPage";
+import ThankingMessage from "./ThankingMessage";
 import "./styles/App.scss";
 
 class App extends Component {
 	state = {
 		activePage: 4,
+		isFormConfirmed: false,
 		pages: [
 			{
 				inputs: [
@@ -639,8 +641,15 @@ class App extends Component {
 		phoneInput.forEach((input) => (input.value = "+48 "));
 
 		this.setState({
-			activePage: 0,
+			isFormConfirmed: true,
 		});
+
+		setTimeout(() => {
+			this.setState({
+				activePage: 0,
+				isFormConfirmed: false,
+			});
+		}, 3000);
 	};
 
 	render() {
@@ -661,13 +670,15 @@ class App extends Component {
 							toggleInfo={this.handleInfoClick}
 						/>
 					) : null}
-					{activePage > this.pagesLength ? (
+					{activePage > this.pagesLength &&
+					!this.state.isFormConfirmed ? (
 						<SummaryPage
 							pages={this.state.pages}
 							declineSummary={this.handleDeclineSummary}
 							acceptSummary={this.handleAcceptSummary}
 						/>
 					) : null}
+					{this.state.isFormConfirmed ? <ThankingMessage /> : null}
 				</form>
 			</div>
 		);
