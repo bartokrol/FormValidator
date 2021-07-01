@@ -1,7 +1,11 @@
 import React from "react";
 
 const infoMessage = (input) => {
-	const message = `May contain between ${input.validationTerms.minLength} and ${input.validationTerms.maxLength} ${input.validationTerms.signs}.`;
+	let message = `May contain between ${input.validationTerms.minLength} and ${input.validationTerms.maxLength} ${input.validationTerms.signs}.`;
+
+	if (input.name === "dateOfBirth") {
+		message = "You have to be at least 18 years old.";
+	}
 	return message;
 };
 
