@@ -25,7 +25,7 @@ const SummaryPage = (props) => {
 				Is everything is correct?
 			</h2>
 			<div className="summaryPage__buttons">
-				<button>Decline</button>
+				<button onClick={props.declineSummary}>Decline</button>
 				<button>Accept</button>
 			</div>
 		</div>

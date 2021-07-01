@@ -618,6 +618,14 @@ class App extends Component {
 		}
 	};
 
+	handleDeclineSummary = (e) => {
+		e.preventDefault();
+
+		this.setState({
+			activePage: 0,
+		});
+	};
+
 	render() {
 		const activePage = this.state.activePage;
 		return (
@@ -637,7 +645,10 @@ class App extends Component {
 						/>
 					) : null}
 					{activePage > this.pagesLength ? (
-						<SummaryPage pages={this.state.pages} />
+						<SummaryPage
+							pages={this.state.pages}
+							declineSummary={this.handleDeclineSummary}
+						/>
 					) : null}
 				</form>
 			</div>

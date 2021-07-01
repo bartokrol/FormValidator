@@ -114,4 +114,44 @@
 .form .active {
   opacity: 1;
 }
+
+.summaryPage__inputBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  margin-bottom: 5px;
+}
+
+.summaryPage__inputBox__inputName {
+  font-size: 15px;
+}
+
+.summaryPage__inputBox__inputValue {
+  margin-left: 5px;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.summaryPage__correctQuestion {
+  margin-bottom: 20px;
+}
+
+.summaryPage__buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.summaryPage__buttons button {
+  padding: 10px;
+}
 /*# sourceMappingURL=App.css.map */
