@@ -17,7 +17,6 @@
 		&__inputContainer {
 			position: relative;
 			overflow: hidden;
-			// max-width: $formWidth;
 
 			input {
 				// inputHeight also used in informationIcon width
@@ -74,37 +73,5 @@
 
 	.active {
 		opacity: 1;
-	}
-}
-
-.summaryPage {
-	&__summaryText {
-		display: flex;
-		justify-content: center;
-	}
-	&__inputBox {
-		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
-		margin-bottom: 5px;
-		&__inputName {
-			font-size: 15px;
-		}
-		&__inputValue {
-			margin-left: 5px;
-			font-size: 20px;
-			font-style: italic;
-			font-weight: 600;
-		}
-	}
-	&__correctQuestion {
-		margin-bottom: 20px;
-	}
-	&__buttons {
-		display: flex;
-		justify-content: space-around;
-		button {
-			padding: 10px;
-		}
 	}
 }

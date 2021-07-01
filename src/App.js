@@ -2,7 +2,9 @@ import { Component } from "react";
 import Page from "./Page";
 import SummaryPage from "./SummaryPage";
 import ThankingMessage from "./ThankingMessage";
+import "./styles/index.scss";
 import "./styles/Page.scss";
+import "./styles/SummaryPage.scss";
 
 class App extends Component {
 	state = {
@@ -270,7 +272,6 @@ class App extends Component {
 	};
 
 	regex = {
-		// lettersSpaceDash: /^[a-zA-Z\u00C0-\u017F -]*$/,
 		lettersOnly: /^[a-zA-Z\u00C0-\u017F]*$/,
 		numbersOnly: /[\d-]+/g,
 		mail: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
