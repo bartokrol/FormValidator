@@ -100,3 +100,26 @@ $formWidth: calc(#{$pageWidth} - (#{$inputHeight} * 2));
 		opacity: 1;
 	}
 }
+
+.summaryPage {
+	&__inputBox {
+		display: flex;
+		align-items: baseline;
+		margin-bottom: 5px;
+		&__inputName {
+			font-size: 15px;
+		}
+		&__inputValue {
+			font-size: 25px;
+			font-style: italic;
+			font-weight: 600;
+		}
+	}
+	&__correctQuestion {
+		margin-bottom: 20px;
+	}
+	&__buttons {
+		display: flex;
+		justify-content: space-around;
+	}
+}

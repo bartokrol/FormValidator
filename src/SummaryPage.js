@@ -6,19 +6,29 @@ const SummaryPage = (props) => {
 
 	const summaryValues = inputs.map((input) => (
 		<>
-			<span>
-				{input.label}:<h1>{input.value}</h1>
-			</span>
+			<div className="summaryPage__inputBox">
+				<span className="summaryPage__inputBox__inputName">
+					{input.label}:
+				</span>
+				<span className="summaryPage__inputBox__inputValue">
+					{input.value}
+				</span>
+			</div>
 		</>
 	));
 
 	return (
-		<>
-			<div>Summary</div>
+		<div className="summaryPage">
+			<h1>Summary</h1>
 			{summaryValues}
-			<button>Decline</button>
-			<button>Accept</button>
-		</>
+			<h2 className="summaryPage__correctQuestion">
+				Is everything is correct?
+			</h2>
+			<div className="summaryPage__buttons">
+				<button>Decline</button>
+				<button>Accept</button>
+			</div>
+		</div>
 	);
 };
 
