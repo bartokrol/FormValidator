@@ -1,0 +1,4 @@
+// inputHeight also used in informationIcon width
+$inputHeight: 40px;
+$pageWidth: 280px;
+$formWidth: calc(#{$pageWidth} - (#{$inputHeight} * 2));

@@ -1,30 +1,6 @@
-// inputHeight also used in informationIcon width
-$inputHeight: 40px;
-$pageWidth: 280px;
-$formWidth: calc(#{$pageWidth} - (#{$inputHeight} * 2));
+@import "./variables.scss";
 
 .form {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-	background-color: beige;
-
-	input,
-	select {
-		display: block;
-		border-radius: 5px;
-		border: none;
-		height: $inputHeight;
-		font-size: 17px;
-		padding: 5px;
-		&:focus {
-			outline: none;
-		}
-		&::after ::before {
-			visibility: hidden;
-		}
-	}
-
 	&__page {
 		min-height: 90vh;
 		max-width: $pageWidth;

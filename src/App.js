@@ -2,7 +2,7 @@ import { Component } from "react";
 import Page from "./Page";
 import SummaryPage from "./SummaryPage";
 import ThankingMessage from "./ThankingMessage";
-import "./styles/App.scss";
+import "./styles/Page.scss";
 
 class App extends Component {
 	state = {
@@ -656,7 +656,7 @@ class App extends Component {
 		const activePage = this.state.activePage;
 		return (
 			<div className="form">
-				<form className="form__page" noValidate>
+				<div className="form__page" noValidate>
 					{this.state.pages[activePage] ? (
 						<Page
 							inputs={this.state.pages[activePage].inputs}
@@ -679,7 +679,7 @@ class App extends Component {
 						/>
 					) : null}
 					{this.state.isFormConfirmed ? <ThankingMessage /> : null}
-				</form>
+				</div>
 			</div>
 		);
 	}

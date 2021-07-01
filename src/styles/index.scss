@@ -1,5 +1,30 @@
+@import "./variables.scss";
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: beige;
+
+	input,
+	select {
+		display: block;
+		border-radius: 5px;
+		border: none;
+		height: $inputHeight;
+		font-size: 17px;
+		padding: 5px;
+		&:focus {
+			outline: none;
+		}
+		&::after ::before {
+			visibility: hidden;
+		}
+	}
 }
