@@ -1,5 +1,6 @@
 import React from "react";
 import TextInput from "./TextInput";
+import SelectInput from "./SelectInput";
 
 const infoMessage = (input) => {
 	let message = `May contain between ${input.validationTerms.minLength} and ${input.validationTerms.maxLength} ${input.validationTerms.signs}.`;
@@ -17,6 +18,7 @@ const Page = (props) => {
 		.map((input) => (
 			<TextInput
 				input={input}
+				change={props.change}
 				handleMessage={infoMessage}
 				messageActive={props.messageActive}
 				messageHidden={props.messageHidden}
@@ -26,35 +28,13 @@ const Page = (props) => {
 	const filteredSelectInputs = props.inputs
 		.filter((input) => input.input === "select")
 		.map((input) => (
-			<div key={input.name}>
-				<label
-					htmlFor="sex"
-					className="form__page__inputBox__labelName"
-				>
-					{input.label}
-				</label>{" "}
-				<select
-					className="form__page__inputBox__selectContainer"
-					key={input.name}
-					id={input.name}
-					name={input.name}
-					onChange={props.change}
-					value={input.value}
-				>
-					{input.options.map((option) => (
-						<option key={option} value={option}>
-							{option}
-						</option>
-					))}
-				</select>
-				<span
-					className={
-						input.error ? props.messageActive : props.messageHidden
-					}
-				>
-					{input.errorMessage}
-				</span>
-			</div>
+			<SelectInput
+				input={input}
+				change={props.change}
+				handleMessage={infoMessage}
+				messageActive={props.messageActive}
+				messageHidden={props.messageHidden}
+			/>
 		));
 
 	inputs.push(filteredTextInputs, filteredSelectInputs);
