@@ -1,4 +1,5 @@
 import React from "react";
+import TextInput from "./TextInput";
 
 const infoMessage = (input) => {
 	let message = `May contain between ${input.validationTerms.minLength} and ${input.validationTerms.maxLength} ${input.validationTerms.signs}.`;
@@ -14,41 +15,12 @@ const Page = (props) => {
 	const filteredTextInputs = props.inputs
 		.filter((input) => input.input === "input")
 		.map((input) => (
-			<div key={input.name} className="form__page__inputBox">
-				<label
-					htmlFor={input.name}
-					className="form__page__inputBox__labelName"
-				>
-					{input.label}
-				</label>
-				<div className="form__page__inputBox__inputContainer">
-					<input
-						key={input.name}
-						type={input.type}
-						id={input.name}
-						autoComplete="off"
-						value={input.value}
-						onChange={props.change}
-					/>
-					<div
-						onClick={props.toggleInfo}
-						className="form__page__inputBox__inputContainer__information"
-					>
-						<span className="form__page__inputBox__inputContainer__information__informationIcon"></span>
-						<span className="form__page__inputBox__inputContainer__information__informationMessage">
-							{infoMessage(input)}
-						</span>
-					</div>
-				</div>
-
-				<span
-					className={
-						input.error ? props.messageActive : props.messageHidden
-					}
-				>
-					{input.errorMessage}
-				</span>
-			</div>
+			<TextInput
+				input={input}
+				handleMessage={infoMessage}
+				messageActive={props.messageActive}
+				messageHidden={props.messageHidden}
+			/>
 		));
 
 	const filteredSelectInputs = props.inputs
