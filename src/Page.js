@@ -14,11 +14,14 @@ const Page = (props) => {
 	const filteredTextInputs = props.inputs
 		.filter((input) => input.input === "input")
 		.map((input) => (
-			<div key={input.name}>
-				<label htmlFor={input.name} className="form__page__labelName">
+			<div key={input.name} className="form__page__inputBox">
+				<label
+					htmlFor={input.name}
+					className="form__page__inputBox__labelName"
+				>
 					{input.label}
 				</label>
-				<div className="form__page__inputContainer">
+				<div className="form__page__inputBox__inputContainer">
 					<input
 						key={input.name}
 						type={input.type}
@@ -29,10 +32,10 @@ const Page = (props) => {
 					/>
 					<div
 						onClick={props.toggleInfo}
-						className="form__page__inputContainer__information"
+						className="form__page__inputBox__inputContainer__information"
 					>
-						<span className="form__page__inputContainer__information__informationIcon"></span>
-						<span className="form__page__inputContainer__information__informationMessage">
+						<span className="form__page__inputBox__inputContainer__information__informationIcon"></span>
+						<span className="form__page__inputBox__inputContainer__information__informationMessage">
 							{infoMessage(input)}
 						</span>
 					</div>
@@ -52,11 +55,14 @@ const Page = (props) => {
 		.filter((input) => input.input === "select")
 		.map((input) => (
 			<div key={input.name}>
-				<label htmlFor="sex" className="form__page__labelName">
+				<label
+					htmlFor="sex"
+					className="form__page__inputBox__labelName"
+				>
 					{input.label}
 				</label>{" "}
 				<select
-					className="form__page__selectContainer"
+					className="form__page__inputBox__selectContainer"
 					key={input.name}
 					id={input.name}
 					name={input.name}

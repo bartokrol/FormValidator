@@ -20,6 +20,8 @@
 		border-radius: 5px;
 		border: none;
 		height: $inputHeight;
+		width: $formWidth;
+		margin-right: $inputHeight;
 		font-size: 17px;
 		padding: 5px;
 		&:focus {

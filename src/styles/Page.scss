@@ -11,66 +11,63 @@
 		display: flex;
 		flex-direction: column;
 
-		&__labelName {
-			font-family: "Krona One", sans-serif;
-			font-size: 18px;
-			font-weight: bold;
-			text-transform: uppercase;
-		}
-
-		&__inputContainer {
-			position: relative;
-			overflow: hidden;
-
-			input {
-				// inputHeight also used in informationIcon width
-				width: $formWidth;
-				margin-right: $inputHeight;
+		&__inputBox {
+			&__labelName {
+				font-family: "Krona One", sans-serif;
+				font-size: 18px;
+				font-weight: bold;
+				text-transform: uppercase;
 			}
 
-			&__information {
-				font-family: "Lato", sans-serif;
-				cursor: default;
-				position: absolute;
-				background-color: burlywood;
-				border-radius: 5px 0 0 5px;
-				right: calc(-100% + #{$inputHeight});
-				top: 0;
-				display: flex;
-				width: 100%;
-				height: 100%;
-				transition: 1s;
+			&__inputContainer {
+				position: relative;
+				overflow: hidden;
 
-				&__informationIcon {
-					min-width: 30px;
-					border-radius: 50%;
-					background-image: url(information.svg);
-					background-repeat: no-repeat;
-					cursor: pointer;
-					margin: 5px;
-					&.activeIcon {
-						cursor: default;
+				&__information {
+					font-family: "Lato", sans-serif;
+					cursor: default;
+					position: absolute;
+					background-color: burlywood;
+					border-radius: 5px 0 0 5px;
+					right: calc(-100% + #{$inputHeight});
+					top: 0;
+					display: flex;
+					width: 100%;
+					height: 100%;
+					transition: 1s;
+
+					&__informationIcon {
+						min-width: 30px;
+						border-radius: 50%;
+						background-image: url(information.svg);
+						background-repeat: no-repeat;
+						cursor: pointer;
+						margin: 5px;
+						&.activeIcon {
+							cursor: default;
+						}
+					}
+					&__informationMessage {
+						font-size: 14px;
+						margin: auto 0;
+					}
+					&.activeInfo {
+						right: 0;
+						transition: 1s;
 					}
 				}
-				&__informationMessage {
-					font-size: 14px;
-					margin: auto 0;
-				}
-				&.activeInfo {
-					right: 0;
-					transition: 1s;
-				}
 			}
-		}
 
-		&__errorMessage {
-			font-family: "Exo", sans-serif;
-			font-size: 14px;
-			margin-bottom: 20px;
-			max-width: $formWidth;
-			height: 18px;
-			color: red;
-			opacity: 0;
+			&__errorMessage {
+				display: block;
+				font-family: "Exo", sans-serif;
+				font-size: 14px;
+				margin-bottom: 20px;
+				max-width: $formWidth;
+				height: 18px;
+				color: red;
+				opacity: 0;
+			}
 		}
 	}
 
