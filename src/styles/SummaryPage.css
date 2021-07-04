@@ -14,6 +14,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   font-family: "Krona One", sans-serif;
+  margin-bottom: 20px;
 }
 
 .form .summaryPage__inputBox {
@@ -43,19 +44,38 @@
 }
 
 .form .summaryPage__correctQuestion {
-  margin-bottom: 20px;
+  margin: 20px 0;
+  text-align: center;
   font-family: "Exo", sans-serif;
 }
 
 .form .summaryPage__buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  position: relative;
+  height: 60px;
 }
 
-.form .summaryPage__buttons button {
-  padding: 10px;
+.form .summaryPage__buttons__button {
+  font-family: "Jura", sans-serif;
+  height: 100%;
+  width: 45%;
+  position: absolute;
+  top: 0;
+  background-color: burlywood;
+  font-size: 22px;
+  border-radius: 5px;
+}
+
+.form .summaryPage__buttons__button:hover {
+  background-color: chocolate;
+  cursor: pointer;
+  color: white;
+}
+
+.form .summaryPage__buttons__button.declineButton {
+  left: 0;
+}
+
+.form .summaryPage__buttons__button.acceptButton {
+  right: 0;
 }
 /*# sourceMappingURL=SummaryPage.css.map */

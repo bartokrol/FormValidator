@@ -23,8 +23,18 @@ const SummaryPage = (props) => {
 				Is everything is correct?
 			</h2>
 			<div className="summaryPage__buttons">
-				<button onClick={props.declineSummary}>Decline</button>
-				<button onClick={props.acceptSummary}>Accept</button>
+				<button
+					className="summaryPage__buttons__button declineButton"
+					onClick={props.declineSummary}
+				>
+					Decline
+				</button>
+				<button
+					className="summaryPage__buttons__button acceptButton"
+					onClick={props.acceptSummary}
+				>
+					Accept
+				</button>
 			</div>
 		</div>
 	);
