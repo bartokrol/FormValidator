@@ -8,7 +8,7 @@ import "./styles/SummaryPage.scss";
 
 class App extends Component {
 	state = {
-		activePage: 1,
+		activePage: 3,
 		isFormConfirmed: false,
 		pages: [
 			{

@@ -1,8 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@500&display=swap");
+
 .form {
 	.summaryPage {
+		padding: 10px;
 		&__summaryText {
 			display: flex;
 			justify-content: center;
+			font-family: "Krona One", sans-serif;
 		}
 		&__inputBox {
 			display: flex;
@@ -11,8 +18,10 @@
 			margin-bottom: 5px;
 			&__inputName {
 				font-size: 15px;
+				font-family: "Exo", sans-serif;
 			}
 			&__inputValue {
+				font-family: "Jura", sans-serif;
 				margin-left: 5px;
 				font-size: 20px;
 				font-style: italic;
@@ -21,6 +30,7 @@
 		}
 		&__correctQuestion {
 			margin-bottom: 20px;
+			font-family: "Exo", sans-serif;
 		}
 		&__buttons {
 			display: flex;
