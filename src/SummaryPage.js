@@ -1,7 +1,9 @@
 const SummaryPage = (props) => {
 	const inputs = [];
 	for (let page of props.pages) {
-		page.inputs.map((input) => inputs.push(input));
+		page.inputs.map((input) =>
+			input.name !== "confirmPassword" ? inputs.push(input) : null
+		);
 	}
 
 	const summaryValues = inputs.map((input) => (

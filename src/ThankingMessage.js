@@ -1,7 +1,7 @@
 const ThankingMessage = () => {
 	return (
-		<div>
-			<p>Thanks</p>
+		<div className="thankingMessage">
+			<p className="thankingMessage__thankingText">Thanks</p>
 		</div>
 	);
 };
