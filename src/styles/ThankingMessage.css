@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@500&display=swap");
+.form__page__thankingMessage {
+  font-family: "Krona One", sans-serif;
+  text-align: center;
+}
+
+.form__page__thankingMessage__thankingText {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.form__page__thankingMessage__wishingText {
+  font-size: 30px;
+}
+/*# sourceMappingURL=ThankingMessage.css.map */
