@@ -19,6 +19,7 @@ const Page = (props) => {
 			<TextInput
 				input={input}
 				change={props.change}
+				toggleInfo={props.toggleInfo}
 				handleMessage={infoMessage}
 				messageActive={props.messageActive}
 				messageHidden={props.messageHidden}
@@ -43,11 +44,14 @@ const Page = (props) => {
 		<>
 			{inputs}
 			{props.activePage ? (
-				<button class="form__button" onClick={props.previousPageBtn}>
+				<button
+					className="form__button"
+					onClick={props.previousPageBtn}
+				>
 					Previous Page
 				</button>
 			) : null}
-			<button class="form__button" onClick={props.submit}>
+			<button className="form__button" onClick={props.submit}>
 				{props.pagesLength === props.activePage
 					? "Submit"
 					: "Next Page"}

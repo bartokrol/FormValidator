@@ -8,7 +8,7 @@ import "./styles/SummaryPage.scss";
 
 class App extends Component {
 	state = {
-		activePage: 4,
+		activePage: 2,
 		isFormConfirmed: false,
 		pages: [
 			{
@@ -225,7 +225,7 @@ class App extends Component {
 						value: "",
 						label: "Password ",
 						input: "input",
-						type: "text",
+						type: "password",
 						validationTerms: {
 							minLength: 2,
 							maxLength: 20,
@@ -240,7 +240,7 @@ class App extends Component {
 						value: "",
 						label: "Confirm Password ",
 						input: "input",
-						type: "text",
+						type: "password",
 						validationTerms: {
 							minLength: 2,
 							maxLength: 20,
@@ -507,7 +507,7 @@ class App extends Component {
 		switch (true) {
 			case value.length === 0:
 				error = true;
-				errorMessage = "Field is required";
+				errorMessage = "Field is required.";
 				return { error, errorMessage };
 			case value.length > maxLength:
 				error = true;
