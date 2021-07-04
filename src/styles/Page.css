@@ -16,7 +16,7 @@
 
 .form__page__inputBox__labelName {
   font-family: "Krona One", sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -78,9 +78,18 @@
   opacity: 0;
 }
 
-.form__button {
+.form__buttons__button {
   height: 30px;
+  width: 50%;
   font-size: 20px;
+}
+
+.form__buttons__button.previousPageButton {
+  color: red;
+}
+
+.form__buttons__button.submitPageButton {
+  color: blue;
 }
 
 .form .active {

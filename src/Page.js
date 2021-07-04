@@ -43,19 +43,24 @@ const Page = (props) => {
 	return (
 		<>
 			{inputs}
-			{props.activePage ? (
+			<div className="form__buttons">
+				{props.activePage ? (
+					<button
+						className="form__buttons__button previousPageButton"
+						onClick={props.previousPageBtn}
+					>
+						Previous Page
+					</button>
+				) : null}
 				<button
-					className="form__button"
-					onClick={props.previousPageBtn}
+					className="form__buttons__button submitPageButton"
+					onClick={props.submit}
 				>
-					Previous Page
+					{props.pagesLength === props.activePage
+						? "Submit"
+						: "Next Page"}
 				</button>
-			) : null}
-			<button className="form__button" onClick={props.submit}>
-				{props.pagesLength === props.activePage
-					? "Submit"
-					: "Next Page"}
-			</button>
+			</div>
 		</>
 	);
 };

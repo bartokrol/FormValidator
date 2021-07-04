@@ -71,9 +71,20 @@
 		}
 	}
 
-	&__button {
-		height: 30px;
-		font-size: 20px;
+	&__buttons {
+		&__button {
+			height: 30px;
+			width: 50%;
+			font-size: 20px;
+
+			&.previousPageButton {
+				color: red;
+			}
+
+			&.submitPageButton {
+				color: blue;
+			}
+		}
 	}
 
 	.active {
