@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Exo:ital@1&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@500&display=swap");
 .form__page {
   min-height: 90vh;
   max-width: 280px;
@@ -78,18 +79,34 @@
   opacity: 0;
 }
 
+.form__buttons {
+  position: relative;
+  height: 60px;
+}
+
 .form__buttons__button {
-  height: 30px;
-  width: 50%;
+  font-family: "Jura", sans-serif;
+  height: 100%;
+  width: 45%;
+  position: absolute;
+  top: 0;
+  background-color: burlywood;
   font-size: 20px;
+  border-radius: 5px;
+}
+
+.form__buttons__button:hover {
+  background-color: chocolate;
+  cursor: pointer;
+  color: white;
 }
 
 .form__buttons__button.previousPageButton {
-  color: red;
+  left: 0;
 }
 
 .form__buttons__button.submitPageButton {
-  color: blue;
+  right: 0;
 }
 
 .form .active {

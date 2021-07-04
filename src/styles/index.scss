@@ -30,5 +30,8 @@
 		&::after ::before {
 			visibility: hidden;
 		}
+		&:hover {
+			background-color: lightgray;
+		}
 	}
 }

@@ -40,4 +40,9 @@
 .form select::after ::before {
   visibility: hidden;
 }
+
+.form input:hover,
+.form select:hover {
+  background-color: lightgray;
+}
 /*# sourceMappingURL=index.css.map */

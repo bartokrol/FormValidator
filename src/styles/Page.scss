@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Exo:ital@1&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@500&display=swap");
 
 .form {
 	&__page {
@@ -72,17 +73,29 @@
 	}
 
 	&__buttons {
+		position: relative;
+		height: 60px;
 		&__button {
-			height: 30px;
-			width: 50%;
+			font-family: "Jura", sans-serif;
+			height: 100%;
+			width: 45%;
+			position: absolute;
+			top: 0;
+			background-color: burlywood;
 			font-size: 20px;
+			border-radius: 5px;
+			&:hover {
+				background-color: chocolate;
+				cursor: pointer;
+				color: white;
+			}
 
 			&.previousPageButton {
-				color: red;
+				left: 0;
 			}
 
 			&.submitPageButton {
-				color: blue;
+				right: 0;
 			}
 		}
 	}
