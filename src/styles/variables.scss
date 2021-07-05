@@ -1,4 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@500&display=swap");
+
 // inputHeight also used in informationIcon width
 $inputHeight: 40px;
 $pageWidth: 280px;
 $formWidth: calc(#{$pageWidth} - (#{$inputHeight} * 2));
+$backgroundClr: burlywood;
+$hoveredBackgroundClr: chocolate;
