@@ -9,7 +9,7 @@ import "./styles/ThankingMessage.scss";
 
 class App extends Component {
 	state = {
-		activePage: 0,
+		activePage: 2,
 		isFormConfirmed: false,
 		pages: [
 			{

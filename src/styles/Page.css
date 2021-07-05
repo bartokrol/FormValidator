@@ -40,10 +40,8 @@
   display: flex;
   width: 100%;
   height: 100%;
-  -webkit-transition: right 1s;
-  transition: right 1s;
-  -webkit-transition: background-color 0.3s;
-  transition: background-color 0.3s;
+  -webkit-transition: right 1s, background-color 0.3s;
+  transition: right 1s, background-color 0.3s;
 }
 
 .form__page__inputBox__inputContainer__information:hover {
@@ -72,10 +70,8 @@
 
 .form__page__inputBox__inputContainer__information.activeInfo {
   right: 0;
-  -webkit-transition: right 1s;
-  transition: right 1s;
-  -webkit-transition: background-color 0.3s;
-  transition: background-color 0.3s;
+  -webkit-transition: right 1s, background-color 0.3s;
+  transition: right 1s, background-color 0.3s;
 }
 
 .form__page__inputBox__errorMessage {

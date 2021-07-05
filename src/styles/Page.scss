@@ -31,8 +31,7 @@
 					display: flex;
 					width: 100%;
 					height: 100%;
-					transition: right 1s;
-					transition: background-color 0.3s;
+					transition: right 1s, background-color 0.3s;
 					&:hover {
 						background-color: $hoveredBackgroundClr;
 						cursor: pointer;
@@ -56,8 +55,7 @@
 					}
 					&.activeInfo {
 						right: 0;
-						transition: right 1s;
-						transition: background-color 0.3s;
+						transition: right 1s, background-color 0.3s;
 					}
 				}
 			}
