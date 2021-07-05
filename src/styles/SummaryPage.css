@@ -27,20 +27,23 @@
   -webkit-box-align: baseline;
       -ms-flex-align: baseline;
           align-items: baseline;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   margin-bottom: 5px;
 }
 
 .form .summaryPage__inputBox__inputName {
-  font-size: 15px;
+  font-size: 14px;
   font-family: "Exo", sans-serif;
 }
 
 .form .summaryPage__inputBox__inputValue {
   font-family: "Jura", sans-serif;
   margin-left: 5px;
-  font-size: 20px;
+  font-size: 16px;
   font-style: italic;
   font-weight: 600;
+  word-wrap: anywhere;
 }
 
 .form .summaryPage__correctQuestion {

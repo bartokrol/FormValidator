@@ -40,8 +40,16 @@
   display: flex;
   width: 100%;
   height: 100%;
-  -webkit-transition: 1s;
-  transition: 1s;
+  -webkit-transition: right 1s;
+  transition: right 1s;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+
+.form__page__inputBox__inputContainer__information:hover {
+  background-color: chocolate;
+  cursor: pointer;
+  color: white;
 }
 
 .form__page__inputBox__inputContainer__information__informationIcon {
@@ -64,8 +72,10 @@
 
 .form__page__inputBox__inputContainer__information.activeInfo {
   right: 0;
-  -webkit-transition: 1s;
-  transition: 1s;
+  -webkit-transition: right 1s;
+  transition: right 1s;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
 }
 
 .form__page__inputBox__errorMessage {
@@ -93,10 +103,14 @@
   background-color: burlywood;
   font-size: 22px;
   border-radius: 5px;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
 }
 
 .form__buttons__button:hover {
   background-color: chocolate;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
   cursor: pointer;
   color: white;
 }

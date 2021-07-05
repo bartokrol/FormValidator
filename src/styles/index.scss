@@ -23,6 +23,7 @@
 		margin-right: $inputHeight;
 		font-size: 17px;
 		padding: 5px;
+		transition: background-color 0.3s;
 		&:focus {
 			outline: none;
 		}
@@ -31,6 +32,7 @@
 		}
 		&:hover {
 			background-color: lightgray;
+			transition: background-color 0.3s;
 		}
 	}
 }

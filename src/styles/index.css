@@ -1,4 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Exo:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@500&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -29,6 +32,8 @@
   margin-right: 40px;
   font-size: 17px;
   padding: 5px;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
 }
 
 .form input:focus,
@@ -44,5 +49,7 @@
 .form input:hover,
 .form select:hover {
   background-color: lightgray;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
 }
 /*# sourceMappingURL=index.css.map */
