@@ -1,6 +1,6 @@
 import React from "react";
-import TextInput from "./TextInput";
-import SelectInput from "./SelectInput";
+import TextInput from "../layout/TextInput";
+import SelectInput from "../layout/SelectInput";
 
 const infoMessage = (input) => {
 	let message = `May contain between ${input.validationTerms.minLength} and ${input.validationTerms.maxLength} ${input.validationTerms.signs}.`;

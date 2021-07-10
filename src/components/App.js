@@ -1,7 +1,7 @@
 import { Component } from "react";
-import Page from "./Page";
-import SummaryPage from "./SummaryPage";
-import ThankingMessage from "./ThankingMessage";
+import Page from "../layout/Page";
+import SummaryPage from "../layout/SummaryPage";
+import ThankingMessage from "../layout/ThankingMessage";
 import "../styles/index.scss";
 import "../styles/Page.scss";
 import "../styles/SummaryPage.scss";
