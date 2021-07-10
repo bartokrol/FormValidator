@@ -35,7 +35,7 @@
 					&:hover {
 						background-color: $hoveredBackgroundClr;
 						cursor: pointer;
-						color: white;
+						color: $hoveredFontClr;
 					}
 
 					&__informationIcon {
@@ -67,7 +67,7 @@
 				margin-bottom: 20px;
 				max-width: $formWidth;
 				height: 18px;
-				color: red;
+				color: $errorClr;
 				opacity: 0;
 			}
 		}
@@ -90,7 +90,7 @@
 				background-color: $hoveredBackgroundClr;
 				transition: background-color 0.3s;
 				cursor: pointer;
-				color: white;
+				color: $hoveredFontClr;
 			}
 
 			&.previousPageButton {

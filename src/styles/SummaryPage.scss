@@ -42,13 +42,13 @@
 				width: 45%;
 				position: absolute;
 				top: 0;
-				background-color: burlywood;
+				background-color: $backgroundClr;
 				font-size: 22px;
 				border-radius: 5px;
 				&:hover {
-					background-color: chocolate;
+					background-color: $hoveredBackgroundClr;
 					cursor: pointer;
-					color: white;
+					color: $hoveredFontClr;
 				}
 
 				&.declineButton {

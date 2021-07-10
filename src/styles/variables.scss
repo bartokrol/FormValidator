@@ -9,3 +9,6 @@ $pageWidth: 280px;
 $formWidth: calc(#{$pageWidth} - (#{$inputHeight} * 2));
 $backgroundClr: burlywood;
 $hoveredBackgroundClr: chocolate;
+$hoveredFontClr: white;
+$activeInput: lightgray;
+$errorClr: red;

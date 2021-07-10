@@ -30,8 +30,9 @@
 		&::after ::before {
 			visibility: hidden;
 		}
-		&:hover {
-			background-color: lightgray;
+		&:hover,
+		&:focus {
+			background-color: $activeInput;
 			transition: background-color 0.3s;
 		}
 	}
