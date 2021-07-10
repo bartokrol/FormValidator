@@ -2,14 +2,14 @@ import { Component } from "react";
 import Page from "./Page";
 import SummaryPage from "./SummaryPage";
 import ThankingMessage from "./ThankingMessage";
-import "./styles/index.scss";
-import "./styles/Page.scss";
-import "./styles/SummaryPage.scss";
-import "./styles/ThankingMessage.scss";
+import "../styles/index.scss";
+import "../styles/Page.scss";
+import "../styles/SummaryPage.scss";
+import "../styles/ThankingMessage.scss";
 
 class App extends Component {
 	state = {
-		activePage: 2,
+		activePage: 0,
 		isFormConfirmed: false,
 		pages: [
 			{
