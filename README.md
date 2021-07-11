@@ -5,14 +5,24 @@ This is a form validator created to train my programming skills in SCSS, JavaScr
 ## Running
 
 After you clone it from GitHub to your local folder.
-To download node modules use
+To download node modules, use
 
 ```
 "npm install"
 ```
 
-To open http://localhost:3000 to view it in the browser use
+To open http://localhost:3000 to view it in the browser, use
 
 ```
 "npm start"
 ```
+
+## Form Validator inputs
+
+The form validator inputs types:
+
+-   input
+    -   text
+    -   date
+    -   password
+-   select
