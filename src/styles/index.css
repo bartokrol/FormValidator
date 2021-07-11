@@ -46,8 +46,9 @@
   visibility: hidden;
 }
 
-.form input:hover,
-.form select:hover {
+.form input:hover, .form input:focus,
+.form select:hover,
+.form select:focus {
   background-color: lightgray;
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
