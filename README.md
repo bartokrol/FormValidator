@@ -37,3 +37,8 @@ The form validator inputs types:
 
 Each "TextInput" input got a validation terms. It specify which kind of sign can be used inside input and how many of those signs can be used.
 Some of the inputs can have some personalised validation terms.
+
+## Form Validation
+
+To validate the form/page each input has to be filled/choosen.
+If validation terms aren't achieved, the "error message" is shown under the input.
