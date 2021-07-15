@@ -40,5 +40,12 @@ Some of the inputs can have some personalised validation terms.
 
 ## Form Validation
 
-To validate the form/page each input has to be filled/choosen.
+To validate the form/page each input has to be filled or choosen.
 If validation terms aren't achieved, the "error message" is shown under the input.
+
+## Summary Page
+
+After the form has been filled the summary page is shown. 
+The user can check if he/she filled everything correctly. 
+After accepted the form, the "Thanking Message" is shown and after 3 seconds the form is cleaned up and first page is shown. 
+If "decline" button is clicked the form is back to first page and the user can change his/her's responses. 
